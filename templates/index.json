@@ -606,9 +606,11 @@
         "94f39f98-1ba2-4c70-9033-9072e8836226": {
           "type": "policy",
           "settings": {
+            "icon": "shopify://shop_images/p-1_75x_64c8d2cf-c449-4d88-a767-c8c64f89d6cb.png",
             "t": "<p><a href=\"#\" title=\"#\"><strong>Healthy Dry Food</strong></a></p>",
             "d": "",
             "p2": true,
+            "icon2": "shopify://shop_images/p-2_75x_88982a7d-a03c-4f1f-9f12-4931c6b507e3.png",
             "t2": "<p><a href=\"#\" title=\"#\"><strong>Cat’s Toy</strong></a></p>",
             "d2": "",
             "bg_icon": "#c92e00",
@@ -623,9 +625,11 @@
         "9ff12a1a-3de3-4bfe-ab03-bf80d05b87f5": {
           "type": "policy",
           "settings": {
+            "icon": "shopify://shop_images/p-3_75x_267ac16f-e1bc-461d-a015-bcbace7aca6c.png",
             "t": "<p><a href=\"#\" title=\"#\"><strong>Cat Bedding</strong></a></p>",
             "d": "",
             "p2": true,
+            "icon2": "shopify://shop_images/p-4_75x_6b1a1335-2d08-499b-b9f1-18b696878641.png",
             "t2": "<p><a href=\"#\" title=\"#\"><strong>Cat Outfits</strong></a></p>",
             "d2": "",
             "bg_icon": "#c92e00",
@@ -668,6 +672,7 @@
         "subheading": "",
         "subheading_c": "#666666",
         "title_alignment": "text-left",
+        "image": "shopify://shop_images/img-6_d6c91878-41b7-46cb-9129-e85f347f958f.webp",
         "width_img": "col-lg-7",
         "image_object_fit": "contain",
         "image_size": "full",
