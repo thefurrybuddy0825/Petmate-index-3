@@ -1089,6 +1089,7 @@
         "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-0": {
           "type": "quote",
           "settings": {
+            "avatar": "shopify://shop_images/img-21_190x190_crop_center_ccf2b783-79cf-4c1b-8d07-52e6ee27d5ec.avif",
             "star": 5,
             "title": "",
             "info_other": "<strong>Christina M. - From Canada</strong>",
@@ -1120,6 +1121,7 @@
         "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-2"
       ],
       "settings": {
+        "img_top": "shopify://shop_images/img-17.avif",
         "img_top_link": "#",
         "heading": "",
         "heading_c": "#000000",
