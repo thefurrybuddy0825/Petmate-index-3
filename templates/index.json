@@ -928,79 +928,79 @@
         "distance_bottom": 30
       }
     },
-    "e1c9afa6-2eec-4404-9bcb-67e1d46f2236": {
+    "nov_testimonials_cRFWrW": {
       "type": "nov-testimonials",
       "blocks": {
-        "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-0": {
+        "quote_zJxG8W": {
           "type": "quote",
           "settings": {
             "star": 5,
-            "title": "",
-            "info_other": "<strong>Christina M. - From Canada</strong>",
-            "quote": "<p>Best purchase I’ve made this winter! The color and knitting are exquisite and it's so comfy! Went from NYC to Miami without ever taking it off. Super cute!!</p>"
+            "title": "CUSTOMER REVIEWS",
+            "info_other": "Christina M. - From Canada",
+            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
           }
         },
-        "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-1": {
+        "quote_GVmddR": {
           "type": "quote",
           "settings": {
             "star": 5,
-            "title": "",
-            "info_other": "<strong>David Jame. - From America</strong>",
-            "quote": "<p>Best purchase I’ve made this winter! The color and knitting are exquisite and it's so comfy! Went from NYC to Miami without ever taking it off. Super cute!!</p>"
+            "title": "CUSTOMER REVIEWS",
+            "info_other": "Christina M. - From Canada",
+            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
           }
         },
-        "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-2": {
+        "quote_PycBJt": {
           "type": "quote",
           "settings": {
             "star": 5,
-            "title": "",
-            "info_other": "<strong>Taylor S - From Germany</strong>",
-            "quote": "<p>Best purchase I’ve made this winter! The color and knitting are exquisite and it's so comfy! Went from NYC to Miami without ever taking it off. Super cute!!</p>"
+            "title": "CUSTOMER REVIEWS",
+            "info_other": "Christina M. - From Canada",
+            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
           }
         }
       },
       "block_order": [
-        "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-0",
-        "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-1",
-        "e1c9afa6-2eec-4404-9bcb-67e1d46f2236-16831842433c54cc82-2"
+        "quote_zJxG8W",
+        "quote_GVmddR",
+        "quote_PycBJt"
       ],
+      "name": "Vinova Testimonials",
       "settings": {
-        "img_top": "shopify://shop_images/img-17.avif",
-        "img_top_link": "#",
-        "heading": "",
-        "heading_c": "#000000",
-        "subheading": "<p><strong>WHAT CUSTOMER SAY ABOUT US</strong></p>",
-        "subheading_c": "#000000",
+        "img_top_link": "",
+        "heading": "<p>Vinova Testimonials</p>",
+        "heading_c": "#222222",
+        "subheading": "<p>Subtitle from happy customers</p>",
+        "subheading_c": "#666666",
         "title_alignment": "text-center",
-        "xl": 1,
-        "lg": 1,
-        "md": 1,
-        "sm": 1,
-        "xs": 1,
+        "xl": 3,
+        "lg": 3,
+        "md": 3,
+        "sm": 2,
+        "xs": 2,
         "spacing": 30,
         "show_nav": false,
         "show_dots": true,
         "dot_img": false,
-        "dot_w": 21,
-        "dot_h": 19,
-        "c_tt": "#222222",
-        "c_info": "#000000",
-        "c_t": "#3f4045",
-        "s_star": true,
-        "c_star": "#27895c",
-        "show_avatar": false,
+        "dot_w": 15,
+        "dot_h": 15,
+        "c_tt": "",
+        "c_info": "",
+        "c_t": "",
+        "s_star": false,
+        "c_star": "",
+        "show_avatar": true,
         "animate": true,
-        "br_container": 30,
+        "br_container": 0,
         "tl_radius": true,
         "tr_radius": true,
         "bl_radius": true,
         "br_radius": true,
         "container": "container",
-        "background_color": "rgba(0,0,0,0)",
-        "bg_size": "content",
+        "background_color": "",
+        "bg_size": "full",
         "class": "",
-        "distance_top": 100,
-        "distance_bottom": 100
+        "distance_top": 30,
+        "distance_bottom": 30
       }
     },
     "bdfb9a01-3ba4-403a-84b2-27f2d2c58650": {
@@ -1083,7 +1083,7 @@
     "43a0fea6-6cca-422b-971e-fe3c2a69d105",
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
     "nov_img_text_Dx3TYt",
-    "e1c9afa6-2eec-4404-9bcb-67e1d46f2236",
+    "nov_testimonials_cRFWrW",
     "bdfb9a01-3ba4-403a-84b2-27f2d2c58650"
   ]
 }
