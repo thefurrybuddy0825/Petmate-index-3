@@ -480,6 +480,7 @@
         "7a3ecd62-7ec0-4623-bc30-5e548838916f-1685957603aa379a19-0": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/img-3.webp",
             "link": "#",
             "cta_label": "Pet Event Outfits",
             "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices </p>",
@@ -489,6 +490,7 @@
         "7a3ecd62-7ec0-4623-bc30-5e548838916f-1685957603aa379a19-1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/img-4_32906900-32db-472c-ac91-ea55ec5e46a0.webp",
             "link": "#",
             "cta_label": "Pet Halloween Outfits",
             "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices </p>",
@@ -498,6 +500,7 @@
         "7a3ecd62-7ec0-4623-bc30-5e548838916f-1685957603aa379a19-2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/img-5_d8101cdf-fc8b-4a99-b1fd-bee78f30af5d.webp",
             "link": "#",
             "cta_label": "Pet Christmas Outfits",
             "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices </p>",
