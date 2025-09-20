@@ -1077,6 +1077,8 @@
         "container": "container",
         "background_color": "#128d93",
         "gradient": "",
+        "background_image": "shopify://shop_images/img-15_1920x_fead55b5-6d30-4716-a439-91497b5709b8.webp",
+        "img_bottom": "shopify://shop_images/img-16.webp",
         "bg_size": "full",
         "class": "",
         "distance_top": 130,
