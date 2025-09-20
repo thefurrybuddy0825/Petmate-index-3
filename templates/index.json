@@ -540,6 +540,8 @@
         "c_btn_h": "#ffffff",
         "b_btn_h": "#9b2400",
         "show_img_sticky": true,
+        "img_sticky1": "shopify://shop_images/img-1_d98067f8-e23b-4d56-b751-ded8a36c4f45.avif",
+        "img_sticky2": "shopify://shop_images/img-2_ac524613-0e65-4fba-9b7b-85566e323675.png",
         "animate": true,
         "container": "container",
         "background_color": "",
