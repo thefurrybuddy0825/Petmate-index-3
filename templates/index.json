@@ -911,103 +911,6 @@
         "distance_bottom": 150
       }
     },
-    "nov_img_text_Dx3TYt": {
-      "type": "nov-img-text",
-      "blocks": {
-        "text_G8Qxgi": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Lorem ipsum</p>",
-            "tb_c": "",
-            "t_s": 20,
-            "t_s_md": 13,
-            "t_c": "#222222",
-            "ff": "f_df",
-            "t_fw": "font-700",
-            "t_tt": "none",
-            "t_lh": "1.5",
-            "t_lt": "0",
-            "t_m": 1320,
-            "distance_bottom": 5
-          }
-        },
-        "text_AxTBFY": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Maecenas eu nibh pulvinar, mattis lorem eget, convallis turpis. Maecenas sollicitudin lectus augue, vel vehicula nulla condimentum sit amet. Nam id tellus convallis, sollicitudin est a, rhoncus quam. Ut a sem aliquam, aliquet tortor non, cursus enim. Cras at aliquet risus.</p>",
-            "tb_c": "",
-            "t_s": 16,
-            "t_s_md": 13,
-            "t_c": "#222222",
-            "ff": "f_df",
-            "t_fw": "font-400",
-            "t_tt": "none",
-            "t_lh": "1.5",
-            "t_lt": "0",
-            "t_m": 1320,
-            "distance_bottom": 5
-          }
-        },
-        "btn_AkAazV": {
-          "type": "btn",
-          "settings": {
-            "btn": "Shop now",
-            "btn_link": "",
-            "btn2": "",
-            "btn_link2": "",
-            "btn_size": "normal",
-            "c_btn": "#ffffff",
-            "b_btn": "#222222",
-            "bd_btn": "#ffffff",
-            "c_btn_h": "#ffffff",
-            "b_btn_h": "#222222",
-            "distance_bottom": 5
-          }
-        }
-      },
-      "block_order": [
-        "text_G8Qxgi",
-        "text_AxTBFY",
-        "btn_AkAazV"
-      ],
-      "name": "Vinova Images With Text",
-      "settings": {
-        "heading": "<p>Vinova Image Width Text</p>",
-        "heading_c": "#222222",
-        "subheading": "<p>Subtitle from happy customers</p>",
-        "subheading_c": "#666666",
-        "title_alignment": "text-center",
-        "image": "shopify://shop_images/img-6_d6c91878-41b7-46cb-9129-e85f347f958f.webp",
-        "width_img": "col-lg-6",
-        "image_object_fit": "cover",
-        "image_size": "full",
-        "img_radius": 0,
-        "position_lg": "left",
-        "position": "up",
-        "image_animate": true,
-        "autoplay": false,
-        "time": 3,
-        "show_dots": false,
-        "dots_c": "",
-        "dots_ca": "",
-        "width_text": "col-lg-6",
-        "alignment": "text-left",
-        "text_position_horizontal": "center",
-        "text_position_vertical": "center",
-        "spacing_horizontal": 0,
-        "animate": true,
-        "spacing": 30,
-        "br_container": 0,
-        "container": "container",
-        "background_color": "",
-        "gradient": "",
-        "bg_size": "full",
-        "class": "",
-        "px": 0,
-        "distance_top": 30,
-        "distance_bottom": 30
-      }
-    },
     "nov_testimonials_cRFWrW": {
       "type": "nov-testimonials",
       "blocks": {
@@ -1163,7 +1066,6 @@
     "43a0fea6-6cca-422b-971e-fe3c2a69d105",
     "nov_manufacture_TtjMDX",
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
-    "nov_img_text_Dx3TYt",
     "nov_testimonials_cRFWrW",
     "bdfb9a01-3ba4-403a-84b2-27f2d2c58650"
   ]
