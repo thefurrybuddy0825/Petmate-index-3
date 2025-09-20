@@ -1006,6 +1006,7 @@
         "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-0": {
           "type": "item_policy",
           "settings": {
+            "policy_icon": "shopify://shop_images/p-5.png",
             "title_policy": "Exceptional Quality of food",
             "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
             "mw": 350,
@@ -1017,6 +1018,7 @@
         "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-1": {
           "type": "item_policy",
           "settings": {
+            "policy_icon": "shopify://shop_images/p-6.png",
             "title_policy": "Prestigious Pet Care Service",
             "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
             "mw": 350,
@@ -1028,6 +1030,7 @@
         "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2": {
           "type": "item_policy",
           "settings": {
+            "policy_icon": "shopify://shop_images/p-7_200x_e6dfe2d8-4c24-417b-90d4-6d858086ed87.png",
             "title_policy": "Free Delivery From $ 250",
             "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
             "mw": 350,
