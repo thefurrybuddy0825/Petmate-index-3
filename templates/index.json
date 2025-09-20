@@ -833,7 +833,7 @@
         "background_color": "",
         "bg_size": "full",
         "class": "",
-        "distance_top": 250,
+        "distance_top": 150,
         "distance_bottom": 50
       }
     },
