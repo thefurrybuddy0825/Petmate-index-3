@@ -854,7 +854,6 @@
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/S41fbce0277db4d2a943450749da9f1fbF.webp",
-            "image_h": "shopify://shop_images/shopping-bag-7.png",
             "collection": "frontpage"
           }
         },
@@ -890,6 +889,7 @@
         "text_c": "#666666",
         "background_i": "#f3f3f3",
         "background_i_h": "#f3f3f3",
+        "icon_h": "shopify://shop_images/shopping-bag-7.png",
         "grid_number": 3,
         "grid_number_lg": 3,
         "grid_number_md": 3,
