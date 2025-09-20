@@ -1163,6 +1163,7 @@
         "d47ace97-bbbd-4ebe-ac1b-6e089fea1a81": {
           "type": "services",
           "settings": {
+            "image": "shopify://shop_images/img-19_190x190_crop_center_70727116-041b-4763-9dfe-285dc34db911.avif",
             "title": "Vaccination",
             "link": "#"
           }
@@ -1170,6 +1171,7 @@
         "936a0b2b-6c1a-4bac-9b4c-40679e29b0fe": {
           "type": "services",
           "settings": {
+            "image": "shopify://shop_images/img-20_190x190_crop_center_eccdda84-3e28-4938-972d-135879646b1b.avif",
             "title": "Pet Hotel",
             "link": "#"
           }
@@ -1177,6 +1179,7 @@
         "3059cb70-9103-4039-a477-9e5b765c4081": {
           "type": "services",
           "settings": {
+            "image": "shopify://shop_images/img-21_190x190_crop_center_ccf2b783-79cf-4c1b-8d07-52e6ee27d5ec.avif",
             "title": "Pet Spa",
             "link": "#"
           }
@@ -1184,6 +1187,7 @@
         "a9c05f7f-6b4d-45f4-8477-db895c2c8a76": {
           "type": "services",
           "settings": {
+            "image": "shopify://shop_images/img-22_190x190_crop_center_a49861cc-e6af-422b-9c02-5339d5fe78c1.avif",
             "title": "Pet Grooming",
             "link": "#"
           }
@@ -1218,6 +1222,7 @@
         "animate": true,
         "wave": true,
         "wave_bg": "#ffffff",
+        "background_image": "shopify://shop_images/img-18_1920x_2ac93681-2a7c-4f4e-84ae-8c3a096cf50f.webp",
         "class": "",
         "distance_top": 110,
         "distance_bottom": 0
