@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+  .template-index .contentsticky_logo {
+    border-radius: none;
+    box-shadow: none;
+  }
+}
+.contentsticky_logo {
+  background-color: translate;
+}
