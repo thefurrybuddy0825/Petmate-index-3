@@ -919,8 +919,8 @@
         "container": "container-fluid",
         "background_color": "#ffffff",
         "class": "",
-        "distance_top": 30,
-        "distance_bottom": 30
+        "distance_top": 60,
+        "distance_bottom": 60
       }
     },
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d": {
