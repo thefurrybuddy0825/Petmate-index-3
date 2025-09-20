@@ -474,6 +474,87 @@
         "distance_bottom": 30
       }
     },
+    "nov_link_list_3eqdrg": {
+      "type": "nov-link-list",
+      "blocks": {
+        "featured_collection_xTfFH7": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/S7244ae4752a240d18b7304d19098c6faQ.webp",
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_8RkMQL": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/Sb538ffb860744ad3928852eb667914d7v.webp",
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_VtD3Dc": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/Sd0ff05910e1f497c81b9ba02c226ce0c2.webp",
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_4zaXhe": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/S399726121fdc49c7937ab17b969101d1u.webp",
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_AVFPkB": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/S39331f1ac86d42348779c5b8df536702y.webp",
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_ypkpWR": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/S2b34bd2828a74140b5f37b835d36c1e6W.webp",
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_xTfFH7",
+        "featured_collection_8RkMQL",
+        "featured_collection_VtD3Dc",
+        "featured_collection_4zaXhe",
+        "featured_collection_AVFPkB",
+        "featured_collection_ypkpWR"
+      ],
+      "name": "Vinova Link List",
+      "settings": {
+        "heading": "<p>Shop By Category</p>",
+        "heading_c": "#222222",
+        "subheading": "<p><strong>Discover Our Products</strong></p>",
+        "subheading_c": "#666666",
+        "title_alignment": "text-center",
+        "border_radius": 50,
+        "color_link": "#666666",
+        "color_link_h": "#222222",
+        "tt": "none",
+        "text_c": "#666666",
+        "background_i": "#f3f3f3",
+        "background_i_h": "#f3f3f3",
+        "icon_h": "shopify://shop_images/shopping-bag-7.png",
+        "grid_number": 6,
+        "grid_number_lg": 6,
+        "grid_number_md": 3,
+        "grid_number_sm": 2,
+        "grid_number_xs": 1,
+        "container": "container-fluid",
+        "background_color": "#ffffff",
+        "class": "",
+        "distance_top": 60,
+        "distance_bottom": 60
+      }
+    },
     "7a3ecd62-7ec0-4623-bc30-5e548838916f": {
       "type": "nov-collection-summary",
       "blocks": {
@@ -862,87 +943,6 @@
         "distance_bottom": 30
       }
     },
-    "nov_link_list_3eqdrg": {
-      "type": "nov-link-list",
-      "blocks": {
-        "featured_collection_xTfFH7": {
-          "type": "featured_collection",
-          "settings": {
-            "image": "shopify://shop_images/S7244ae4752a240d18b7304d19098c6faQ.webp",
-            "collection": "frontpage"
-          }
-        },
-        "featured_collection_8RkMQL": {
-          "type": "featured_collection",
-          "settings": {
-            "image": "shopify://shop_images/Sb538ffb860744ad3928852eb667914d7v.webp",
-            "collection": "frontpage"
-          }
-        },
-        "featured_collection_VtD3Dc": {
-          "type": "featured_collection",
-          "settings": {
-            "image": "shopify://shop_images/Sd0ff05910e1f497c81b9ba02c226ce0c2.webp",
-            "collection": "frontpage"
-          }
-        },
-        "featured_collection_4zaXhe": {
-          "type": "featured_collection",
-          "settings": {
-            "image": "shopify://shop_images/S399726121fdc49c7937ab17b969101d1u.webp",
-            "collection": "frontpage"
-          }
-        },
-        "featured_collection_AVFPkB": {
-          "type": "featured_collection",
-          "settings": {
-            "image": "shopify://shop_images/S39331f1ac86d42348779c5b8df536702y.webp",
-            "collection": "frontpage"
-          }
-        },
-        "featured_collection_ypkpWR": {
-          "type": "featured_collection",
-          "settings": {
-            "image": "shopify://shop_images/S2b34bd2828a74140b5f37b835d36c1e6W.webp",
-            "collection": "frontpage"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_xTfFH7",
-        "featured_collection_8RkMQL",
-        "featured_collection_VtD3Dc",
-        "featured_collection_4zaXhe",
-        "featured_collection_AVFPkB",
-        "featured_collection_ypkpWR"
-      ],
-      "name": "Vinova Link List",
-      "settings": {
-        "heading": "<p>Shop By Category</p>",
-        "heading_c": "#222222",
-        "subheading": "<p><strong>Discover Our Products</strong></p>",
-        "subheading_c": "#666666",
-        "title_alignment": "text-center",
-        "border_radius": 50,
-        "color_link": "#666666",
-        "color_link_h": "#222222",
-        "tt": "none",
-        "text_c": "#666666",
-        "background_i": "#f3f3f3",
-        "background_i_h": "#f3f3f3",
-        "icon_h": "shopify://shop_images/shopping-bag-7.png",
-        "grid_number": 6,
-        "grid_number_lg": 6,
-        "grid_number_md": 3,
-        "grid_number_sm": 2,
-        "grid_number_xs": 1,
-        "container": "container-fluid",
-        "background_color": "#ffffff",
-        "class": "",
-        "distance_top": 60,
-        "distance_bottom": 60
-      }
-    },
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d": {
       "type": "nov-collection-tabs",
       "blocks": {
@@ -1254,10 +1254,10 @@
   },
   "order": [
     "0a440372-2d57-4dba-9ee3-919180da9da8",
+    "nov_link_list_3eqdrg",
     "7a3ecd62-7ec0-4623-bc30-5e548838916f",
     "ff0e9525-64a4-4174-8cc5-6e6d9c10de9d",
     "043fecef-9a99-4628-93c3-fb7d3e0056a5",
-    "nov_link_list_3eqdrg",
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
     "43a0fea6-6cca-422b-971e-fe3c2a69d105",
     "e1c9afa6-2eec-4404-9bcb-67e1d46f2236",
