@@ -847,6 +847,60 @@
         "distance_bottom": 30
       }
     },
+    "nov_link_list_3eqdrg": {
+      "type": "nov-link-list",
+      "blocks": {
+        "featured_collection_xTfFH7": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/S41fbce0277db4d2a943450749da9f1fbF.webp",
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_8RkMQL": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_VtD3Dc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_xTfFH7",
+        "featured_collection_8RkMQL",
+        "featured_collection_VtD3Dc"
+      ],
+      "name": "Vinova Link List",
+      "settings": {
+        "heading": "<p>Vinova Link List</p>",
+        "heading_c": "#222222",
+        "subheading": "<p>Subtitle from happy customers</p>",
+        "subheading_c": "#666666",
+        "title_alignment": "text-left",
+        "border_radius": 50,
+        "color_link": "#666666",
+        "color_link_h": "#222222",
+        "tt": "none",
+        "text_c": "#666666",
+        "background_i": "#f3f3f3",
+        "background_i_h": "#f3f3f3",
+        "grid_number": 3,
+        "grid_number_lg": 3,
+        "grid_number_md": 3,
+        "grid_number_sm": 2,
+        "grid_number_xs": 1,
+        "container": "container",
+        "background_color": "#ffffff",
+        "class": "",
+        "distance_top": 30,
+        "distance_bottom": 30
+      }
+    },
     "f61a9f29-4036-4860-bb2a-413ec1e70b9b": {
       "type": "nov-image-group",
       "blocks": {
@@ -1287,6 +1341,7 @@
     "7a3ecd62-7ec0-4623-bc30-5e548838916f",
     "ff0e9525-64a4-4174-8cc5-6e6d9c10de9d",
     "043fecef-9a99-4628-93c3-fb7d3e0056a5",
+    "nov_link_list_3eqdrg",
     "f61a9f29-4036-4860-bb2a-413ec1e70b9b",
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
     "43a0fea6-6cca-422b-971e-fe3c2a69d105",
