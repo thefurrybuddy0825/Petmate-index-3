@@ -834,7 +834,7 @@
         "bg_size": "full",
         "class": "",
         "distance_top": 250,
-        "distance_bottom": 30
+        "distance_bottom": 50
       }
     },
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d": {
@@ -907,7 +907,7 @@
         "background_color": "",
         "bg_size": "full",
         "class": "",
-        "distance_top": 250,
+        "distance_top": 100,
         "distance_bottom": 150
       }
     },
