@@ -668,6 +668,94 @@
         "distance_bottom": 50
       }
     },
+    "43a0fea6-6cca-422b-971e-fe3c2a69d105": {
+      "type": "nov-policy",
+      "blocks": {
+        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-0": {
+          "type": "item_policy",
+          "settings": {
+            "policy_icon": "shopify://shop_images/p-5.png",
+            "title_policy": "Exceptional Quality of food",
+            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "mw": 350,
+            "tl": "",
+            "link": "",
+            "class": "mb-sm-25"
+          }
+        },
+        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-1": {
+          "type": "item_policy",
+          "settings": {
+            "policy_icon": "shopify://shop_images/p-6.png",
+            "title_policy": "Prestigious Pet Care Service",
+            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "mw": 350,
+            "tl": "",
+            "link": "",
+            "class": "pb-100 pb-sm-25"
+          }
+        },
+        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2": {
+          "type": "item_policy",
+          "settings": {
+            "policy_icon": "shopify://shop_images/p-7_200x_e6dfe2d8-4c24-417b-90d4-6d858086ed87.png",
+            "title_policy": "Free Delivery From $ 250",
+            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "mw": 350,
+            "tl": "",
+            "link": "",
+            "class": ""
+          }
+        }
+      },
+      "block_order": [
+        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-0",
+        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-1",
+        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2"
+      ],
+      "settings": {
+        "heading": "<p>Why Choose Us?</p>",
+        "heading_c": "#ffffff",
+        "subheading": "",
+        "subheading_c": "#666666",
+        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>",
+        "desc_c": "#ffffff",
+        "title_alignment": "text-center",
+        "style": "style2",
+        "width_icon": 90,
+        "height_icon": 30,
+        "bg_i": true,
+        "bg_i_w": 85,
+        "bg_icon": "#ffffff",
+        "text_fz": 16,
+        "text_color": "#ffffff",
+        "desc_fz": 14,
+        "desc_color": "#ffffff",
+        "bg_itemcolor": "",
+        "bd_radius": 0,
+        "show_border_item": false,
+        "c_border": "",
+        "pt": 0,
+        "pb": 0,
+        "width_xl": "col-xl-4",
+        "width_lg": "col-lg-4",
+        "width_md": "col-md-4",
+        "width_sm": "col-sm-12",
+        "width_xs": "col-12",
+        "spacing": 30,
+        "animate": true,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "#128d93",
+        "gradient": "",
+        "background_image": "shopify://shop_images/img-15_1920x_fead55b5-6d30-4716-a439-91497b5709b8.webp",
+        "img_bottom": "shopify://shop_images/img-16.webp",
+        "bg_size": "full",
+        "class": "",
+        "distance_top": 130,
+        "distance_bottom": 290
+      }
+    },
     "ff0e9525-64a4-4174-8cc5-6e6d9c10de9d": {
       "type": "nov-img-text",
       "blocks": {
@@ -896,94 +984,6 @@
         "distance_bottom": 150
       }
     },
-    "43a0fea6-6cca-422b-971e-fe3c2a69d105": {
-      "type": "nov-policy",
-      "blocks": {
-        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-0": {
-          "type": "item_policy",
-          "settings": {
-            "policy_icon": "shopify://shop_images/p-5.png",
-            "title_policy": "Exceptional Quality of food",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-            "mw": 350,
-            "tl": "",
-            "link": "",
-            "class": "mb-sm-25"
-          }
-        },
-        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-1": {
-          "type": "item_policy",
-          "settings": {
-            "policy_icon": "shopify://shop_images/p-6.png",
-            "title_policy": "Prestigious Pet Care Service",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-            "mw": 350,
-            "tl": "",
-            "link": "",
-            "class": "pb-100 pb-sm-25"
-          }
-        },
-        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2": {
-          "type": "item_policy",
-          "settings": {
-            "policy_icon": "shopify://shop_images/p-7_200x_e6dfe2d8-4c24-417b-90d4-6d858086ed87.png",
-            "title_policy": "Free Delivery From $ 250",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-            "mw": 350,
-            "tl": "",
-            "link": "",
-            "class": ""
-          }
-        }
-      },
-      "block_order": [
-        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-0",
-        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-1",
-        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2"
-      ],
-      "settings": {
-        "heading": "<p>Why Choose Us?</p>",
-        "heading_c": "#ffffff",
-        "subheading": "",
-        "subheading_c": "#666666",
-        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>",
-        "desc_c": "#ffffff",
-        "title_alignment": "text-center",
-        "style": "style2",
-        "width_icon": 90,
-        "height_icon": 30,
-        "bg_i": true,
-        "bg_i_w": 85,
-        "bg_icon": "#ffffff",
-        "text_fz": 16,
-        "text_color": "#ffffff",
-        "desc_fz": 14,
-        "desc_color": "#ffffff",
-        "bg_itemcolor": "",
-        "bd_radius": 0,
-        "show_border_item": false,
-        "c_border": "",
-        "pt": 0,
-        "pb": 0,
-        "width_xl": "col-xl-4",
-        "width_lg": "col-lg-4",
-        "width_md": "col-md-4",
-        "width_sm": "col-sm-12",
-        "width_xs": "col-12",
-        "spacing": 30,
-        "animate": true,
-        "br_container": 0,
-        "container": "container",
-        "background_color": "#128d93",
-        "gradient": "",
-        "background_image": "shopify://shop_images/img-15_1920x_fead55b5-6d30-4716-a439-91497b5709b8.webp",
-        "img_bottom": "shopify://shop_images/img-16.webp",
-        "bg_size": "full",
-        "class": "",
-        "distance_top": 130,
-        "distance_bottom": 290
-      }
-    },
     "e1c9afa6-2eec-4404-9bcb-67e1d46f2236": {
       "type": "nov-testimonials",
       "blocks": {
@@ -1136,9 +1136,9 @@
     "nov_link_list_3eqdrg",
     "7a3ecd62-7ec0-4623-bc30-5e548838916f",
     "nov_products_slider_NkhNJJ",
+    "43a0fea6-6cca-422b-971e-fe3c2a69d105",
     "ff0e9525-64a4-4174-8cc5-6e6d9c10de9d",
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
-    "43a0fea6-6cca-422b-971e-fe3c2a69d105",
     "e1c9afa6-2eec-4404-9bcb-67e1d46f2236",
     "bdfb9a01-3ba4-403a-84b2-27f2d2c58650"
   ]
