@@ -665,8 +665,8 @@
         "gradient": "",
         "bg_size": "full",
         "class": "",
-        "distance_top": 150,
-        "distance_bottom": 50
+        "distance_top": 100,
+        "distance_bottom": 100
       }
     },
     "43a0fea6-6cca-422b-971e-fe3c2a69d105": {
