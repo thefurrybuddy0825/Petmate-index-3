@@ -1,7 +1,7 @@
 @media (min-width: 768px) {
   .template-index .contentsticky_logo {
-    border-radius: none;
-    box-shadow: none;
+    border-radius: unset;
+    box-shadow: unset;
   }
 }
 .contentsticky_logo {
