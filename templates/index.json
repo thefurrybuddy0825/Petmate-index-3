@@ -985,6 +985,7 @@
         "show_dot": false,
         "show_nav": false,
         "view_all": true,
+        "img_bottom": "shopify://shop_images/img-14.avif",
         "nav_c": "#222222",
         "nav_ca": "#ffffff",
         "nav_bd": "#c92e00",
