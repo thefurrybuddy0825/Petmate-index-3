@@ -854,6 +854,7 @@
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/S41fbce0277db4d2a943450749da9f1fbF.webp",
+            "image_h": "shopify://shop_images/shopping-bag-7.png",
             "collection": "frontpage"
           }
         },
