@@ -918,9 +918,9 @@
       ],
       "name": "Vinova Link List",
       "settings": {
-        "heading": "<p>Vinova Link List</p>",
+        "heading": "<p>Shop By Category</p>",
         "heading_c": "#222222",
-        "subheading": "<p>Subtitle from happy customers</p>",
+        "subheading": "<p><strong>Discover Our Products</strong></p>",
         "subheading_c": "#666666",
         "title_alignment": "text-center",
         "border_radius": 50,
