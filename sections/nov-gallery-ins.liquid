@@ -1,0 +1,276 @@
+{% assign sst = section.settings %}
+{%- assign xl = 100 | divided_by: sst.xl -%}
+{%- assign lg = 100 | divided_by: sst.lg -%}
+{%- assign md = 100 | divided_by: sst.md -%}
+{%- assign sm = 100 | divided_by: sst.sm -%}
+<div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}" data-section-id="{{ section.id }}">
+  {% if sst.container == 'container' %}
+    <div class="container">
+  {% elsif sst.container == 'container-fluid' %}
+    <div class="container-fluid">
+  {% else %}
+    <div class="container-full" style="padding: 0 {{ sst.spacing }}px">
+  {% endif %}
+    <div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner">
+      <div class="row spacing-{{ sst.spacing }}">
+        {% if sst.heading != blank or sst.subheading != blank or sst.btn != blank %}
+          <div class="gallery-title col-lg-6 col-12 mb-{{ sst.spacing }}">
+            <div class="title_section mb-0 h-100 d-flex align-items-center justify-content-center">
+              <div class="title-content text-center">
+                {% if sst.heading != blank %}
+                  <span class="title d-block mb-10" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
+                {% endif %}
+                {% if sst.subheading != blank %}
+                  <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
+                {% endif %}
+                {% if sst.btn != blank %}
+                  <a href="{{ sst.btn_link }}" class="btn btn-medium btn-shadow mt-40 d-inline-flex align-items-center justify-content-center">{{ sst.btn }}</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {% for block in section.blocks %}
+          <div class="gallery-content col-lg-3 col-md-4 col-6 mb-{{ sst.spacing }}{% if forloop.first %} first{% endif %}">
+            <div class="card_gallery hover-image d-block overflow_hidden">
+              <a href="{{ block.settings.image | img_url: '1200x' }}" class="d-block" data-fancybox="gallery">
+                {% if block.settings.image != blank %}
+                  <img class="lazyload w-100" data-src="{{ block.settings.image | img_url: '600x600', crop: 'center' }}">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                {% else %}
+                  {%- capture current -%}{% cycle 1, 2, 3, 4 %}{%- endcapture -%}
+                  {{ 'collection-apparel-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gallery Instagram",
+  "class": "section-gallery-ins overflow_hidden",
+  "settings":[
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Vinova Gallery Instagram</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_c",
+      "label": "Heading color",
+      "default": "#222222"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Sub heading",
+      "default": "<p>Subtitle from happy customers</p>"
+    },
+    {
+      "type": "color",
+      "id": "subheading_c",
+      "label": "Sub heading color",
+      "default": "#666666"
+    },
+    {
+      "type": "text",
+      "id": "btn",
+      "label": "Button text"
+    },
+    {
+      "type": "color",
+      "id": "btn_c",
+      "label": "Button color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Button background",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "btn_c_h",
+      "label": "Button color hover",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_h",
+      "label": "Button background hover",
+      "default": "#000"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_title",
+      "label": "Background heading"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "label": "Spacing items",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Design options"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate",
+      "label": "Show animated",
+      "default":   true
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container",
+      "default": "container",
+      "options": [
+        { "value": "container", "label": "Container" },
+        { "value": "container-fluid", "label": "Container fluid" },
+        { "value": "container-full", "label": "Container full width" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Border radius image",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "br_container",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Border radius container",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colors"
+    },
+    {
+      "type": "select",
+      "id": "bg_size",
+      "label": "Background size",
+      "default": "full",
+      "options": [
+        { "value": "content", "label": "Container" },
+        { "value": "full", "label": "Full width" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "class",
+      "label": "Class"
+    },
+    {
+      "type": "number",
+      "id": "distance_top",
+      "label": "Top spacing section (px)",
+      "default": 30
+    },
+    {
+      "type": "number",
+      "id": "distance_bottom",
+      "label": "Bottom spacing section (px)",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "1200px recommend"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vinova Gallery Instagram",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<style>
+  #shopify-section-{{ section.id }} .distance {
+    padding-top: {{ sst.distance_top | append: 'px'}};
+    padding-bottom: {{ sst.distance_bottom | append: 'px'}};
+    border-radius: {{ sst.br_container | append: 'px' }};
+    {% if sst.background_color != blank %}
+      background-color: {{ sst.background_color }};
+    {% endif %}
+    {% if sst.bg_size == 'content' %}
+      padding-left:  30px;
+      padding-right: 30px;
+    {% endif %}
+  }
+  #shopify-section-{{ section.id }} .card_gallery {
+    border-radius: {{ sst.border_radius | append: 'px' }};
+  }
+  {% if sst.btn != blank %}
+    #shopify-section-{{ section.id }} .title_section .btn {
+      background-color: {{ sst.btn_bg }};
+      color:  {{ sst.btn_c }};
+    }
+    #shopify-section-{{ section.id }} .title_section .btn:hover {
+      background-color: {{ sst.btn_bg_h }};
+      color:  {{ sst.btn_c_h }};
+    }
+  {% endif %}
+  {% if sst.bg_title != blank %}
+    #shopify-section-{{ section.id }} .title_section {
+      background: url("{{ sst.bg_title | img_url: '1920x' }}") center;
+      background-size: cover;
+    }
+  {% endif %}
+</style>
