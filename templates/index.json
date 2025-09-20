@@ -829,7 +829,7 @@
         "show_nav": true,
         "animate": true,
         "br_container": 0,
-        "container": "container",
+        "container": "container-full",
         "background_color": "",
         "bg_size": "full",
         "class": "",
