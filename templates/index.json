@@ -868,12 +868,33 @@
           "settings": {
             "collection": "frontpage"
           }
+        },
+        "featured_collection_4zaXhe": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_AVFPkB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_ypkpWR": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
         }
       },
       "block_order": [
         "featured_collection_xTfFH7",
         "featured_collection_8RkMQL",
-        "featured_collection_VtD3Dc"
+        "featured_collection_VtD3Dc",
+        "featured_collection_4zaXhe",
+        "featured_collection_AVFPkB",
+        "featured_collection_ypkpWR"
       ],
       "name": "Vinova Link List",
       "settings": {
