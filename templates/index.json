@@ -643,6 +643,7 @@
         "heading_c": "#222222",
         "subheading": "<p>Subtitle from happy customers</p>",
         "subheading_c": "#666666",
+        "img_title": "shopify://shop_images/icon-wave2.webp",
         "title_alignment": "text-center",
         "collection": "best-sellers",
         "xxl": 4,
