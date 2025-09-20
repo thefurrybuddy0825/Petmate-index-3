@@ -361,6 +361,7 @@
             "type": "block_html",
             "settings": {
               "block_title": "",
+              "img": "shopify://shop_images/THE_FURRY_BUDDY_LOGO_B.png",
               "html_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet",
               "block_class": "",
               "grid_xl": "col-xl-4",
