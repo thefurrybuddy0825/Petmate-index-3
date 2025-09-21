@@ -1063,7 +1063,7 @@
         "wave_bg": "#ffffff",
         "background_image": "shopify://shop_images/img-18_1920x_2ac93681-2a7c-4f4e-84ae-8c3a096cf50f.webp",
         "class": "",
-        "distance_top": 110,
+        "distance_top": 50,
         "distance_bottom": 0
       }
     }
