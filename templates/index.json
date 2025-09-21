@@ -940,12 +940,22 @@
             "info_other": "Christina M. - From Canada",
             "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
           }
+        },
+        "quote_j6rFgT": {
+          "type": "quote",
+          "settings": {
+            "star": 5,
+            "title": "CUSTOMER REVIEWS",
+            "info_other": "Christina M. - From Canada",
+            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+          }
         }
       },
       "block_order": [
         "quote_zJxG8W",
         "quote_GVmddR",
-        "quote_PycBJt"
+        "quote_PycBJt",
+        "quote_j6rFgT"
       ],
       "name": "Vinova Testimonials",
       "settings": {
