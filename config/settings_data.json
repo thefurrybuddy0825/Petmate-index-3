@@ -314,7 +314,7 @@
         ],
         "settings": {
           "logo": "shopify://shop_images/THE_FURRY_BUDDY_LOGO_W.png",
-          "w_logo": 155,
+          "w_logo": 110,
           "bg_logo": "#ffffff",
           "wm_logo": 100,
           "header_top": false,
