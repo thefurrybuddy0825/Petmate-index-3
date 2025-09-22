@@ -684,8 +684,8 @@
           "type": "item_policy",
           "settings": {
             "policy_icon": "shopify://shop_images/p-5.png",
-            "title_policy": "Exceptional Quality of food",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "title_policy": "Trusted Quality",
+            "desc_policy": "Safe, durable products chosen with care for pets of all kinds.",
             "mw": 350,
             "tl": "",
             "link": "",
@@ -696,8 +696,8 @@
           "type": "item_policy",
           "settings": {
             "policy_icon": "shopify://shop_images/p-6.png",
-            "title_policy": "Prestigious Pet Care Service",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "title_policy": "Affordable Value",
+            "desc_policy": "Premium essentials at prices that make pet care accessible.",
             "mw": 350,
             "tl": "",
             "link": "",
@@ -708,8 +708,8 @@
           "type": "item_policy",
           "settings": {
             "policy_icon": "shopify://shop_images/p-7_200x_e6dfe2d8-4c24-417b-90d4-6d858086ed87.png",
-            "title_policy": "Free Delivery From $ 250",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
+            "title_policy": "Happy Pets, Happy Owners",
+            "desc_policy": "Everything we do is to keep tails wagging and families smiling.",
             "mw": 350,
             "tl": "",
             "link": "",
