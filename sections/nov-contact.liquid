@@ -109,14 +109,14 @@
                 class="mb-10 rounded-pill {% if form.errors contains 'phone' %}input--error{% endif %}"
                 placeholder="{{ 'page.contact.form.phone' | t }}"
               >
-              {% comment %} {% if section.blocks.size > 0 %}
+              {% if section.blocks.size > 0 %}
                 <select id="services" name="contact[services]" class="mb-10 rounded-pill" required>
                   <option disabled hidden selected value="">Services Request</option>
                   {% for block in section.blocks %}
                     <option value="{{ block.settings.title }}">{{ block.settings.title }}</option>
                   {% endfor %}
                 </select>
-              {% endif %} {% endcomment %}
+              {% endif %}
               <textarea
                 rows="12"
                 cols="50"
