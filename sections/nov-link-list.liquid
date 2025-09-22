@@ -50,9 +50,9 @@
               </a>
             </div>
             <a href="{{ collection.url }}" class="name_item d-block position-relative font-700 mt-15">{{ collection.title }}</a>
-            {% if collection.products_count.size > 0 %}
+            {% comment %} {% if collection.products_count.size > 0 %}
               <div class="sub_text mt-5">{{ collection.products_count }}&nbsp;{{ 'sections.link_list.product' | t }}</div>
-            {% endif %}
+            {% endif %} {% endcomment %}
           </div>
         </div>
       {% endfor %}
