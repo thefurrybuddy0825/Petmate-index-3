@@ -9,10 +9,10 @@
   {% endif %} 
     {% if sst.heading != blank or sst.subheading != blank %}
       <div class="title_section {{ sst.title_alignment }}{% if sst.img_bottom != blank %} pb-30{% endif %}">
+        <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
         {% if sst.subheading != blank %}
           <span class="sub_title mt-0" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
         {% endif %}
-        <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
         {% if sst.desc != blank %}
           <div class="desc" style="color: {{ sst.desc_c }};">{{ sst.desc }}</div>
         {% endif %}
