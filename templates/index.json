@@ -481,42 +481,49 @@
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/S7244ae4752a240d18b7304d19098c6faQ.webp",
-            "collection": "frontpage"
+            "collection": "pet-toys"
           }
         },
         "featured_collection_8RkMQL": {
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/Sb538ffb860744ad3928852eb667914d7v.webp",
-            "collection": "frontpage"
+            "collection": "pet-cleaning"
           }
         },
         "featured_collection_VtD3Dc": {
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/Sd0ff05910e1f497c81b9ba02c226ce0c2.webp",
-            "collection": "frontpage"
+            "collection": "pet-outfits"
           }
         },
         "featured_collection_4zaXhe": {
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/S399726121fdc49c7937ab17b969101d1u.webp",
-            "collection": "frontpage"
+            "collection": "pet-food"
           }
         },
         "featured_collection_AVFPkB": {
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/S39331f1ac86d42348779c5b8df536702y.webp",
-            "collection": "frontpage"
+            "collection": "pet-bedding"
           }
         },
         "featured_collection_ypkpWR": {
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/S2b34bd2828a74140b5f37b835d36c1e6W.webp",
-            "collection": "frontpage"
+            "collection": "pet-bowls-feeders"
+          }
+        },
+        "featured_collection_W6MWaz": {
+          "type": "featured_collection",
+          "settings": {
+            "image": "shopify://shop_images/img-21_190x190_crop_center_ccf2b783-79cf-4c1b-8d07-52e6ee27d5ec.avif",
+            "collection": "pet-accessories"
           }
         }
       },
@@ -526,7 +533,8 @@
         "featured_collection_VtD3Dc",
         "featured_collection_4zaXhe",
         "featured_collection_AVFPkB",
-        "featured_collection_ypkpWR"
+        "featured_collection_ypkpWR",
+        "featured_collection_W6MWaz"
       ],
       "name": "Vinova Link List",
       "settings": {
