@@ -540,8 +540,8 @@
       "settings": {
         "heading": "<p>Shop By Category</p>",
         "heading_c": "#222222",
-        "subheading": "<p><strong>Discover Our Products</strong></p>",
-        "subheading_c": "#666666",
+        "subheading": "<p>Discover toys, beds, food, outfits, and accessories — everything your furry buddy needs, organized by category.</p>",
+        "subheading_c": "#c92e00",
         "title_alignment": "text-center",
         "border_radius": 50,
         "color_link": "#666666",
