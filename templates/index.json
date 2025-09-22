@@ -785,6 +785,7 @@
         "logo_image_k8BjaH": {
           "type": "logo_image",
           "settings": {
+            "image": "shopify://shop_images/Forbes.webp",
             "link": ""
           }
         },
@@ -829,9 +830,9 @@
       ],
       "name": "Vinova Manufacture",
       "settings": {
-        "heading": "<p>Vinova Manufacture</p>",
+        "heading": "<p>Featured In</p>",
         "heading_c": "#222222",
-        "subheading": "<p>Subtitle from happy customers</p>",
+        "subheading": "<p>Loved by pet parents and recognized by trusted platforms.</p>",
         "subheading_c": "#c92e00",
         "title_alignment": "text-center",
         "border_bottom": true,
