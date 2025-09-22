@@ -719,7 +719,7 @@
         "item_policy_T7qY3p": {
           "type": "item_policy",
           "settings": {
-            "policy_icon": "shopify://shop_images/p-7_200x_e6dfe2d8-4c24-417b-90d4-6d858086ed87.png",
+            "policy_icon": "shopify://shop_images/gift.png",
             "title_policy": "Happiness Guaranteed",
             "desc_policy": "If it doesn’t make tails wag, we’ll make it right with easy returns and support you can count on.",
             "mw": 350,
