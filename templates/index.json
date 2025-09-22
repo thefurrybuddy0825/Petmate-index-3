@@ -695,7 +695,7 @@
         "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-1": {
           "type": "item_policy",
           "settings": {
-            "policy_icon": "shopify://shop_images/p-6.png",
+            "policy_icon": "shopify://shop_images/like.png",
             "title_policy": "Pet-Parent Approved",
             "desc_policy": "Our collections are loved by pet owners everywhere, combining functionality with fun.",
             "mw": 350,
