@@ -792,30 +792,35 @@
         "logo_image_nEGqCj": {
           "type": "logo_image",
           "settings": {
+            "image": "shopify://shop_images/Forbes.webp",
             "link": ""
           }
         },
         "logo_image_exkBGg": {
           "type": "logo_image",
           "settings": {
+            "image": "shopify://shop_images/Forbes.webp",
             "link": ""
           }
         },
         "logo_image_tEQfY4": {
           "type": "logo_image",
           "settings": {
+            "image": "shopify://shop_images/Forbes.webp",
             "link": ""
           }
         },
         "logo_image_MhxPKD": {
           "type": "logo_image",
           "settings": {
+            "image": "shopify://shop_images/Forbes.webp",
             "link": ""
           }
         },
         "logo_image_cxyfgK": {
           "type": "logo_image",
           "settings": {
+            "image": "shopify://shop_images/Forbes.webp",
             "link": ""
           }
         }
