@@ -649,8 +649,8 @@
       "settings": {
         "heading": "<p>Best Sellers</p>",
         "heading_c": "#222222",
-        "subheading": "<p>Subtitle from happy customers</p>",
-        "subheading_c": "#666666",
+        "subheading": "<p>Our most-loved picks, chosen by happy pet parents.</p>",
+        "subheading_c": "#9b2400",
         "img_title": "shopify://shop_images/icon-wave2.webp",
         "title_alignment": "text-center",
         "collection": "best-sellers",

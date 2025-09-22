@@ -21,6 +21,9 @@
           {% if sst.heading != blank %}
             <div class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</div>
           {% endif %}
+          {% if sst.subheading != blank %}
+            <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
+          {% endif %}
           {% if sst.img_title != blank %}
             <img src="{{ sst.img_title | img_url: '65x25' }}" class="lazyload mt-10 mb-10" alt="{{ sst.img_title.alt }}">
           {% endif %}
