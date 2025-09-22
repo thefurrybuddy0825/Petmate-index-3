@@ -715,12 +715,25 @@
             "link": "",
             "class": ""
           }
+        },
+        "item_policy_T7qY3p": {
+          "type": "item_policy",
+          "settings": {
+            "policy_icon": "shopify://shop_images/p-7_200x_e6dfe2d8-4c24-417b-90d4-6d858086ed87.png",
+            "title_policy": "Happy Pets, Happy Owners",
+            "desc_policy": "Everything we do is to keep tails wagging and families smiling.",
+            "mw": 350,
+            "tl": "",
+            "link": "",
+            "class": ""
+          }
         }
       },
       "block_order": [
         "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-0",
         "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-1",
-        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2"
+        "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2",
+        "item_policy_T7qY3p"
       ],
       "settings": {
         "heading": "<p>Why Choose Us?</p>",
@@ -746,15 +759,15 @@
         "c_border": "",
         "pt": 0,
         "pb": 0,
-        "width_xl": "col-xl-4",
-        "width_lg": "col-lg-4",
+        "width_xl": "col-xl-3",
+        "width_lg": "col-lg-3",
         "width_md": "col-md-4",
         "width_sm": "col-sm-12",
         "width_xs": "col-12",
         "spacing": 30,
         "animate": true,
         "br_container": 0,
-        "container": "container",
+        "container": "container-full",
         "background_color": "#128d93",
         "gradient": "",
         "background_image": "shopify://shop_images/img-15_1920x_fead55b5-6d30-4716-a439-91497b5709b8.webp",
