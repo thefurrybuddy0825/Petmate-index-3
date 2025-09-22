@@ -2,12 +2,12 @@
 <div class="distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
   {% if sst.heading != blank or sst.subheading != blank %}
     <div class="title_section {{ sst.title_alignment }}">
+      {% if sst.heading != blank %}
+        <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
+      {% endif %}
       {% if sst.subheading != blank %}
-      <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
-    {% endif %}
-    {% if sst.heading != blank %}
-    <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
-    {% endif %}
+        <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
+      {% endif %}
     </div>
   {% endif %}
   <div class="block-content position-relative pb-75">
@@ -24,12 +24,18 @@
           {%- assign bst = block.settings -%}
           <div class="sv-item text-center col-sm col-6">
             {% if bst.image != blank %}
-            <div class="item-image d-inline-block">
-              <img data-src="{{ bst.image | img_url: '190x190', crop: 'center' }}" class="lazyload" alt="{{ bst.image.alt }}">
-            </div>
+              <div class="item-image d-inline-block">
+                <img
+                  data-src="{{ bst.image | img_url: '190x190', crop: 'center' }}"
+                  class="lazyload"
+                  alt="{{ bst.image.alt }}"
+                >
+              </div>
             {% endif %}
             <div class="item-title font-700 mt-25">
-            {% if bst.link != blank %}<a href="{{ bst.link }}" class="hover:c_df">{% endif %}{{ bst.title }}{% if bst.link != blank %}</a>{% endif %}
+              {% if bst.link != blank %}<a href="{{ bst.link }}" class="hover:c_df">{% endif -%}
+              {{- bst.title -}}
+              {%- if bst.link != blank %}</a>{% endif %}
             </div>
           </div>
         {% endfor %}
@@ -48,8 +54,8 @@
           {% endif %}
           {% if sst.phone != blank %}
             <div class="item-contact d-flex align-items-center p">
-                <i class="rbb-icon-phone-2"></i>
-                <span class="phone font-700">{{ sst.phone }}</span>
+              <i class="rbb-icon-phone-2"></i>
+              <span class="phone font-700">{{ sst.phone }}</span>
             </div>
           {% endif %}
           {% if sst.email != blank %}
@@ -73,12 +79,36 @@
                   {{ 'page.contact.form.post_success' | t }}
                 </p>
               {% endif %}
-              
+
               {{ form.errors | default_errors }}
-              
-              <input type="text" id="ContactFormName" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" class="mb-10 rounded-pill {% if form.errors contains 'name' %}input--error{% endif %}" placeholder="{{ 'page.contact.form.name' | t }}" required>
-              <input type="email" id="ContactFormEmail" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" class="mb-10 rounded-pill {% if form.errors contains 'email' %}input--error{% endif %}" placeholder="{{ 'page.contact.form.email' | t }}" required>
-              <input type="tel" id="ContactFormPhone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" class="mb-10 rounded-pill {% if form.errors contains 'phone' %}input--error{% endif %}" placeholder="{{ 'page.contact.form.phone' | t }}">
+
+              <input
+                type="text"
+                id="ContactFormName"
+                name="contact[name]"
+                value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                class="mb-10 rounded-pill {% if form.errors contains 'name' %}input--error{% endif %}"
+                placeholder="{{ 'page.contact.form.name' | t }}"
+                required
+              >
+              <input
+                type="email"
+                id="ContactFormEmail"
+                name="contact[email]"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                class="mb-10 rounded-pill {% if form.errors contains 'email' %}input--error{% endif %}"
+                placeholder="{{ 'page.contact.form.email' | t }}"
+                required
+              >
+              <input
+                type="tel"
+                id="ContactFormPhone"
+                name="contact[phone]"
+                pattern="[0-9\-]*"
+                value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                class="mb-10 rounded-pill {% if form.errors contains 'phone' %}input--error{% endif %}"
+                placeholder="{{ 'page.contact.form.phone' | t }}"
+              >
               {% if section.blocks.size > 0 %}
                 <select id="services" name="contact[services]" class="mb-10 rounded-pill" required>
                   <option disabled hidden selected value="">Services Request</option>
@@ -87,8 +117,15 @@
                   {% endfor %}
                 </select>
               {% endif %}
-              <textarea rows="12" cols="50" id="ContactFormMessage" class="mb-20" name="contact[body]" placeholder="{{ 'page.contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
-              
+              <textarea
+                rows="12"
+                cols="50"
+                id="ContactFormMessage"
+                class="mb-20"
+                name="contact[body]"
+                placeholder="{{ 'page.contact.form.message' | t }}"
+              >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
               <button class="btn bg_df white hover:bg_pr w-100" type="submit">
                 <span>{{ 'contact.form.submit' | t }}</span>
               </button>
@@ -100,228 +137,229 @@
   </div>
 </div>
 {% schema %}
-  {
-    "name": "Vinova Contact",
-    "class": "section-contact",
-    "max_blocks": 4,
-    "settings": [
-      {
-        "type": "header",
-        "content": "Heading"
-      },
-      {
-        "type": "richtext",
-        "id": "heading",
-        "label": "Heading",
-        "default": "<p>Vinova Contact</p>"
-      },
-      {
-        "type": "color",
-        "id": "heading_c",
-        "label": "Heading color",
-        "default": "#222222"
-      },
-      {
-        "type": "richtext",
-        "id": "subheading",
-        "label": "Sub heading",
-        "default": "<p>Subtitle from happy customers</p>"
-      },
-      {
-        "type": "color",
-        "id": "subheading_c",
-        "label": "Sub heading color",
-        "default": "#666666"
-      },
-      {
-        "type": "select",
-        "id": "title_alignment",
-        "label": "Heading alignment",
-        "default": "text-center",
-        "options": [
-          {
-            "value": "text-left",
-            "label": "Left"
-          },
-          {
-            "value": "text-center",
-            "label": "Center"
-          },
-          {
-            "value": "text-right",
-            "label": "Right"
-          }
-        ]
-      },
-      {
-        "type": "header",
-        "content": "Block services"
-      },
-      {
-        "type": "color",
-        "id": "sv_bd_color",
-        "label": "Image border color",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "sv_title_c",
-        "label": "Title color",
-        "default": "#222222"
-      },
-      {
-        "type": "header",
-        "content": "Block info"
-      },
-      {
-        "type": "richtext",
-        "id": "title",
-        "label": "Title",
-        "default": "<p>Vinova Contact</p>"
-      },
-      {
-        "type": "color",
-        "id": "title_c",
-        "label": "Title color",
-        "default": "#222222"
-      },
-      {
-        "type": "richtext",
-        "id": "subtitle",
-        "label": "Sub title",
-        "default": "<p>Subtitle from happy customers</p>"
-      },
-      {
-        "type": "color",
-        "id": "subtitle_c",
-        "label": "Sub title color",
-        "default": "#666666"
-      },
-      {
-        "type": "inline_richtext",
-        "id": "phone",
-        "label": "Contact phone",
-        "default": "0123 456 789"
-      },
-      {
-        "type": "inline_richtext",
-        "id": "email",
-        "label": "Contact email",
-        "default": "demo@gmail.com"
-      },
-      {
-        "type": "inline_richtext",
-        "id": "open",
-        "label": "Contact open",
-        "default": "Monday till Friday 10 to 6 EST"
-      },
-      {
-        "type": "color",
-        "id": "text_c",
-        "label": "Text color",
-        "default": "#666666"
-      },
-      {
-        "type": "color",
-        "id": "icon_c",
-        "label": "Icon color",
-        "default": "#666666"
-      },
-      {
-        "type":  "header",
-        "content": "Form contact"
-      },
-      {
-        "type": "color",
-        "id": "bg_form",
-        "label": "Background",
-        "default": "#5f5f5f"
-      },
-      {
-        "type": "color",
-        "id": "bd_c",
-        "label": "Border color",
-        "default": "#5f5f5f"
-      },
-      {
-        "type": "range",
-        "id": "bg_p",
-        "min": -30,
-        "max": 30,
-        "step": 5,
-        "unit": "%",
-        "label": "Background position desktop",
-        "default": 0
-      },
-      {
-        "type":  "header",
-        "content": "Design option"
-      },
-      {
-        "type": "checkbox",
-        "id": "animate",
-        "label": "Show animated",
-        "default":   true
-      },
-      {
-        "type": "checkbox",
-        "id": "wave",
-        "label": "Show wave bottom"
-      },
-      {
-        "type": "color",
-        "id": "wave_bg",
-        "label": "Background wave",
-        "default": "#ffffff"
-      },
-      {
-        "type": "image_picker",
-        "id": "background_image",
-        "label": "Background image"
-      },
-      {
-        "type": "text",
-        "id": "class",
-        "label": "Class"
-      },
-      {
-        "type": "number",
-        "id": "distance_top",
-        "label": "Top spacing section (px)",
-        "default": 30
-      },
-      {
-        "type": "number",
-        "id": "distance_bottom",
-        "label": "Bottom spacing section (px)",
-        "default": 30
-      }
-    ],
-    "blocks": [
-      {
-        "type": "services",
-        "name": "Services",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Services",
-            "default": "Services"
-          },
-          {
-            "type": "url",
-            "id": "link",
-            "label": "Link"
-          }
-        ]
-      }
-    ],
-    "presets": [{
+{
+  "name": "Vinova Contact",
+  "class": "section-contact",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Vinova Contact</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_c",
+      "label": "Heading color",
+      "default": "#222222"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Sub heading",
+      "default": "<p>Subtitle from happy customers</p>"
+    },
+    {
+      "type": "color",
+      "id": "subheading_c",
+      "label": "Sub heading color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Heading alignment",
+      "default": "text-center",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Block services"
+    },
+    {
+      "type": "color",
+      "id": "sv_bd_color",
+      "label": "Image border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "sv_title_c",
+      "label": "Title color",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Block info"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Vinova Contact</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_c",
+      "label": "Title color",
+      "default": "#222222"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Sub title",
+      "default": "<p>Subtitle from happy customers</p>"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_c",
+      "label": "Sub title color",
+      "default": "#666666"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "phone",
+      "label": "Contact phone",
+      "default": "0123 456 789"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "email",
+      "label": "Contact email",
+      "default": "demo@gmail.com"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "open",
+      "label": "Contact open",
+      "default": "Monday till Friday 10 to 6 EST"
+    },
+    {
+      "type": "color",
+      "id": "text_c",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "icon_c",
+      "label": "Icon color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Form contact"
+    },
+    {
+      "type": "color",
+      "id": "bg_form",
+      "label": "Background",
+      "default": "#5f5f5f"
+    },
+    {
+      "type": "color",
+      "id": "bd_c",
+      "label": "Border color",
+      "default": "#5f5f5f"
+    },
+    {
+      "type": "range",
+      "id": "bg_p",
+      "min": -30,
+      "max": 30,
+      "step": 5,
+      "unit": "%",
+      "label": "Background position desktop",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Design option"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate",
+      "label": "Show animated",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "wave",
+      "label": "Show wave bottom"
+    },
+    {
+      "type": "color",
+      "id": "wave_bg",
+      "label": "Background wave",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "class",
+      "label": "Class"
+    },
+    {
+      "type": "number",
+      "id": "distance_top",
+      "label": "Top spacing section (px)",
+      "default": 30
+    },
+    {
+      "type": "number",
+      "id": "distance_bottom",
+      "label": "Bottom spacing section (px)",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "services",
+      "name": "Services",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Services",
+          "default": "Services"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
       "name": "Vinova Contact",
       "category": "Promotional",
       "blocks": [
@@ -335,14 +373,15 @@
           "type": "services"
         }
       ]
-    }]
-  }
+    }
+  ]
+}
 {% endschema %}
 {%- assign bg_image = sst.background_image -%}
 <style>
   #shopify-section-{{ section.id }} .distance {
     padding-top: {{ sst.distance_top | append: 'px' }};
-    padding-bottom: {{ sst.distance_bottom | append: 'px' }}; 
+    padding-bottom: {{ sst.distance_bottom | append: 'px' }};
   }
   @media(max-width: 991px) {
     #shopify-section-{{ section.id }} .distance {
