@@ -581,8 +581,8 @@
           "settings": {
             "image": "shopify://shop_images/img-4_32906900-32db-472c-ac91-ea55ec5e46a0.webp",
             "link": "#",
-            "cta_label": "20% Off Pet Beds",
-            "desc": "<p>Give your furry buddy a cozy retreat with calming, orthopedic, and cave-style beds — all at 20% off for a limited time.</p>",
+            "cta_label": "30% Off Pet Beds",
+            "desc": "<h4>Give your furry buddy a cozy retreat with calming, orthopedic, and cave-style beds — all at 20% off for a limited time.</h4>",
             "class": ""
           }
         },
