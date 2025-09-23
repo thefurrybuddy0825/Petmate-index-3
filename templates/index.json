@@ -1106,7 +1106,7 @@
         "tr_radius": true,
         "bl_radius": true,
         "br_radius": true,
-        "container": "container-full",
+        "container": "container-fluid",
         "background_color": "",
         "bg_size": "full",
         "class": "",
