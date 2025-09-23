@@ -1023,6 +1023,7 @@
         "quote_zJxG8W": {
           "type": "quote",
           "settings": {
+            "avatar": "shopify://shop_images/gallery-10.png",
             "star": 5,
             "title": "CUSTOMER REVIEWS",
             "info_other": "Emily R. - From USA",
@@ -1105,7 +1106,7 @@
         "tr_radius": true,
         "bl_radius": true,
         "br_radius": true,
-        "container": "container",
+        "container": "container-full",
         "background_color": "",
         "bg_size": "full",
         "class": "",
