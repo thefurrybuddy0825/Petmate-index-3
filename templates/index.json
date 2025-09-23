@@ -672,7 +672,7 @@
         "gradient": "",
         "bg_size": "full",
         "class": "",
-        "distance_top": 100,
+        "distance_top": 30,
         "distance_bottom": 100
       }
     },
