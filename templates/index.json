@@ -536,7 +536,7 @@
         "featured_collection_ypkpWR",
         "featured_collection_W6MWaz"
       ],
-      "name": "Vinova Link List",
+      "name": "Shop by Category",
       "settings": {
         "heading": "<p>Shop By Category</p>",
         "heading_c": "#222222",
@@ -602,6 +602,7 @@
         "7a3ecd62-7ec0-4623-bc30-5e548838916f-1685957603aa379a19-1",
         "7a3ecd62-7ec0-4623-bc30-5e548838916f-1685957603aa379a19-2"
       ],
+      "name": "Hot Deals for Pet Lovers",
       "settings": {
         "img_top_link": "",
         "heading": "<p>Hot Deals for Pet Lovers</p>",
@@ -645,7 +646,7 @@
     },
     "nov_products_slider_NkhNJJ": {
       "type": "nov-products-slider",
-      "name": "Vinova Products Slider",
+      "name": "Best Sellers",
       "settings": {
         "heading": "<p>Best Sellers</p>",
         "heading_c": "#222222",
@@ -674,6 +675,156 @@
         "class": "",
         "distance_top": 30,
         "distance_bottom": 100
+      }
+    },
+    "nov_collection_tabs_nR3dt4": {
+      "type": "nov-collection-tabs",
+      "blocks": {
+        "tabitem_eiVB4T": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Dog Food",
+            "collection_handle": "dog-food"
+          }
+        },
+        "tabitem_Ek4Le3": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Cat Food",
+            "collection_handle": "cat-food"
+          }
+        },
+        "tabitem_Rrf3JT": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Dog Outfits",
+            "collection_handle": "dog-outfits"
+          }
+        },
+        "tabitem_aB3dcV": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Cat Outfits",
+            "collection_handle": "cat-outfits"
+          }
+        }
+      },
+      "block_order": [
+        "tabitem_eiVB4T",
+        "tabitem_Ek4Le3",
+        "tabitem_Rrf3JT",
+        "tabitem_aB3dcV"
+      ],
+      "name": "New Arrivals",
+      "settings": {
+        "heading": "<p>New Arrivals</p>",
+        "heading_c": "#222222",
+        "subheading": "",
+        "subheading_c": "#666666",
+        "img_title": "shopify://shop_images/icon-wave2.webp",
+        "title_alignment": "text-center",
+        "xxl": 3,
+        "xl": 3,
+        "lg": 3,
+        "md": 3,
+        "sm": 2,
+        "xs": 2,
+        "row_number": 1,
+        "row_mobile": 2,
+        "limit": 7,
+        "spacing": 30,
+        "show_dot": false,
+        "show_nav": false,
+        "view_all": true,
+        "img_bottom": "shopify://shop_images/img-14.avif",
+        "nav_c": "#222222",
+        "nav_ca": "#ffffff",
+        "nav_bd": "#c92e00",
+        "nav_bg": "#ffffff",
+        "nav_bga": "#c92e00",
+        "animate": true,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "",
+        "bg_size": "full",
+        "class": "",
+        "distance_top": 0,
+        "distance_bottom": 150
+      }
+    },
+    "4eb11c3f-8973-4e3a-bcad-41a81c04064d": {
+      "type": "nov-collection-tabs",
+      "blocks": {
+        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-0": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Dog Food",
+            "collection_handle": "dog-food"
+          }
+        },
+        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-1": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Cat Food",
+            "collection_handle": "cat-food"
+          }
+        },
+        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-2": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Dog Outfits",
+            "collection_handle": "dog-outfits"
+          }
+        },
+        "9ba66be5-75f5-41fa-a210-55840e552e9e": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Cat Outfits",
+            "collection_handle": "cat-outfits"
+          }
+        }
+      },
+      "block_order": [
+        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-0",
+        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-1",
+        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-2",
+        "9ba66be5-75f5-41fa-a210-55840e552e9e"
+      ],
+      "name": "Featured Products",
+      "settings": {
+        "heading": "<p>Featured Products</p>",
+        "heading_c": "#222222",
+        "subheading": "",
+        "subheading_c": "#666666",
+        "img_title": "shopify://shop_images/icon-wave2.webp",
+        "title_alignment": "text-center",
+        "xxl": 3,
+        "xl": 3,
+        "lg": 3,
+        "md": 3,
+        "sm": 2,
+        "xs": 2,
+        "row_number": 1,
+        "row_mobile": 2,
+        "limit": 7,
+        "spacing": 30,
+        "show_dot": false,
+        "show_nav": false,
+        "view_all": true,
+        "img_bottom": "shopify://shop_images/img-14.avif",
+        "nav_c": "#222222",
+        "nav_ca": "#ffffff",
+        "nav_bd": "#c92e00",
+        "nav_bg": "#ffffff",
+        "nav_bga": "#c92e00",
+        "animate": true,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "",
+        "bg_size": "full",
+        "class": "",
+        "distance_top": 0,
+        "distance_bottom": 150
       }
     },
     "43a0fea6-6cca-422b-971e-fe3c2a69d105": {
@@ -734,6 +885,7 @@
         "43a0fea6-6cca-422b-971e-fe3c2a69d105-16857793062aa358c2-2",
         "item_policy_T7qY3p"
       ],
+      "name": "Why Choose Us?",
       "settings": {
         "heading": "<p>Why Choose Us?</p>",
         "heading_c": "#ffffff",
@@ -831,7 +983,7 @@
         "logo_image_MhxPKD",
         "logo_image_cxyfgK"
       ],
-      "name": "Vinova Manufacture",
+      "name": "Featured In",
       "settings": {
         "heading": "<p>Featured In</p>",
         "heading_c": "#222222",
@@ -861,154 +1013,6 @@
         "class": "",
         "distance_top": 150,
         "distance_bottom": 50
-      }
-    },
-    "4eb11c3f-8973-4e3a-bcad-41a81c04064d": {
-      "type": "nov-collection-tabs",
-      "blocks": {
-        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-0": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Dog Food",
-            "collection_handle": "dog-food"
-          }
-        },
-        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-1": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Cat Food",
-            "collection_handle": "cat-food"
-          }
-        },
-        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-2": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Dog Outfits",
-            "collection_handle": "dog-outfits"
-          }
-        },
-        "9ba66be5-75f5-41fa-a210-55840e552e9e": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Cat Outfits",
-            "collection_handle": "cat-outfits"
-          }
-        }
-      },
-      "block_order": [
-        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-0",
-        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-1",
-        "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-2",
-        "9ba66be5-75f5-41fa-a210-55840e552e9e"
-      ],
-      "settings": {
-        "heading": "<p>Featured Products</p>",
-        "heading_c": "#222222",
-        "subheading": "",
-        "subheading_c": "#666666",
-        "img_title": "shopify://shop_images/icon-wave2.webp",
-        "title_alignment": "text-center",
-        "xxl": 3,
-        "xl": 3,
-        "lg": 3,
-        "md": 3,
-        "sm": 2,
-        "xs": 2,
-        "row_number": 1,
-        "row_mobile": 2,
-        "limit": 7,
-        "spacing": 30,
-        "show_dot": false,
-        "show_nav": false,
-        "view_all": true,
-        "img_bottom": "shopify://shop_images/img-14.avif",
-        "nav_c": "#222222",
-        "nav_ca": "#ffffff",
-        "nav_bd": "#c92e00",
-        "nav_bg": "#ffffff",
-        "nav_bga": "#c92e00",
-        "animate": true,
-        "br_container": 0,
-        "container": "container",
-        "background_color": "",
-        "bg_size": "full",
-        "class": "",
-        "distance_top": 0,
-        "distance_bottom": 150
-      }
-    },
-    "nov_collection_tabs_nR3dt4": {
-      "type": "nov-collection-tabs",
-      "blocks": {
-        "tabitem_eiVB4T": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Dog Food",
-            "collection_handle": "dog-food"
-          }
-        },
-        "tabitem_Ek4Le3": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Cat Food",
-            "collection_handle": "cat-food"
-          }
-        },
-        "tabitem_Rrf3JT": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Dog Outfits",
-            "collection_handle": "dog-outfits"
-          }
-        },
-        "tabitem_aB3dcV": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Cat Outfits",
-            "collection_handle": "cat-outfits"
-          }
-        }
-      },
-      "block_order": [
-        "tabitem_eiVB4T",
-        "tabitem_Ek4Le3",
-        "tabitem_Rrf3JT",
-        "tabitem_aB3dcV"
-      ],
-      "settings": {
-        "heading": "<p>New Arrivals</p>",
-        "heading_c": "#222222",
-        "subheading": "",
-        "subheading_c": "#666666",
-        "img_title": "shopify://shop_images/icon-wave2.webp",
-        "title_alignment": "text-center",
-        "xxl": 3,
-        "xl": 3,
-        "lg": 3,
-        "md": 3,
-        "sm": 2,
-        "xs": 2,
-        "row_number": 1,
-        "row_mobile": 2,
-        "limit": 7,
-        "spacing": 30,
-        "show_dot": false,
-        "show_nav": false,
-        "view_all": true,
-        "img_bottom": "shopify://shop_images/img-14.avif",
-        "nav_c": "#222222",
-        "nav_ca": "#ffffff",
-        "nav_bd": "#c92e00",
-        "nav_bg": "#ffffff",
-        "nav_bga": "#c92e00",
-        "animate": true,
-        "br_container": 0,
-        "container": "container",
-        "background_color": "",
-        "bg_size": "full",
-        "class": "",
-        "distance_top": 0,
-        "distance_bottom": 150
       }
     },
     "nov_testimonials_cRFWrW": {
@@ -1057,7 +1061,7 @@
         "quote_PycBJt",
         "quote_j6rFgT"
       ],
-      "name": "Vinova Testimonials",
+      "name": "Testimonials",
       "settings": {
         "img_top_link": "",
         "heading": "<p>Vinova Testimonials</p>",
@@ -1138,6 +1142,7 @@
         "3059cb70-9103-4039-a477-9e5b765c4081",
         "a9c05f7f-6b4d-45f4-8477-db895c2c8a76"
       ],
+      "name": "Discover The Furry Buddy™",
       "settings": {
         "heading": "<p>Discover The Furry Buddy™</p>",
         "heading_c": "#222222",
@@ -1173,10 +1178,10 @@
     "nov_link_list_3eqdrg",
     "7a3ecd62-7ec0-4623-bc30-5e548838916f",
     "nov_products_slider_NkhNJJ",
+    "nov_collection_tabs_nR3dt4",
+    "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
     "43a0fea6-6cca-422b-971e-fe3c2a69d105",
     "nov_manufacture_TtjMDX",
-    "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
-    "nov_collection_tabs_nR3dt4",
     "nov_testimonials_cRFWrW",
     "bdfb9a01-3ba4-403a-84b2-27f2d2c58650"
   ]
