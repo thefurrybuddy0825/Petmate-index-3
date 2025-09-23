@@ -604,6 +604,7 @@
       ],
       "name": "Hot Deals for Pet Lovers",
       "settings": {
+        "img_top": "shopify://shop_images/gift.png",
         "img_top_link": "",
         "heading": "<p>Hot Deals for Pet Lovers</p>",
         "heading_c": "#222222",
