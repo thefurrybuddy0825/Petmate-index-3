@@ -1065,8 +1065,8 @@
       "settings": {
         "img_top_link": "",
         "heading": "<p>Happy Customers</p>",
-        "heading_c": "#222222",
-        "subheading": "<p>Subtitle from happy customers</p>",
+        "heading_c": "#c92e00",
+        "subheading": "<p>Because nothing makes us happier than happy tails.</p>",
         "subheading_c": "#666666",
         "title_alignment": "text-center",
         "xl": 3,
