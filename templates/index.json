@@ -1025,8 +1025,8 @@
           "settings": {
             "star": 5,
             "title": "CUSTOMER REVIEWS",
-            "info_other": "Christina M. - From Canada",
-            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+            "info_other": "Emily R. - From USA",
+            "quote": "<p>My golden retriever absolutely loves his new cozy cave bed! He used to pace around at night, but now he curls right in and sleeps through till morning. Worth every penny!</p>"
           }
         },
         "quote_GVmddR": {
@@ -1034,17 +1034,26 @@
           "settings": {
             "star": 5,
             "title": "CUSTOMER REVIEWS",
-            "info_other": "Christina M. - From Canada",
-            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+            "info_other": "Daniel K. - From Canada",
+            "quote": "<p>The stainless steel bowls are not only sturdy but also super easy to clean. I appreciate the quality — feels much better than anything I bought from a big box store.</p>"
           }
         },
         "quote_PycBJt": {
           "type": "quote",
           "settings": {
+            "star": 4,
+            "title": "CUSTOMER REVIEWS",
+            "info_other": "Hiroshi T. - From Japan",
+            "quote": "<p>The calming bed truly works — my Shiba Inu finally settles during thunderstorms. The design is stylish too, so it blends perfectly with our living room.</p>"
+          }
+        },
+        "quote_t3CPMh": {
+          "type": "quote",
+          "settings": {
             "star": 5,
             "title": "CUSTOMER REVIEWS",
-            "info_other": "Christina M. - From Canada",
-            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+            "info_other": "Sofia M. - From Spain",
+            "quote": "<p>The interactive toy keeps my cat busy for hours. She’s less bored and even lost some extra weight. I just wish shipping was a little faster, but overall very happy.</p>"
           }
         },
         "quote_j6rFgT": {
@@ -1061,6 +1070,7 @@
         "quote_zJxG8W",
         "quote_GVmddR",
         "quote_PycBJt",
+        "quote_t3CPMh",
         "quote_j6rFgT"
       ],
       "name": "Testimonials",
@@ -1086,7 +1096,7 @@
         "c_tt": "",
         "c_info": "",
         "c_t": "",
-        "s_star": false,
+        "s_star": true,
         "c_star": "",
         "show_avatar": true,
         "animate": true,
