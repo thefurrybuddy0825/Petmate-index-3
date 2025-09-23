@@ -10,7 +10,7 @@
     {% if sst.heading != blank or sst.subheading != blank %}
       <div class="title_section {{ sst.title_alignment }}{% if sst.img_bottom != blank %} pb-30{% endif %}">
         {% if sst.img_title != blank %}
-          <img src="{{ sst.img_title | img_url: '65x25' }}" class="lazyload mt-10 mb-10" alt="{{ sst.img_title.alt }}">
+          <img src="{{ sst.img_title | img_url: '265x151' }}" class="lazyload mt-10 mb-10" alt="{{ sst.img_title.alt }}">
         {% endif %}
         <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
         {% if sst.subheading != blank %}
