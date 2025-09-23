@@ -1023,7 +1023,7 @@
         "quote_zJxG8W": {
           "type": "quote",
           "settings": {
-            "avatar": "shopify://shop_images/gallery-10.png",
+            "avatar": "shopify://shop_images/review1.png",
             "star": 5,
             "title": "CUSTOMER REVIEWS",
             "info_other": "Emily R. - From USA",
@@ -1033,7 +1033,7 @@
         "quote_GVmddR": {
           "type": "quote",
           "settings": {
-            "avatar": "shopify://shop_images/team-4_large_87efb8bb-b7fa-4260-b1d8-4011c4320cbd.avif",
+            "avatar": "shopify://shop_images/review3.png",
             "star": 5,
             "title": "CUSTOMER REVIEWS",
             "info_other": "Daniel K. - From Canada",
@@ -1043,6 +1043,7 @@
         "quote_PycBJt": {
           "type": "quote",
           "settings": {
+            "avatar": "shopify://shop_images/review2.png",
             "star": 4,
             "title": "CUSTOMER REVIEWS",
             "info_other": "Hiroshi T. - From Japan",
@@ -1052,6 +1053,7 @@
         "quote_t3CPMh": {
           "type": "quote",
           "settings": {
+            "avatar": "shopify://shop_images/review5.png",
             "star": 5,
             "title": "CUSTOMER REVIEWS",
             "info_other": "Sofia M. - From Spain",
@@ -1061,6 +1063,7 @@
         "quote_j6rFgT": {
           "type": "quote",
           "settings": {
+            "avatar": "shopify://shop_images/review1.png",
             "star": 5,
             "title": "CUSTOMER REVIEWS",
             "info_other": "Olivia P. - From United Kingdom",
