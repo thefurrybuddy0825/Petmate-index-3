@@ -19,15 +19,16 @@
 		<div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner position-relative{% if sst.bg_size == 'content' %} overflow_hidden{% endif %}">
 			{% if sst.heading != blank or sst.subheading != blank %}
 				<div class="title_section {{ sst.title_alignment }} position-relative mb-30">
-					{% if sst.subheading != blank %}
-						<div class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</div>
+					{% if sst.img_title != blank %}
+					  <img src="{{ sst.img_title | img_url: '65x25' }}" class="lazyload mt-10" alt="{{ sst.img_title.alt }}">
 					{% endif %}
 					{% if sst.heading != blank %}
 					<div class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</div>
 					{% endif %}
-					{% if sst.img_title != blank %}
-					  <img src="{{ sst.img_title | img_url: '65x25' }}" class="lazyload mt-10" alt="{{ sst.img_title.alt }}">
+					{% if sst.subheading != blank %}
+						<div class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</div>
 					{% endif %}
+
 				</div>
 			{% endif %}
 			<ul class="nav nav-tabs list-product-tabs list-unstyled d-none d-md-flex justify-content-center mb-60">
