@@ -571,8 +571,8 @@
           "settings": {
             "image": "shopify://shop_images/img-3.webp",
             "link": "#",
-            "cta_label": "Buy 1, Get 2nd 50% Off",
-            "desc": "<p>Stock up on playtime essentials! Mix and match chew, plush, fetch, and interactive toys — get the second toy at half price.</p>",
+            "cta_label": "20% Off Store-wide",
+            "desc": "<h4>Celebrate the launch of The Furry Buddy™ with savings on everything your pet loves.</h4>",
             "class": ""
           }
         },
