@@ -317,7 +317,7 @@
           "w_logo": 150,
           "bg_logo": "#ffffff",
           "wm_logo": 100,
-          "header_top": false,
+          "header_top": true,
           "phone": "+0123-456-789",
           "email": "example@domain.com",
           "address": "15 West 21th Street, Miami FL, USA",
@@ -351,7 +351,7 @@
           "bd_c_sm": "#ffffff",
           "novmenu_enable": true,
           "show_icons": true,
-          "main_linklist": "main-menu"
+          "main_linklist": ""
         }
       },
       "nov-footer": {
