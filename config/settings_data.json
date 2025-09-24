@@ -317,7 +317,7 @@
           "w_logo": 150,
           "bg_logo": "#ffffff",
           "wm_logo": 100,
-          "header_top": true,
+          "header_top": false,
           "phone": "+1 (509) 309-4640",
           "email": "hello@thefurrybuddy.com",
           "address": "",
