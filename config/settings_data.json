@@ -374,7 +374,7 @@
             "type": "block_menu",
             "settings": {
               "block_title": "HELP",
-              "menu_handle": "",
+              "menu_handle": "customer-care",
               "block_class": "",
               "grid_xl": "col-xl-2",
               "grid_lg": "col-lg-2",
@@ -386,7 +386,7 @@
             "type": "block_menu",
             "settings": {
               "block_title": "COMPANY",
-              "menu_handle": "",
+              "menu_handle": "policies-footer-menu",
               "block_class": "",
               "grid_xl": "col-xl-2",
               "grid_lg": "col-lg-2",
