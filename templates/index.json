@@ -1202,7 +1202,7 @@
         "spacing": 30,
         "show_nav": true,
         "show_dots": true,
-        "dot_img": true,
+        "dot_img": false,
         "dot_w": 15,
         "dot_h": 15,
         "c_tt": "",
