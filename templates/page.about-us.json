@@ -324,12 +324,208 @@
         "distance_top": 30,
         "distance_bottom": 30
       }
+    },
+    "nov_img_text_BnFLCf": {
+      "type": "nov-img-text",
+      "blocks": {
+        "text_VHd9kf": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Joan Perez</p>",
+            "tb_c": "",
+            "t_s": 22,
+            "t_s_md": 18,
+            "t_c": "#0d2235",
+            "ff": "f_df",
+            "t_fw": "font-800",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 0
+          }
+        },
+        "text_6bfhRU": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Photographer</strong></p>",
+            "tb_c": "",
+            "t_s": 13,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 30
+          }
+        },
+        "text_6pKm8m": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The Furry Buddy™ began with a simple idea — to bring joy and comfort to pets while making shopping easier for pet parents. As lifelong animal lovers, we wanted to create a brand where quality, safety, and happiness come first. From cozy beds to playful toys, every product is handpicked with your furry friend in mind.</p>",
+            "tb_c": "",
+            "t_s": 14,
+            "t_s_md": 14,
+            "t_c": "#505157",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.9",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 5
+          }
+        }
+      },
+      "block_order": [
+        "text_VHd9kf",
+        "text_6bfhRU",
+        "text_6pKm8m"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_c": "#222222",
+        "subheading": "",
+        "subheading_c": "#666666",
+        "title_alignment": "text-center",
+        "image": "shopify://shop_images/people1.webp",
+        "width_img": "col-lg-6",
+        "image_object_fit": "cover",
+        "image_size": "full",
+        "img_radius": 0,
+        "position_lg": "right",
+        "position": "right",
+        "image_animate": true,
+        "autoplay": false,
+        "time": 3,
+        "show_dots": false,
+        "dots_c": "",
+        "dots_ca": "",
+        "width_text": "col-lg-6",
+        "alignment": "text-left",
+        "text_position_horizontal": "center",
+        "text_position_vertical": "center",
+        "spacing_horizontal": 0,
+        "animate": true,
+        "spacing": 30,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "",
+        "gradient": "",
+        "bg_size": "full",
+        "class": "",
+        "px": 0,
+        "distance_top": 30,
+        "distance_bottom": 30
+      }
+    },
+    "nov_img_text_XEV3tr": {
+      "type": "nov-img-text",
+      "blocks": {
+        "text_eT7dN4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Jen Barry</p>",
+            "tb_c": "",
+            "t_s": 22,
+            "t_s_md": 18,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-800",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 0
+          }
+        },
+        "text_Hjt9Pe": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Web Designer</p>",
+            "tb_c": "",
+            "t_s": 13,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 30
+          }
+        },
+        "text_8wehqM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Maecenas congue metus id turpis iaculis mattis. Sed pellentesque id arcu id scelerisque. Ut ullamcorper rutrum justo, at blandit eros maximus ut. Integer non tincidunt justo, rhoncus Aenean venenatis sed purus ac sollicitudin. Nulla mauris risus, commodo et luctus rutrum, lobortis sed mauris. Integer congue, sem elementum varius tristique.</p>",
+            "tb_c": "",
+            "t_s": 14,
+            "t_s_md": 13,
+            "t_c": "#505157",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.9",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 5
+          }
+        }
+      },
+      "block_order": [
+        "text_eT7dN4",
+        "text_Hjt9Pe",
+        "text_8wehqM"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_c": "#222222",
+        "subheading": "",
+        "subheading_c": "#666666",
+        "title_alignment": "text-center",
+        "image": "shopify://shop_images/people3.webp",
+        "width_img": "col-lg-6",
+        "image_object_fit": "cover",
+        "image_size": "full",
+        "img_radius": 0,
+        "position_lg": "left",
+        "position": "left",
+        "image_animate": true,
+        "autoplay": false,
+        "time": 3,
+        "show_dots": false,
+        "dots_c": "",
+        "dots_ca": "",
+        "width_text": "col-lg-6",
+        "alignment": "text-left",
+        "text_position_horizontal": "center",
+        "text_position_vertical": "center",
+        "spacing_horizontal": 0,
+        "animate": true,
+        "spacing": 30,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "",
+        "gradient": "",
+        "bg_size": "full",
+        "class": "",
+        "px": 0,
+        "distance_top": 30,
+        "distance_bottom": 30
+      }
     }
   },
   "order": [
     "main",
     "nov_link_list_kT7XjK",
     "1660960323abfb3055",
-    "e0b5f762-dd19-4e02-bd66-eb1acd452996"
+    "e0b5f762-dd19-4e02-bd66-eb1acd452996",
+    "nov_img_text_BnFLCf",
+    "nov_img_text_XEV3tr"
   ]
 }
