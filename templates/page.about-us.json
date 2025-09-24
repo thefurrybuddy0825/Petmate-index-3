@@ -234,7 +234,7 @@
         "fa6eaa9d-f8dd-4297-bbd9-5fd0bd528ffb": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Trusted online shopping</strong></p>",
+            "text": "<p>Jen Barry</p>",
             "tb_c": "",
             "t_s": 22,
             "t_s_md": 18,
@@ -245,7 +245,24 @@
             "t_lh": "1.5",
             "t_lt": "0",
             "t_m": 1320,
-            "distance_bottom": 20
+            "distance_bottom": 0
+          }
+        },
+        "text_PeRYmK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Web Designer</p>",
+            "tb_c": "",
+            "t_s": 13,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 30
           }
         },
         "46058ecb-b439-43a4-bf10-8e2e8f43bbff": {
@@ -268,6 +285,7 @@
       },
       "block_order": [
         "fa6eaa9d-f8dd-4297-bbd9-5fd0bd528ffb",
+        "text_PeRYmK",
         "46058ecb-b439-43a4-bf10-8e2e8f43bbff"
       ],
       "settings": {
@@ -276,6 +294,7 @@
         "subheading": "",
         "subheading_c": "#666666",
         "title_alignment": "text-center",
+        "image": "shopify://shop_images/people3.webp",
         "width_img": "col-lg-6",
         "image_object_fit": "cover",
         "image_size": "full",
