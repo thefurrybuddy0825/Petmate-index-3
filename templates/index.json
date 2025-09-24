@@ -552,7 +552,7 @@
       ],
       "settings": {
         "autoplay": true,
-        "zoom": false,
+        "zoom": true,
         "autoplay_speed": "5000",
         "enable_mh": false,
         "h_xs": 300,
