@@ -121,6 +121,7 @@
         },
         "3f3e9675-a752-44e2-a85f-efee516a2ab0": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/slide2-1-2.png",
             "img_xs": "shopify://shop_images/slide2-1-2.png",
@@ -227,7 +228,6 @@
         },
         "14e06572-068f-4cfc-86ce-04ff2f8fd2aa": {
           "type": "image",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/slide2-1-4.png",
             "img_xs": "shopify://shop_images/slide2-1-4.png",
@@ -238,7 +238,7 @@
             "position_md_img": "Width: 70%; Left:10%; Top: 40%",
             "position_sm_img": "Width: 80%; Left:10%; Top: 40%",
             "position_xs_img": "Width: 90%; Left:5%; Top: 40%",
-            "caption_1": "Cat outfits",
+            "caption_1": "Spooky Fun for Your Furry Buddy",
             "color_cap1": "#ffffff",
             "fz_cap1_xxl": 24,
             "fz_cap1_xl": 22,
@@ -259,7 +259,7 @@
             "mb1_md": 5,
             "mb1_xs": 5,
             "cap_animate_1": "fadeInDown",
-            "caption_2": "Winter Outfits",
+            "caption_2": "25% Off Halloween Toys",
             "color_cap2": "#ffffff",
             "fz_cap2_xxl": 65,
             "fz_cap2_xl": 55,
@@ -278,7 +278,7 @@
             "mb2_md": 10,
             "mb2_xs": 10,
             "cap_animate_2": "fadeInUp",
-            "caption_3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspen disse ultrices gravida. Risus commodo viverra maecenas",
+            "caption_3": "From pumpkin plushies to squeaky bats, make playtime frightfully fun with limited-time spooky deals.",
             "color_cap3": "#ffffff",
             "fz_cap3_xxl": 16,
             "fz_cap3_xl": 15,
