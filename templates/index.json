@@ -776,7 +776,7 @@
         "show_dots": true,
         "animate": true,
         "br_container": 0,
-        "container": "container",
+        "container": "container-full",
         "background_color": "",
         "gradient": "",
         "bg_size": "full",
