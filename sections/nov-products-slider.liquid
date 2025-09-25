@@ -57,7 +57,7 @@
             </div>
           </div>
         {% else %}
-          {%- for i in (1..6) -%}
+          {%- for i in (1..8) -%}
             {%- capture current -%}{% cycle 1, 2, 3, 4 %}{%- endcapture -%}
             <div class="item p_item mb-30">
               {{ 'product-apparel-' | append: current | placeholder_svg_tag : 'placeholder-svg' }}
