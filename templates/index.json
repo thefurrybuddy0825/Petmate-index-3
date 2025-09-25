@@ -842,7 +842,7 @@
         "limit": 14,
         "spacing": 30,
         "show_dot": true,
-        "show_nav": false,
+        "show_nav": true,
         "view_all": true,
         "img_bottom": "shopify://shop_images/img-14.avif",
         "nav_c": "#222222",
