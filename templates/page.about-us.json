@@ -143,7 +143,7 @@
         "text_MqzdTB": {
           "type": "text",
           "settings": {
-            "text": "<p>Comfort, Play, and Care—Made Easy</p>",
+            "text": "<p>Our Story</p>",
             "tb_c": "",
             "t_s": 32,
             "t_s_md": 24,
@@ -160,7 +160,7 @@
         "text_nDB6fU": {
           "type": "text",
           "settings": {
-            "text": "<p>We’re on a mission to make pets (and their people) happier with thoughtfully curated essentials—cozy beds, durable toys, stylish wear, and smart accessories.</p>",
+            "text": "<p><em><strong>The Furry Buddy™ began with a simple idea: build a store we’d want for our own pets—reliable gear, cozy comfort, and zero guesswork. </strong></em></p><p>From orthopedic beds and fun feeder bowls to fashion hoodies and travel-ready accessories, we handpick products that actually solve daily needs—tested with real pets and approved by real families.</p>",
             "tb_c": "",
             "t_s": 16,
             "t_s_md": 13,
@@ -405,92 +405,6 @@
         "gradient": "",
         "bg_size": "full",
         "class": "",
-        "distance_top": 30,
-        "distance_bottom": 30
-      }
-    },
-    "nov_image_slider_bD3dbK": {
-      "type": "nov-image-slider",
-      "blocks": {
-        "image_R8PdtP": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "align": "text-left",
-            "title": "2K+",
-            "stitle": "Happy Pets",
-            "btn": ""
-          }
-        },
-        "image_UVEjy7": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "align": "text-left",
-            "title": "150+",
-            "stitle": "Curated Items",
-            "btn": ""
-          }
-        },
-        "image_Dp6aif": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "align": "text-left",
-            "title": "4.8★",
-            "stitle": "Average Rating",
-            "btn": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_R8PdtP",
-        "image_UVEjy7",
-        "image_Dp6aif"
-      ],
-      "name": "Vinova Image Slider",
-      "settings": {
-        "heading": "<p>Our Story</p>",
-        "heading_c": "#222222",
-        "subheading": "<p><em><strong>The Furry Buddy™ began with a simple idea: build a store we’d want for our own pets—reliable gear, cozy comfort, and zero guesswork. </strong></em></p><p><br/>From orthopedic beds and fun feeder bowls to fashion hoodies and travel-ready accessories, we handpick products that actually solve daily needs—tested with real pets and approved by real families.</p>",
-        "subheading_c": "#666666",
-        "title_alignment": "text-center",
-        "style": "style1",
-        "auto": true,
-        "time": 3,
-        "s_dot": false,
-        "dots_c": "#666666",
-        "dots_ca": "#000000",
-        "s_nav": false,
-        "spacing": "10",
-        "aspect": "43",
-        "border_radius": 0,
-        "img_animate": false,
-        "lg": 3,
-        "md": 3,
-        "sm": 3,
-        "xs": 2,
-        "one_slider": true,
-        "t_c": "#000000",
-        "t_fw": "font-700",
-        "t_ff": "f_pr",
-        "t_s": 32,
-        "t_s_md": 24,
-        "st_c": "#222222",
-        "st_fw": "font-400",
-        "st_ff": "f_df",
-        "st_s": 24,
-        "st_s_md": 18,
-        "c_btn": "#ffffff",
-        "b_btn": "#222222",
-        "c_btn_h": "#ffffff",
-        "b_btn_h": "#222222",
-        "animate": true,
-        "container": "container",
-        "background_color": "",
-        "class": "",
-        "pl": 0,
-        "pr": 0,
         "distance_top": 30,
         "distance_bottom": 30
       }
@@ -974,7 +888,6 @@
     "nov_policy_Wg7GPJ",
     "main",
     "nov_policy_gQ9MTJ",
-    "nov_image_slider_bD3dbK",
     "nov_policy_EN8X4J",
     "1660960323abfb3055",
     "e0b5f762-dd19-4e02-bd66-eb1acd452996",
