@@ -652,28 +652,28 @@
         "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-0": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Dog Food",
+            "tab_title": "Beds",
             "collection_handle": "dog-food"
           }
         },
         "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-1": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Cat Food",
+            "tab_title": "Toys",
             "collection_handle": "cat-food"
           }
         },
         "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-2": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Dog Outfits",
+            "tab_title": "Bowls",
             "collection_handle": "dog-outfits"
           }
         },
         "9ba66be5-75f5-41fa-a210-55840e552e9e": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Cat Outfits",
+            "tab_title": "Outfits",
             "collection_handle": "cat-outfits"
           }
         }
