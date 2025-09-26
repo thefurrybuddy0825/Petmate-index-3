@@ -571,81 +571,6 @@
         "distance_bottom": 100
       }
     },
-    "nov_collection_tabs_nR3dt4": {
-      "type": "nov-collection-tabs",
-      "blocks": {
-        "tabitem_eiVB4T": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Beds",
-            "collection_handle": "dog-food"
-          }
-        },
-        "tabitem_Ek4Le3": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Toys",
-            "collection_handle": "cat-food"
-          }
-        },
-        "tabitem_Rrf3JT": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Outfits",
-            "collection_handle": "dog-outfits"
-          }
-        },
-        "tabitem_aB3dcV": {
-          "type": "tabitem",
-          "settings": {
-            "tab_title": "Accessories",
-            "collection_handle": "cat-outfits"
-          }
-        }
-      },
-      "block_order": [
-        "tabitem_eiVB4T",
-        "tabitem_Ek4Le3",
-        "tabitem_Rrf3JT",
-        "tabitem_aB3dcV"
-      ],
-      "name": "New Arrivals",
-      "settings": {
-        "heading": "<p>New Arrivals</p>",
-        "heading_c": "#222222",
-        "subheading": "",
-        "subheading_c": "#666666",
-        "img_title": "shopify://shop_images/icon-wave2.webp",
-        "title_alignment": "text-center",
-        "xxl": 4,
-        "xl": 4,
-        "lg": 4,
-        "md": 3,
-        "sm": 2,
-        "xs": 2,
-        "row_number": 2,
-        "row_mobile": 2,
-        "limit": 14,
-        "spacing": 30,
-        "show_dot": true,
-        "show_nav": true,
-        "view_all": true,
-        "img_bottom": "shopify://shop_images/img-14.avif",
-        "nav_c": "#222222",
-        "nav_ca": "#ffffff",
-        "nav_bd": "#c92e00",
-        "nav_bg": "#ffffff",
-        "nav_bga": "#c92e00",
-        "animate": true,
-        "br_container": 0,
-        "container": "container",
-        "background_color": "",
-        "bg_size": "full",
-        "class": "",
-        "distance_top": 0,
-        "distance_bottom": 150
-      }
-    },
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d": {
       "type": "nov-collection-tabs",
       "blocks": {
@@ -704,6 +629,81 @@
         "spacing": 30,
         "show_dot": false,
         "show_nav": false,
+        "view_all": true,
+        "img_bottom": "shopify://shop_images/img-14.avif",
+        "nav_c": "#222222",
+        "nav_ca": "#ffffff",
+        "nav_bd": "#c92e00",
+        "nav_bg": "#ffffff",
+        "nav_bga": "#c92e00",
+        "animate": true,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "",
+        "bg_size": "full",
+        "class": "",
+        "distance_top": 0,
+        "distance_bottom": 150
+      }
+    },
+    "nov_collection_tabs_nR3dt4": {
+      "type": "nov-collection-tabs",
+      "blocks": {
+        "tabitem_eiVB4T": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Beds",
+            "collection_handle": "dog-food"
+          }
+        },
+        "tabitem_Ek4Le3": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Toys",
+            "collection_handle": "cat-food"
+          }
+        },
+        "tabitem_Rrf3JT": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Outfits",
+            "collection_handle": "dog-outfits"
+          }
+        },
+        "tabitem_aB3dcV": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "Accessories",
+            "collection_handle": "cat-outfits"
+          }
+        }
+      },
+      "block_order": [
+        "tabitem_eiVB4T",
+        "tabitem_Ek4Le3",
+        "tabitem_Rrf3JT",
+        "tabitem_aB3dcV"
+      ],
+      "name": "New Arrivals",
+      "settings": {
+        "heading": "<p>New Arrivals</p>",
+        "heading_c": "#222222",
+        "subheading": "",
+        "subheading_c": "#666666",
+        "img_title": "shopify://shop_images/icon-wave2.webp",
+        "title_alignment": "text-center",
+        "xxl": 4,
+        "xl": 4,
+        "lg": 4,
+        "md": 3,
+        "sm": 2,
+        "xs": 2,
+        "row_number": 2,
+        "row_mobile": 2,
+        "limit": 14,
+        "spacing": 30,
+        "show_dot": true,
+        "show_nav": true,
         "view_all": true,
         "img_bottom": "shopify://shop_images/img-14.avif",
         "nav_c": "#222222",
@@ -1089,8 +1089,8 @@
     "nov_link_list_3eqdrg",
     "7a3ecd62-7ec0-4623-bc30-5e548838916f",
     "nov_products_slider_NkhNJJ",
-    "nov_collection_tabs_nR3dt4",
     "4eb11c3f-8973-4e3a-bcad-41a81c04064d",
+    "nov_collection_tabs_nR3dt4",
     "43a0fea6-6cca-422b-971e-fe3c2a69d105",
     "nov_manufacture_TtjMDX",
     "nov_testimonials_cRFWrW",
