@@ -262,6 +262,78 @@
         "distance_bottom": 50
       }
     },
+    "nov_text_MiLFgd": {
+      "type": "nov-text",
+      "blocks": {
+        "text_j7FyhQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our Story</p>",
+            "tb_c": "",
+            "t_s": 32,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-700",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 30
+          }
+        },
+        "text_HHctgN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The Furry Buddy™ began with a simple idea: build a store we’d want for <br/>our own pets—reliable gear, cozy comfort, and zero guesswork.</p>",
+            "tb_c": "",
+            "t_s": 16,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 30
+          }
+        },
+        "btn_zm9Hdp": {
+          "type": "btn",
+          "settings": {
+            "btn": "Shop now",
+            "btn_link": "",
+            "btn_size": "normal",
+            "c_btn": "#ffffff",
+            "b_btn": "#222222",
+            "c_btn_h": "#ffffff",
+            "b_btn_h": "#222222",
+            "distance_bottom": 5
+          }
+        }
+      },
+      "block_order": [
+        "text_j7FyhQ",
+        "text_HHctgN",
+        "btn_zm9Hdp"
+      ],
+      "name": "Vinova Text",
+      "settings": {
+        "title_alignment": "text-center",
+        "show_seemore": false,
+        "animate": true,
+        "br_container": 0,
+        "show_boxshadow": false,
+        "c_boxshadow": "",
+        "container": "container-full",
+        "background_color": "",
+        "bg_size": "full",
+        "class": "",
+        "distance_top": 50,
+        "distance_bottom": 50
+      }
+    },
     "1660960323abfb3055": {
       "type": "nov-img-text",
       "blocks": {
@@ -655,6 +727,7 @@
     "main",
     "nov_img_text_TYb3j9",
     "nov_policy_Wg7GPJ",
+    "nov_text_MiLFgd",
     "1660960323abfb3055",
     "e0b5f762-dd19-4e02-bd66-eb1acd452996",
     "nov_img_text_BnFLCf",
