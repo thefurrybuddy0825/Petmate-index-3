@@ -84,9 +84,10 @@
       "blocks": {
         "item_policy_3LD9RK": {
           "type": "item_policy",
+          "name": "Our Mission",
           "settings": {
-            "title_policy": "Free Delivery From $ 250",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod tempor",
+            "title_policy": "Our Mission",
+            "desc_policy": "To deliver pet products that balance comfort, durability, and design—so your furry buddy thrives every day.",
             "mw": 500,
             "tl": "",
             "link": "",
@@ -95,9 +96,10 @@
         },
         "item_policy_TpT7Yf": {
           "type": "item_policy",
+          "name": "Our Vision",
           "settings": {
-            "title_policy": "Free Delivery From $ 250",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod tempor",
+            "title_policy": "Our Vision",
+            "desc_policy": "A world where every pet parent can shop with confidence—quality-first, ethically made, and honestly priced.",
             "mw": 500,
             "tl": "",
             "link": "",
@@ -106,9 +108,10 @@
         },
         "item_policy_tNPMnQ": {
           "type": "item_policy",
+          "name": "Our Values",
           "settings": {
-            "title_policy": "Free Delivery From $ 250",
-            "desc_policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod tempor",
+            "title_policy": "Our Values",
+            "desc_policy": "We put pets first, deliver lasting quality, and give back with kindness and care.",
             "mw": 500,
             "tl": "",
             "link": "",
