@@ -345,7 +345,7 @@
         "bd_radius": 0,
         "show_border_item": false,
         "c_border": "",
-        "pt": 0,
+        "pt": 20,
         "pb": 0,
         "width_xl": "col-xl-4",
         "width_lg": "col-lg-4",
@@ -360,8 +360,8 @@
         "gradient": "",
         "bg_size": "full",
         "class": "",
-        "distance_top": 50,
-        "distance_bottom": 50
+        "distance_top": 30,
+        "distance_bottom": 30
       }
     },
     "1660960323abfb3055": {
