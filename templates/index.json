@@ -107,7 +107,7 @@
             "bd_btn": "#ffffff",
             "c_btn_h": "#ffffff",
             "b_btn_h": "#c92e00",
-            "cap_content": "container",
+            "cap_content": "fullbox",
             "text_align": "left",
             "text_align_xs": "left",
             "position": "Width: 45%; Left:0%; Top: 30%",
