@@ -139,7 +139,7 @@
         "bg_i": false,
         "bg_i_w": 85,
         "bg_icon": "#ffffff",
-        "text_fz": 16,
+        "text_fz": 32,
         "text_color": "#222222",
         "desc_fz": 13,
         "desc_color": "#666666",
