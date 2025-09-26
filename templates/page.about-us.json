@@ -355,7 +355,7 @@
         "bg_size": "full",
         "class": "",
         "px": 0,
-        "distance_top": 30,
+        "distance_top": 50,
         "distance_bottom": 30
       }
     },
