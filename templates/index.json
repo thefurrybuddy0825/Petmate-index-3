@@ -577,28 +577,28 @@
         "tabitem_eiVB4T": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Dog Food",
+            "tab_title": "Beds",
             "collection_handle": "dog-food"
           }
         },
         "tabitem_Ek4Le3": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Cat Food",
+            "tab_title": "Toys",
             "collection_handle": "cat-food"
           }
         },
         "tabitem_Rrf3JT": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Dog Outfits",
+            "tab_title": "Outfits",
             "collection_handle": "dog-outfits"
           }
         },
         "tabitem_aB3dcV": {
           "type": "tabitem",
           "settings": {
-            "tab_title": "Cat Outfits",
+            "tab_title": "Accessories",
             "collection_handle": "cat-outfits"
           }
         }
