@@ -87,7 +87,7 @@
           "settings": {
             "text": "<p>Comfort, Play, and Care—Made Easy</p>",
             "tb_c": "",
-            "t_s": 20,
+            "t_s": 32,
             "t_s_md": 13,
             "t_c": "#222222",
             "ff": "f_df",
@@ -96,7 +96,7 @@
             "t_lh": "1.5",
             "t_lt": "0",
             "t_m": 1320,
-            "distance_bottom": 5
+            "distance_bottom": 30
           }
         },
         "text_nDB6fU": {
@@ -113,7 +113,7 @@
             "t_lh": "1.5",
             "t_lt": "0",
             "t_m": 1320,
-            "distance_bottom": 5
+            "distance_bottom": 30
           }
         },
         "btn_7Lxe8t": {
