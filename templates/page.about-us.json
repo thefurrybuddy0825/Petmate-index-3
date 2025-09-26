@@ -493,6 +493,92 @@
         "distance_bottom": 30
       }
     },
+    "nov_image_slider_bD3dbK": {
+      "type": "nov-image-slider",
+      "blocks": {
+        "image_R8PdtP": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "align": "text-left",
+            "title": "2K+",
+            "stitle": "Happy Pets",
+            "btn": ""
+          }
+        },
+        "image_UVEjy7": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "align": "text-left",
+            "title": "150+",
+            "stitle": "Curated Items",
+            "btn": ""
+          }
+        },
+        "image_Dp6aif": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "align": "text-left",
+            "title": "4.8★",
+            "stitle": "Average Rating",
+            "btn": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_R8PdtP",
+        "image_UVEjy7",
+        "image_Dp6aif"
+      ],
+      "name": "Vinova Image Slider",
+      "settings": {
+        "heading": "<p>Vinova Image Slider</p>",
+        "heading_c": "#222222",
+        "subheading": "<p>Subtitle from happy customers</p>",
+        "subheading_c": "#666666",
+        "title_alignment": "text-left",
+        "style": "style1",
+        "auto": true,
+        "time": 3,
+        "s_dot": false,
+        "dots_c": "#666",
+        "dots_ca": "#000",
+        "s_nav": false,
+        "spacing": "10",
+        "aspect": "34",
+        "border_radius": 0,
+        "img_animate": false,
+        "lg": 2,
+        "md": 2,
+        "sm": 2,
+        "xs": 2,
+        "one_slider": true,
+        "t_c": "#000000",
+        "t_fw": "font-700",
+        "t_ff": "f_pr",
+        "t_s": 32,
+        "t_s_md": 24,
+        "st_c": "#222222",
+        "st_fw": "font-400",
+        "st_ff": "f_df",
+        "st_s": 24,
+        "st_s_md": 18,
+        "c_btn": "#ffffff",
+        "b_btn": "#222222",
+        "c_btn_h": "#ffffff",
+        "b_btn_h": "#222222",
+        "animate": true,
+        "container": "container",
+        "background_color": "",
+        "class": "",
+        "pl": 0,
+        "pr": 0,
+        "distance_top": 30,
+        "distance_bottom": 30
+      }
+    },
     "1660960323abfb3055": {
       "type": "nov-img-text",
       "blocks": {
@@ -889,6 +975,7 @@
     "main",
     "nov_policy_gQ9MTJ",
     "nov_policy_EN8X4J",
+    "nov_image_slider_bD3dbK",
     "1660960323abfb3055",
     "e0b5f762-dd19-4e02-bd66-eb1acd452996",
     "nov_img_text_BnFLCf",
