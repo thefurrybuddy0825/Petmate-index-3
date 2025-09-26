@@ -119,10 +119,10 @@
         "btn_7Lxe8t": {
           "type": "btn",
           "settings": {
-            "btn": "Shop now",
-            "btn_link": "",
-            "btn2": "",
-            "btn_link2": "",
+            "btn": "Shop Our Collection",
+            "btn_link": "#",
+            "btn2": "Contact Us",
+            "btn_link2": "#",
             "btn_size": "normal",
             "c_btn": "#ffffff",
             "b_btn": "#222222",
