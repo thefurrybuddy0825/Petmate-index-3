@@ -254,7 +254,7 @@
         "animate": true,
         "br_container": 0,
         "container": "container",
-        "background_color": "",
+        "background_color": "#f3f3f3",
         "gradient": "",
         "bg_size": "full",
         "class": "",
