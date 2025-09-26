@@ -322,6 +322,7 @@
     },
     "main": {
       "type": "nov-page-about-us",
+      "disabled": true,
       "settings": {}
     },
     "nov_policy_gQ9MTJ": {
