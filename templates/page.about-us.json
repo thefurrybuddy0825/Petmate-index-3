@@ -226,6 +226,90 @@
       ],
       "settings": {}
     },
+    "nov_policy_gQ9MTJ": {
+      "type": "nov-policy",
+      "blocks": {
+        "item_policy_PMVBmi": {
+          "type": "item_policy",
+          "settings": {
+            "title_policy": "2K+",
+            "desc_policy": "Happy Pets",
+            "mw": 500,
+            "tl": "",
+            "link": "",
+            "class": ""
+          }
+        },
+        "item_policy_kJEMMJ": {
+          "type": "item_policy",
+          "settings": {
+            "title_policy": "150+",
+            "desc_policy": "Curated Items",
+            "mw": 500,
+            "tl": "",
+            "link": "",
+            "class": ""
+          }
+        },
+        "item_policy_BjDqrK": {
+          "type": "item_policy",
+          "settings": {
+            "title_policy": "4.8★",
+            "desc_policy": "Average Rating",
+            "mw": 500,
+            "tl": "",
+            "link": "",
+            "class": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_policy_PMVBmi",
+        "item_policy_kJEMMJ",
+        "item_policy_BjDqrK"
+      ],
+      "name": "Vinova Policy",
+      "settings": {
+        "heading": "",
+        "heading_c": "#222222",
+        "subheading": "",
+        "subheading_c": "#666666",
+        "desc": "",
+        "desc_c": "#666666",
+        "title_alignment": "text-center",
+        "style": "style1",
+        "width_icon": 90,
+        "height_icon": 30,
+        "bg_i": false,
+        "bg_i_w": 85,
+        "bg_icon": "#ffffff",
+        "text_fz": 32,
+        "text_color": "#222222",
+        "desc_fz": 16,
+        "desc_color": "#666666",
+        "bg_itemcolor": "",
+        "bd_radius": 0,
+        "show_border_item": false,
+        "c_border": "",
+        "pt": 0,
+        "pb": 0,
+        "width_xl": "col-xl-4",
+        "width_lg": "col-lg-4",
+        "width_md": "col-md-4",
+        "width_sm": "col-sm-12",
+        "width_xs": "col-12",
+        "spacing": 30,
+        "animate": true,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "",
+        "gradient": "",
+        "bg_size": "full",
+        "class": "",
+        "distance_top": 50,
+        "distance_bottom": 50
+      }
+    },
     "1660960323abfb3055": {
       "type": "nov-img-text",
       "blocks": {
@@ -619,6 +703,7 @@
     "nov_img_text_TYb3j9",
     "nov_policy_Wg7GPJ",
     "main",
+    "nov_policy_gQ9MTJ",
     "1660960323abfb3055",
     "e0b5f762-dd19-4e02-bd66-eb1acd452996",
     "nov_img_text_BnFLCf",
