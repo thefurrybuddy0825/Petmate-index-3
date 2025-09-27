@@ -210,7 +210,7 @@
         "img_radius": 0,
         "position_lg": "right",
         "position": "up",
-        "image_animate": true,
+        "image_animate": false,
         "autoplay": false,
         "time": 3,
         "show_dots": false,
