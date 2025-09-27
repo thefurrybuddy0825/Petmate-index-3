@@ -203,7 +203,6 @@
         "subheading": "",
         "subheading_c": "#666666",
         "title_alignment": "text-left",
-        "image": "shopify://shop_images/faq-image.png",
         "width_img": "col-lg-6",
         "image_object_fit": "cover",
         "image_size": "full",
