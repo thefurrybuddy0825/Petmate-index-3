@@ -374,7 +374,7 @@
           "type": "featured_collection",
           "settings": {
             "image": "shopify://shop_images/category-pet-toys.png",
-            "collection": "pet-toys"
+            "collection": "test"
           }
         },
         "featured_collection_8RkMQL": {
