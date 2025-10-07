@@ -377,13 +377,6 @@
             "collection": "pet-toys"
           }
         },
-        "featured_collection_8RkMQL": {
-          "type": "featured_collection",
-          "settings": {
-            "image": "shopify://shop_images/category-pet-cleaning.png",
-            "collection": "pet-cleaning"
-          }
-        },
         "featured_collection_VtD3Dc": {
           "type": "featured_collection",
           "settings": {
@@ -422,7 +415,6 @@
       },
       "block_order": [
         "featured_collection_xTfFH7",
-        "featured_collection_8RkMQL",
         "featured_collection_VtD3Dc",
         "featured_collection_4zaXhe",
         "featured_collection_AVFPkB",
@@ -444,7 +436,7 @@
         "background_i": "#f3f3f3",
         "background_i_h": "#f3f3f3",
         "icon_h": "shopify://shop_images/shopping-bag-1.png",
-        "grid_number": 7,
+        "grid_number": 6,
         "grid_number_lg": 7,
         "grid_number_md": 3,
         "grid_number_sm": 4,
