@@ -437,7 +437,7 @@
         "background_i_h": "#f3f3f3",
         "icon_h": "shopify://shop_images/shopping-bag-1.png",
         "grid_number": 6,
-        "grid_number_lg": 7,
+        "grid_number_lg": 6,
         "grid_number_md": 3,
         "grid_number_sm": 4,
         "grid_number_xs": 3,
@@ -593,13 +593,21 @@
             "tab_title": "Outfits",
             "collection_handle": "cat-outfits"
           }
+        },
+        "tabitem_z6FGkW": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "All",
+            "collection_handle": "best-sellers"
+          }
         }
       },
       "block_order": [
         "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-0",
         "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-1",
         "4eb11c3f-8973-4e3a-bcad-41a81c04064d-168558249064d8386c-2",
-        "9ba66be5-75f5-41fa-a210-55840e552e9e"
+        "9ba66be5-75f5-41fa-a210-55840e552e9e",
+        "tabitem_z6FGkW"
       ],
       "name": "Featured Products",
       "settings": {
