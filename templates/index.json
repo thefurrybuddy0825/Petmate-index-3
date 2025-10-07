@@ -676,13 +676,21 @@
             "tab_title": "Accessories",
             "collection_handle": "cat-outfits"
           }
+        },
+        "tabitem_WrV888": {
+          "type": "tabitem",
+          "settings": {
+            "tab_title": "All",
+            "collection_handle": "new-arrivals"
+          }
         }
       },
       "block_order": [
         "tabitem_eiVB4T",
         "tabitem_Ek4Le3",
         "tabitem_Rrf3JT",
-        "tabitem_aB3dcV"
+        "tabitem_aB3dcV",
+        "tabitem_WrV888"
       ],
       "name": "New Arrivals",
       "settings": {
