@@ -1,0 +1,134 @@
+{%- comment -%}
+  COMPONENT: Product Short Description (block: `bah-product-short-des`)
+  PURPOSE:
+    Renders a short blurb under the product title. Reads data from a PRODUCT METAFIELD,
+    with block settings as fallback.
+
+  DATA SOURCES (priority, highest first):
+    1) product.metafields.custom.product_short_description  → Metaobject reference (preferred)
+       - Either:
+         A) The metaobject has a "settings" (JSON string) field containing:
+            {
+              "is_show": true,
+              "description": "Your short description text"
+            }
+         B) OR the metaobject has typed fields:
+            - is_show (boolean)
+            - description (single-line or multi-line text)
+       NOTE: This snippet currently expects the JSON-in-metaobject pattern (A).
+             If you use typed fields instead, change reads to:
+               is_show      = short_description_mo.is_show.value
+               description  = short_description_mo.description.value
+    2) Block settings (fallbacks)
+       - is_show (checkbox)
+       - description (text)
+
+  WHAT TO CREATE IN SHOPIFY (Admin):
+    A) Metaobject definition (recommended name): "product_short_description"
+       • Field: "settings" (Type: Single line text or JSON)  ← put JSON here
+         Example JSON value:
+         {"is_show":true,"description":"Cozy, durable, and pet-safe materials your buddy will love."}
+       (If you prefer typed fields instead of JSON, add two fields:
+         is_show:boolean, description:text — and see NOTE above.)
+    B) Product metafield:
+       • Namespace & key: custom.product_short_description
+       • Type: Metaobject reference → Definition: product_short_description
+       • Attach the metaobject entry to each product as needed.
+
+  BLOCK SETTINGS EXPECTED (for fallback + styles):
+    - is_show (checkbox)            → used only if metaobject value missing
+    - description (text)            → fallback text if metaobject missing/blank
+    - font_size (number, px)
+    - padding_top/right/bottom/left (numbers, px)
+
+  BEHAVIOR:
+    - is_show resolution:
+        prefer metaobject.settings.is_show (or typed field), else block.settings.is_show,
+        else defaults to TRUE (component shows).
+      ⚠ Liquid note: "default" treats false as blank. This code preserves explicit false via checks.
+    - description resolution:
+        prefer metaobject.settings.description (or typed field), else block.settings.description, else ''.
+
+  TROUBLESHOOTING:
+    - If nothing renders, ensure the product metafield actually points to a metaobject entry.
+    - If using typed metaobject fields, update accessors as noted above (no `.value.` on the JSON path).
+    - "nil" vs "null": Liquid uses `nil`. JSON `null` becomes `nil` after parsing.
+    - If you later switch to parsing JSON in Liquid with `| parse_json` and get a Theme Check warning,
+      it’s just the linter; Shopify runtime supports it.
+
+  EXAMPLE VALUES:
+    Metaobject "settings" JSON:
+      {"is_show":true,"description":"{count} happy pets chose this in the last 30 days."}
+    Block settings (fallback):
+      is_show: true
+      description: "Soft, breathable, and easy to clean."
+
+  USAGE:
+    - Add a block of type "bah-product-short-des" to your product section.
+    - Attach the "product_short_description" metaobject to the product metafield
+      custom.product_short_description. The component will auto-render.
+  
+  Sample JSON (put this into your metafield value)
+  ---------------
+  {
+    "is_show": true,
+    "description": "A smart, USB-rechargeable motion ball that rolls and bounces automatically — keeping your dog or cat active, entertained, and happy all day long."
+  }
+{%- endcomment -%}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'bah-product-short-des' %}
+      {%- assign short_description_mo = null -%}
+
+      {%- assign mf = product.metafields.custom.product_short_description -%}
+      {%- if mf != blank -%}
+        {%- if mf.type contains 'metaobject' -%}
+          {%- assign short_description_mo = mf.value -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- comment -%} Normalize into variables {%- endcomment -%}
+      {%- assign is_show = true -%}
+      {%- assign short_description = '' -%}
+
+      {%- if short_description_mo -%}
+        {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
+
+        {%- assign is_show = cfg.value.is_show -%}
+        {%- if is_show == null -%}
+          {%- assign is_show = block.settings.is_show -%}
+        {%- endif -%}
+        {%- if is_show != true and is_show != false and is_show != null -%}
+          {%- assign v = is_show | downcase | strip -%}
+          {%- if v == 'true' or v == '1' or v == 'yes' or v == 'y' -%}
+            {%- assign is_show = true -%}
+          {%- else -%}
+            {%- assign is_show = false -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- assign short_description = cfg.value.description -%}
+        {%- if short_description == null or short_description == '' -%}
+          {%- assign short_description = block.settings.description | default: '' -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if is_show -%}
+        <div
+          class="short-description"
+          style="
+            font-size: {{ block.settings.font_size | default: 16 }}px;
+            padding: {{ block.settings.padding_top   | default: 10 }}px
+                     {{ block.settings.padding_right | default: 0 }}px
+                     {{ block.settings.padding_bottom| default: 10 }}px
+                     {{ block.settings.padding_left  | default: 0 }}px;
+          "
+        >
+          <span>
+            {{ short_description }}
+          </span>
+        </div>
+      {% endif %}
+  {% endcase %}
+{% endfor %}
