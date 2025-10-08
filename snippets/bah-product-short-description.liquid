@@ -98,7 +98,8 @@
         {%- assign cfg_json = cfg.value | parse_json -%}
         {%- assign is_show = cfg_json.is_show -%}
         {%- assign description = cfg_json.description -%}
-{{ cfg_json }}
+{{ cfg_json }} 
+{{ is_show }}
 
         {%- assign is_show = cfg.value.is_show -%}
         {%- if is_show == null -%}
