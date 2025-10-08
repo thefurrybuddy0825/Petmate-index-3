@@ -69,6 +69,11 @@
                 {% render 'bah-product-short-description' %}
               </div> 
             {% endif %}
+
+            {% if section.settings.show_bullet_points %}
+              {% render 'bah-product-bullet-points' %}
+            {% endif %}
+
             {% include 'product-single-deal' %}
             {% if section.settings.show_available %}
               {% include 'product-single-available' %}
