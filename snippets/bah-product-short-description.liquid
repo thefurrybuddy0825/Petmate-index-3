@@ -81,7 +81,7 @@
   {% case block.type %}
     {% when 'bah-product-short-des' %}
       {%- assign short_description_mo = null -%}
-ddd
+      {{ product.metafields.custom.product_short_description }}
       {%- assign mf = product.metafields.custom.product_short_description -%}
       {%- if mf != blank -%}
         {%- if mf.type contains 'metaobject' -%}
