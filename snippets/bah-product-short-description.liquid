@@ -75,14 +75,13 @@
     "description": "A smart, USB-rechargeable motion ball that rolls and bounces automatically — keeping your dog or cat active, entertained, and happy all day long."
   }
 {%- endcomment -%}
-xxxxx
+
 {% for block in section.blocks %}
   {% case block.type %}
     {% when 'bah-product-short-des' %}
       {%- assign short_description_mo = null -%}
 
       {%- assign mf = product.metafields.custom.product_short_description -%}
-      {{ mf }}
       {%- if mf != blank -%}
         {%- if mf.type contains 'metaobject' -%}
           {%- assign short_description_mo = mf.value -%}
