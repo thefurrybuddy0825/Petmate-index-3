@@ -58,8 +58,7 @@
       {%- endif -%}
 
       {%- comment -%} Normalize boolean variants {%- endcomment -%}
-      {%- assign is_show_str = is_show | downcase | strip -%}
-      {%- if is_show == true or is_show_str == 'true' or is_show_str == '1' or is_show_str == 'yes' or is_show_str == 'y' -%}
+      {%- if is_show == true -%}
         {%- assign should_render = true -%}
       {%- else -%}
         {%- assign should_render = false -%}
