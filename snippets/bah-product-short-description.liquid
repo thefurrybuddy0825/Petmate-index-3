@@ -51,7 +51,7 @@
 
         {%- comment -%} Transitional fallback for legacy JSON string (mo.settings) {%- endcomment -%}
         {%- assign legacy_json = short_description_mo.settings | default: blank -%}
-
+{{ legacy_json }}
         {%- if is_show == nil and legacy_json != blank -%}
           {%- assign probe = legacy_json | downcase -%}
           {%- if probe contains '"is_show":true' or probe contains "'is_show':true" -%}
