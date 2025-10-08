@@ -56,7 +56,7 @@
       {%- comment -%} Fallbacks to block settings if product didn't define values {%- endcomment -%}
       {%- if is_show == null -%}
 
-        {%- assign is_show = block.settings.is_show | default: true -%}
+        {%- assign is_show = block.settings.is_show | default: false -%}
       {%- endif -%}
       {%- if short_description == '' -%}
         {%- assign short_description = block.settings.description | default: '' -%}
