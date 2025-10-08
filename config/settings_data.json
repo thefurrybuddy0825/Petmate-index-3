@@ -39,7 +39,7 @@
     "social_vimeo_link": "#",
     "type_sidebar_blog": "sidebar_left",
     "type_sidebar": "sidebar_left",
-    "type_sidebar_product": "default",
+    "type_sidebar_product": "accordiontwo",
     "enable_rtl": false,
     "show_newsletter_popup": false,
     "newsletter_sm": false,
@@ -577,6 +577,14 @@
           "bg_opacity": 100,
           "distance_top": 5,
           "distance_bottom": 5
+        }
+      },
+      "nov-page-sizeguide": {
+        "type": "nov-page-sizeguide",
+        "settings": {
+          "c_jump_to": "#272727",
+          "fz_jump_to": "12px",
+          "w_page": 690
         }
       }
     },
