@@ -87,11 +87,11 @@
           {%- assign short_description_mo = mf.value -%}
         {%- endif -%}
       {%- endif -%}
-{{ mf }}
+
       {%- comment -%} Normalize into variables {%- endcomment -%}
       {%- assign is_show = true -%}
-      {%- assign short_description = mf.description -%}
-{{ short_description }}
+      {%- assign short_description = mf.value -%}
+{{ mf.value }}
       {%- if short_description_mo -%}
         {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
 
