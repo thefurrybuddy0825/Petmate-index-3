@@ -93,7 +93,7 @@
       {%- assign short_description = '' -%}
 
       {%- if short_description_mo -%}
-        {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf | json -%}
+        {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
 {{ cfg.value }}
         {%- assign is_show = cfg.value.is_show -%}
         {%- if is_show == null -%}
