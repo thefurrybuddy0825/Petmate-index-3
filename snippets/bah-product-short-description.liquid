@@ -48,7 +48,7 @@
           {%- assign short_description = short_description_mo.description -%}
         {%- endif -%}
       {%- endif -%}
-
+{{ is_show }}
       {%- comment -%} Fallbacks to block settings {%- endcomment -%}
       {%- if is_show == nil -%}
         {%- assign is_show = block.settings.is_show | default: true -%}
@@ -56,7 +56,7 @@
       {%- if short_description == '' -%}
         {%- assign short_description = block.settings.description | default: '' -%}
       {%- endif -%}
-{{ is_show }}
+
       {%- comment -%} Normalize boolean variants {%- endcomment -%}
       {%- if is_show == true -%}
         {%- assign should_render = true -%}
