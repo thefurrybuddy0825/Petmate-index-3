@@ -77,11 +77,10 @@
 {%- endcomment -%}
 
 {% for block in section.blocks %}
-  {{ block.type }}
   {% case block.type %}
     {% when 'bah-product-short-des' %}
       {%- assign short_description_mo = null -%}
-      {{ product.metafields.custom.product_short_description }}
+
       {%- assign mf = product.metafields.custom.product_short_description -%}
       {%- if mf != blank -%}
         {%- if mf.type contains 'metaobject' -%}
