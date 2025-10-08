@@ -49,7 +49,7 @@
           {%- assign short_description = short_description_mo.description -%}
         {%- endif -%}
 
-        {%- comment -%} Transitional fallback for legacy JSON string (mo.settings) {%- endcomment -%}
+        {% comment %} {%- comment -%} Transitional fallback for legacy JSON string (mo.settings) {%- endcomment -%}
         {%- assign legacy_json = short_description_mo.settings | default: blank -%}
         {%- if is_show == nil and legacy_json != blank -%}
           {%- assign probe = legacy_json | downcase -%}
@@ -78,7 +78,7 @@
               {%- assign short_description = parts[1] -%}
             {%- endif -%}
           {%- endif -%}
-        {%- endif -%}
+        {%- endif -%} {% endcomment %}
       {%- endif -%}
 
       {%- comment -%} Fallbacks to block settings {%- endcomment -%}
