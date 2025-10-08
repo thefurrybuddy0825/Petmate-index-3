@@ -107,7 +107,7 @@
             {%- assign is_show = false -%}
           {%- endif -%}
         {%- endif -%}
-{{ cfg.value.description }}
+{{ cfg.value }}
         {%- assign short_description = cfg.value.description -%}
         {%- if short_description == null or short_description == '' -%}
           {%- assign short_description = block.settings.description | default: '' -%}
