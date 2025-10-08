@@ -52,7 +52,7 @@
           {%- assign short_description = mo.description -%}
         {%- endif -%}
       {%- endif -%}
-
+{{ is_show }}
       {%- comment -%} Fallbacks to block settings if product didn't define values {%- endcomment -%}
       {%- if is_show == null -%}
         {%- assign is_show = block.settings.is_show | default: true -%}
