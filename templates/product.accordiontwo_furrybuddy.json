@@ -115,7 +115,7 @@
         "show_countdown": true,
         "show_related": true,
         "related_limit": 10,
-        "show_description": false,
+        "show_description": true,
         "show_payments": true,
         "title_payments": "Guaranteed safe checkout:",
         "time": "Orders ship within 5 to 10 business days.",
