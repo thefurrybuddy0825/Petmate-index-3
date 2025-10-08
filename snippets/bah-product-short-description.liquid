@@ -77,6 +77,7 @@
 {%- endcomment -%}
 
 {% for block in section.blocks %}
+  {{ block.type }}
   {% case block.type %}
     {% when 'bah-product-short-des' %}
       {%- assign short_description_mo = null -%}
