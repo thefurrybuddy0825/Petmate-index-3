@@ -56,7 +56,7 @@
       {%- if short_description == '' -%}
         {%- assign short_description = block.settings.description | default: '' -%}
       {%- endif -%}
-
+{{ is_show }}
       {%- comment -%} Normalize boolean variants {%- endcomment -%}
       {%- if is_show == true -%}
         {%- assign should_render = true -%}
