@@ -22,7 +22,6 @@
 {% elsif template == "product.accordiontwo" %}
   {% assign viewtype = 'accordiontwo' %}
 {% elsif template == "product.accordiontwo_furrybuddy" %}
-  {{ template }}
   {% assign viewtype = 'accordiontwo-furrybuddy' %}
 {% elsif template == "product.default" %}
   {% assign viewtype = 'default' %}
@@ -76,6 +75,8 @@
   {% assign name_template = 'product-template__accordion' %}
 {% elsif viewtype =='accordiontwo' %}
   {% assign name_template = 'product-template__accordiontwo' %}
+{% elsif viewtype =='accordiontwo-furrybuddy' %}
+  {% assign name_template = 'product-template__accordiontwo-furrybuddy' %}
 {% else %}
   {% assign name_template = 'product-template__default' %}
 {% endif %}
