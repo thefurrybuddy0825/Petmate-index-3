@@ -23,48 +23,46 @@
     - is_show (checkbox)
     - description (text/textarea)
     - font_size (px), padding_* (px)
-
 {%- endcomment -%}
 
 {% for block in section.blocks %}
   {% case block.type %}
     {% when 'bah-product-short-des' %}
+      {%- comment -%}
+        1) Try product metaobject → typed fields
+        2) Else fall back to block settings
+      {%- endcomment -%}
+
       {%- assign mf = product.metafields.custom.product_short_description -%}
-      {%- assign short_description_mo = nil -%}
+      {%- assign mo = null -%}
       {%- if mf != blank and mf.type contains 'metaobject' -%}
-        {%- assign short_description_mo = mf.value -%}
+        {%- assign mo = mf.value -%}
       {%- endif -%}
 
-      {%- comment -%} Normalize into variables (typed fields first) {%- endcomment -%}
-      {%- assign is_show = nil -%}
+      {%- comment -%} Normalize vars {%- endcomment -%}
+      {%- assign is_show = null -%}
       {%- assign short_description = '' -%}
 
-      {%- if short_description_mo -%}
-        {%- comment -%} Preferred: typed metaobject fields {%- endcomment -%}
-        {%- if short_description_mo.is_show != nil -%}
-          {%- assign is_show = short_description_mo.is_show -%}
+      {%- if mo -%}
+        {%- comment -%} Prefer typed metaobject fields when present {%- endcomment -%}
+        {%- if mo.is_show != null -%}
+          {%- assign is_show = mo.is_show -%}
         {%- endif -%}
-        {%- if short_description_mo.description != blank -%}
-          {%- assign short_description = short_description_mo.description -%}
+        {%- if mo.description != blank -%}
+          {%- assign short_description = mo.description -%}
         {%- endif -%}
       {%- endif -%}
-{{ is_show }}
-      {%- comment -%} Fallbacks to block settings {%- endcomment -%}
-      {%- if is_show == nil -%}
+
+      {%- comment -%} Fallbacks to block settings if product didn't define values {%- endcomment -%}
+      {%- if is_show == null -%}
         {%- assign is_show = block.settings.is_show | default: true -%}
       {%- endif -%}
       {%- if short_description == '' -%}
         {%- assign short_description = block.settings.description | default: '' -%}
       {%- endif -%}
 
-      {%- comment -%} Normalize boolean variants {%- endcomment -%}
-      {%- if is_show == true -%}
-        {%- assign should_render = true -%}
-      {%- else -%}
-        {%- assign should_render = false -%}
-      {%- endif -%}
-
-      {%- if should_render and short_description != '' -%}
+      {%- comment -%} Final guard + render {%- endcomment -%}
+      {%- if is_show == true and short_description != '' -%}
         <div
           class="short-description"
           style="
