@@ -1,11 +1,11 @@
 {%- comment -%}
-  COMPONENT: Product Short Description (block: `bah-product-short-des`)
+  COMPONENT: Product Short Description (block: `bah-product-summary-description`)
   PURPOSE:
     Renders a short blurb under the product title. Reads data from a PRODUCT METAFIELD,
     with block settings as fallback.
 
   DATA SOURCES (priority, highest first):
-    1) product.metafields.custom.product_short_description  → Metaobject reference (preferred)
+    1) product.metafields.custom.product_summary_description  → Metaobject reference (preferred)
        - Either:
          A) The metaobject has a "settings" (JSON string) field containing:
             {
@@ -17,22 +17,22 @@
             - description (single-line or multi-line text)
        NOTE: This snippet currently expects the JSON-in-metaobject pattern (A).
              If you use typed fields instead, change reads to:
-               is_show      = short_description_mo.is_show.value
-               description  = short_description_mo.description.value
+               is_show      = summary_description_mo.is_show.value
+               description  = summary_description_mo.description.value
     2) Block settings (fallbacks)
        - is_show (checkbox)
        - description (text)
 
   WHAT TO CREATE IN SHOPIFY (Admin):
-    A) Metaobject definition (recommended name): "product_short_description"
+    A) Metaobject definition (recommended name): "product_summary_description"
        • Field: "settings" (Type: Single line text or JSON)  ← put JSON here
          Example JSON value:
          {"is_show":true,"description":"Cozy, durable, and pet-safe materials your buddy will love."}
        (If you prefer typed fields instead of JSON, add two fields:
          is_show:boolean, description:text — and see NOTE above.)
     B) Product metafield:
-       • Namespace & key: custom.product_short_description
-       • Type: Metaobject reference → Definition: product_short_description
+       • Namespace & key: custom.product_summary_description
+       • Type: Metaobject reference → Definition: product_summary_description
        • Attach the metaobject entry to each product as needed.
 
   BLOCK SETTINGS EXPECTED (for fallback + styles):
@@ -64,9 +64,9 @@
       description: "Soft, breathable, and easy to clean."
 
   USAGE:
-    - Add a block of type "bah-product-short-des" to your product section.
-    - Attach the "product_short_description" metaobject to the product metafield
-      custom.product_short_description. The component will auto-render.
+    - Add a block of type "bah-product-summary-description" to your product section.
+    - Attach the "product_summary_description" metaobject to the product metafield
+      custom.product_summary_description. The component will auto-render.
   
   Sample JSON (put this into your metafield value)
   ---------------
@@ -78,13 +78,13 @@
 
 {% for block in section.blocks %}
   {% case block.type %}
-    {% when 'bah-product-short-des' %}
-      {%- assign short_description_mo = null -%}
+    {% when 'bah-product-summary-description' %}
+      {%- assign summary_description_mo = null -%}
 
-      {%- assign mf = product.metafields.custom.product_short_description -%}
+      {%- assign mf = product.metafields.custom.product_summary_description -%}
       {%- if mf != blank -%}
         {%- if mf.type contains 'metaobject' -%}
-          {%- assign short_description_mo = mf.value -%}
+          {%- assign summary_description_mo = mf.value -%}
         {%- endif -%}
       {%- endif -%}
 
@@ -92,7 +92,7 @@
       {%- assign is_show = true -%}
       {%- assign short_description = '' -%}
 
-      {%- if short_description_mo -%}
+      {%- if summary_description_mo -%}
         {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
 
         {%- assign is_show = cfg.value.is_show -%}
