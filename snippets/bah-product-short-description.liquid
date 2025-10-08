@@ -42,7 +42,6 @@
 
       {%- if short_description_mo -%}
         {%- comment -%} Preferred: typed metaobject fields {%- endcomment -%}
-         {{ short_description_mo.is_show }}
         {%- if short_description_mo.is_show != nil -%}
           {%- assign is_show = short_description_mo.is_show -%}
         {%- endif -%}
