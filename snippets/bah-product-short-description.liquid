@@ -85,6 +85,7 @@ cxcxcx
 {%- assign mf = product.metafields.custom.product_short_description -%}
 {%- if mf and mf.type contains 'metaobject' -%}
   {%- assign mo = mf.value -%}
+  {{ mo }}
   {%- if mo and mo.description != blank -%}
     {{ mo.description | newline_to_br }}
   {%- endif -%}
