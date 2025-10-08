@@ -79,7 +79,6 @@
 {% for block in section.blocks %}
   {% case block.type %}
     {% when 'bah-product-short-des' %}
-      {{ block.type }}
       {%- assign short_description_mo = null -%}
 
       {%- assign mf = product.metafields.custom.product_short_description -%}
