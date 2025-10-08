@@ -94,7 +94,7 @@
 
       {%- if short_description_mo -%}
         {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
-{{ cfg }}
+
         {%- assign is_show = cfg.value.is_show -%}
         {%- if is_show == null -%}
           {%- assign is_show = block.settings.is_show -%}
@@ -107,7 +107,7 @@
             {%- assign is_show = false -%}
           {%- endif -%}
         {%- endif -%}
-
+{{ cfg.value.description }}
         {%- assign short_description = cfg.value.description -%}
         {%- if short_description == null or short_description == '' -%}
           {%- assign short_description = block.settings.description | default: '' -%}
