@@ -82,15 +82,6 @@
       {%- assign short_description_mo = null -%}
 
       {%- assign mf = product.metafields.custom.product_short_description -%}
-{%- if mf and mf.type contains 'metaobject' -%}
-  {%- assign mo = mf.value -%}
-  {%- assign is_show = mo.is_show -%}
-  {%- assign text = mo.description -%}
-    {{ is_show }}
-{%- endif -%}
-
-
-
       {%- if mf != blank -%}
         {%- if mf.type contains 'metaobject' -%}
           {%- assign short_description_mo = mf.value -%}
