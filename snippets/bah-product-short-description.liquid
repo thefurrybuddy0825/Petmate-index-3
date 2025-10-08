@@ -38,7 +38,6 @@
       {%- comment -%} Normalize into variables (typed fields first) {%- endcomment -%}
       {%- assign is_show = nil -%}
       {%- assign short_description = '' -%}
-      {%- assign legacy_json = blank -%}
 
       {%- if short_description_mo -%}
         {%- comment -%} Preferred: typed metaobject fields {%- endcomment -%}
@@ -48,37 +47,6 @@
         {%- if short_description_mo.description != blank -%}
           {%- assign short_description = short_description_mo.description -%}
         {%- endif -%}
-
-        {% comment %} {%- comment -%} Transitional fallback for legacy JSON string (mo.settings) {%- endcomment -%}
-        {%- assign legacy_json = short_description_mo.settings | default: blank -%}
-        {%- if is_show == nil and legacy_json != blank -%}
-          {%- assign probe = legacy_json | downcase -%}
-          {%- if probe contains '"is_show":true' or probe contains "'is_show':true" -%}
-            {%- assign is_show = true -%}
-          {%- elsif probe contains '"is_show":false' or probe contains "'is_show':false" -%}
-            {%- assign is_show = false -%}
-          {%- endif -%}
-        {%- endif -%}
-
-        {%- if short_description == '' and legacy_json != blank -%}
-          {%- comment -%}
-            Naive extraction of "description":"...".
-            This avoids JSON parsing; adequate for migration.
-          {%- endcomment -%}
-          {%- assign after = legacy_json | split: '"description":' | last -%}
-          {%- if after != legacy_json -%}
-            {%- assign first_char = after | slice: 0, 1 -%}
-            {%- if first_char == '"' or first_char == "'" -%}
-              {%- assign sep = first_char -%}
-            {%- else -%}
-              {%- assign sep = '"' -%}
-            {%- endif -%}
-            {%- assign parts = after | split: sep -%}
-            {%- if parts.size > 1 -%}
-              {%- assign short_description = parts[1] -%}
-            {%- endif -%}
-          {%- endif -%}
-        {%- endif -%} {% endcomment %}
       {%- endif -%}
 
       {%- comment -%} Fallbacks to block settings {%- endcomment -%}
