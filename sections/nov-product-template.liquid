@@ -1,4 +1,3 @@
-{{ template }}
 {% assign sst = section.settings %}
 {% if template == "product.left" %}
   {% assign viewtype = 'left' %}
@@ -23,6 +22,7 @@
 {% elsif template == "product.accordiontwo" %}
   {% assign viewtype = 'accordiontwo' %}
 {% elsif template == "product.accordiontwo_furrybuddy" %}
+  {{ template }}
   {% assign viewtype = 'accordiontwo-furrybuddy' %}
 {% elsif template == "product.default" %}
   {% assign viewtype = 'default' %}
