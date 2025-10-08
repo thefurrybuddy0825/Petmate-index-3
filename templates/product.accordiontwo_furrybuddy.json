@@ -114,8 +114,6 @@
         "show_available": false,
         "show_des": true,
         "enable_zoom": false,
-        "show_progress_deals": true,
-        "show_countdown": true,
         "show_related": true,
         "related_limit": 10,
         "show_description": true,
