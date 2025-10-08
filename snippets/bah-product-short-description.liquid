@@ -75,37 +75,23 @@
     "description": "A smart, USB-rechargeable motion ball that rolls and bounces automatically — keeping your dog or cat active, entertained, and happy all day long."
   }
 {%- endcomment -%}
-cxcxcx
+
 {% for block in section.blocks %}
   {% case block.type %}
     {% when 'bah-product-short-des' %}
       {%- assign short_description_mo = null -%}
 
-
-{%- assign mf = product.metafields.custom.product_short_description -%}
-{%- if mf and mf.type contains 'metaobject' -%}
-  {%- assign mo = mf.value -%}
-  {{ mo }}
-  {%- if mo and mo.description != blank -%}
-    {{ mo.description | newline_to_br }}
-  {%- endif -%}
-{%- endif -%}
-
-
-{{ product.metafields.custom.product_short_description }}
       {%- assign mf = product.metafields.custom.product_short_description -%}
-      {{ mf }}
       {%- if mf != blank -%}
-        {{ mf.type }}
         {%- if mf.type contains 'metaobject' -%}
           {%- assign short_description_mo = mf.value -%}
         {%- endif -%}
       {%- endif -%}
-{{ mf }}
+
       {%- comment -%} Normalize into variables {%- endcomment -%}
       {%- assign is_show = true -%}
       {%- assign short_description = '' -%}
-{{ short_description_mo }}
+
       {%- if short_description_mo -%}
         {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
 
