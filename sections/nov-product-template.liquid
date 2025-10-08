@@ -128,6 +128,8 @@
       {% include 'product-template-accordion', aspect_ratio: aspect %}
     {% elsif viewtype =='accordiontwo' %}
       {% include 'product-template-accordiontwo', aspect_ratio: aspect %}
+    {% elsif viewtype =='accordiontwo_furrybuddy' %}
+      {% include 'product-template-accordiontwo-furrybuddy', aspect_ratio: aspect %}
     {% else %}
       {% include 'product-template-default', aspect_ratio: aspect %}
     {% endif %}

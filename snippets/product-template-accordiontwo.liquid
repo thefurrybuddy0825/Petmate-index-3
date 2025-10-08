@@ -65,8 +65,7 @@
             {% include 'product-single-price' %}
             {% if section.settings.show_des %}
               <div class="product-single__shortdes" itemprop="description">
-                {% comment %} {{ product.description | strip_html | truncatewords: 35}} {% endcomment %}
-                {% render 'bah-product-short-description' %}
+                {{ product.description | strip_html | truncatewords: 35}}
               </div> 
             {% endif %}
             {% include 'product-single-deal' %}
