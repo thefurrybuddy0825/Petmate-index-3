@@ -1,5 +1,5 @@
 {%- comment -%}
-  COMPONENT: Product Short Description (block: `bah-product-summary-description`)
+  COMPONENT: Product Summary Description (block: `bah-product-summary-description`)
   PURPOSE:
     Renders a short blurb under the product title. Reads data from a PRODUCT METAFIELD,
     with block settings as fallback.
@@ -10,7 +10,7 @@
          A) The metaobject has a "settings" (JSON string) field containing:
             {
               "is_show": true,
-              "description": "Your short description text"
+              "description": "Your Summary Description text"
             }
          B) OR the metaobject has typed fields:
             - is_show (boolean)
@@ -90,7 +90,7 @@
 
       {%- comment -%} Normalize into variables {%- endcomment -%}
       {%- assign is_show = true -%}
-      {%- assign short_description = '' -%}
+      {%- assign summary_description = '' -%}
 
       {%- if summary_description_mo -%}
         {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
@@ -108,15 +108,15 @@
           {%- endif -%}
         {%- endif -%}
 
-        {%- assign short_description = cfg.value.description -%}
-        {%- if short_description == null or short_description == '' -%}
-          {%- assign short_description = block.settings.description | default: '' -%}
+        {%- assign summary_description = cfg.value.description -%}
+        {%- if summary_description == null or summary_description == '' -%}
+          {%- assign summary_description = block.settings.description | default: '' -%}
         {%- endif -%}
       {%- endif -%}
 
       {%- if is_show -%}
         <div
-          class="short-description"
+          class="summary-description"
           style="
             font-size: {{ block.settings.font_size | default: 16 }}px;
             padding: {{ block.settings.padding_top   | default: 10 }}px
@@ -126,7 +126,7 @@
           "
         >
           <span>
-            {{ short_description }}
+            {{ summary_description }}
           </span>
         </div>
       {% endif %}
