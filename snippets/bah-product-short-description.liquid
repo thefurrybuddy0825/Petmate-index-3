@@ -1,120 +1,104 @@
 {%- comment -%}
   COMPONENT: Product Short Description (block: `bah-product-short-des`)
   PURPOSE:
-    Renders a short blurb under the product title. Reads data from a PRODUCT METAFIELD,
-    with block settings as fallback.
+    Renders a short blurb under the product title. Reads from a PRODUCT METAFIELD
+    (metaobject reference) with block settings as fallback.
 
-  DATA SOURCES (priority, highest first):
-    1) product.metafields.custom.product_short_description  → Metaobject reference (preferred)
-       - Either:
-         A) The metaobject has a "settings" (JSON string) field containing:
-            {
-              "is_show": true,
-              "description": "Your short description text"
-            }
-         B) OR the metaobject has typed fields:
-            - is_show (boolean)
-            - description (single-line or multi-line text)
-       NOTE: This snippet currently expects the JSON-in-metaobject pattern (A).
-             If you use typed fields instead, change reads to:
-               is_show      = short_description_mo.is_show.value
-               description  = short_description_mo.description.value
-    2) Block settings (fallbacks)
-       - is_show (checkbox)
-       - description (text)
+  NEW (typed-first):
+    • Metaobject fields (preferred): is_show:Boolean, description:Multi-line text
+    • Legacy fallback during migration: mo.settings JSON string
+      - We DO NOT parse JSON in Liquid (no parse_json). We only probe is_show and
+        do a simple substring extraction for description.
 
-  WHAT TO CREATE IN SHOPIFY (Admin):
-    A) Metaobject definition (recommended name): "product_short_description"
-       • Field: "settings" (Type: Single line text or JSON)  ← put JSON here
-         Example JSON value:
-         {"is_show":true,"description":"Cozy, durable, and pet-safe materials your buddy will love."}
-       (If you prefer typed fields instead of JSON, add two fields:
-         is_show:boolean, description:text — and see NOTE above.)
-    B) Product metafield:
-       • Namespace & key: custom.product_short_description
-       • Type: Metaobject reference → Definition: product_short_description
-       • Attach the metaobject entry to each product as needed.
+  REQUIRED SETUP:
+    • Metaobject type: product_short_description
+      - Fields: is_show:Boolean, description:Multi-line text
+      - (Optional legacy) settings: Single line text (JSON string)
+    • Product metafield (Products scope):
+      - Namespace/key: custom.product_short_description
+      - Type: Metaobject reference → product_short_description
+    • Make sure metaobject type + metafield are published to Storefront.
 
-  BLOCK SETTINGS EXPECTED (for fallback + styles):
-    - is_show (checkbox)            → used only if metaobject value missing
-    - description (text)            → fallback text if metaobject missing/blank
-    - font_size (number, px)
-    - padding_top/right/bottom/left (numbers, px)
+  BLOCK SETTINGS (fallbacks + style):
+    - is_show (checkbox)
+    - description (text/textarea)
+    - font_size (px), padding_* (px)
 
-  BEHAVIOR:
-    - is_show resolution:
-        prefer metaobject.settings.is_show (or typed field), else block.settings.is_show,
-        else defaults to TRUE (component shows).
-      ⚠ Liquid note: "default" treats false as blank. This code preserves explicit false via checks.
-    - description resolution:
-        prefer metaobject.settings.description (or typed field), else block.settings.description, else ''.
-
-  TROUBLESHOOTING:
-    - If nothing renders, ensure the product metafield actually points to a metaobject entry.
-    - If using typed metaobject fields, update accessors as noted above (no `.value.` on the JSON path).
-    - "nil" vs "null": Liquid uses `nil`. JSON `null` becomes `nil` after parsing.
-    - If you later switch to parsing JSON in Liquid with `| parse_json` and get a Theme Check warning,
-      it’s just the linter; Shopify runtime supports it.
-
-  EXAMPLE VALUES:
-    Metaobject "settings" JSON:
-      {"is_show":true,"description":"{count} happy pets chose this in the last 30 days."}
-    Block settings (fallback):
-      is_show: true
-      description: "Soft, breathable, and easy to clean."
-
-  USAGE:
-    - Add a block of type "bah-product-short-des" to your product section.
-    - Attach the "product_short_description" metaobject to the product metafield
-      custom.product_short_description. The component will auto-render.
-  
-  Sample JSON (put this into your metafield value)
-  ---------------
-  {
-    "is_show": true,
-    "description": "A smart, USB-rechargeable motion ball that rolls and bounces automatically — keeping your dog or cat active, entertained, and happy all day long."
-  }
 {%- endcomment -%}
 
 {% for block in section.blocks %}
   {% case block.type %}
     {% when 'bah-product-short-des' %}
-      {%- assign short_description_mo = null -%}
-
       {%- assign mf = product.metafields.custom.product_short_description -%}
-      {%- if mf != blank -%}
-        {%- if mf.type contains 'metaobject' -%}
-          {%- assign short_description_mo = mf.value -%}
-        {%- endif -%}
+      {%- assign short_description_mo = nil -%}
+      {%- if mf != blank and mf.type contains 'metaobject' -%}
+        {%- assign short_description_mo = mf.value -%}
       {%- endif -%}
 
-      {%- comment -%} Normalize into variables {%- endcomment -%}
-      {%- assign is_show = true -%}
+      {%- comment -%} Normalize into variables (typed fields first) {%- endcomment -%}
+      {%- assign is_show = nil -%}
       {%- assign short_description = '' -%}
+      {%- assign legacy_json = blank -%}
 
       {%- if short_description_mo -%}
-        {%- assign cfg = mf.value.json_shema | default: mf.json_shema | default: mf.value | default: mf -%}
-
-        {%- assign is_show = cfg.value.is_show -%}
-        {%- if is_show == null -%}
-          {%- assign is_show = block.settings.is_show -%}
+        {%- comment -%} Preferred: typed metaobject fields {%- endcomment -%}
+        {%- if short_description_mo.is_show != nil -%}
+          {%- assign is_show = short_description_mo.is_show -%}
         {%- endif -%}
-        {%- if is_show != true and is_show != false and is_show != null -%}
-          {%- assign v = is_show | downcase | strip -%}
-          {%- if v == 'true' or v == '1' or v == 'yes' or v == 'y' -%}
+        {%- if short_description_mo.description != blank -%}
+          {%- assign short_description = short_description_mo.description -%}
+        {%- endif -%}
+
+        {%- comment -%} Transitional fallback for legacy JSON string (mo.settings) {%- endcomment -%}
+        {%- assign legacy_json = short_description_mo.settings | default: blank -%}
+
+        {%- if is_show == nil and legacy_json != blank -%}
+          {%- assign probe = legacy_json | downcase -%}
+          {%- if probe contains '"is_show":true' or probe contains "'is_show':true" -%}
             {%- assign is_show = true -%}
-          {%- else -%}
+          {%- elsif probe contains '"is_show":false' or probe contains "'is_show':false" -%}
             {%- assign is_show = false -%}
           {%- endif -%}
         {%- endif -%}
 
-        {%- assign short_description = cfg.value.description -%}
-        {%- if short_description == null or short_description == '' -%}
-          {%- assign short_description = block.settings.description | default: '' -%}
+        {%- if short_description == '' and legacy_json != blank -%}
+          {%- comment -%}
+            Naive extraction of "description":"...".
+            This avoids JSON parsing; adequate for migration.
+          {%- endcomment -%}
+          {%- assign after = legacy_json | split: '"description":' | last -%}
+          {%- if after != legacy_json -%}
+            {%- assign first_char = after | slice: 0, 1 -%}
+            {%- if first_char == '"' or first_char == "'" -%}
+              {%- assign sep = first_char -%}
+            {%- else -%}
+              {%- assign sep = '"' -%}
+            {%- endif -%}
+            {%- assign parts = after | split: sep -%}
+            {%- if parts.size > 1 -%}
+              {%- assign short_description = parts[1] -%}
+            {%- endif -%}
+          {%- endif -%}
         {%- endif -%}
       {%- endif -%}
 
-      {%- if is_show -%}
+      {%- comment -%} Fallbacks to block settings {%- endcomment -%}
+      {%- if is_show == nil -%}
+        {%- assign is_show = block.settings.is_show | default: true -%}
+      {%- endif -%}
+      {%- if short_description == '' -%}
+        {%- assign short_description = block.settings.description | default: '' -%}
+      {%- endif -%}
+
+      {%- comment -%} Normalize boolean variants {%- endcomment -%}
+      {%- assign is_show_str = is_show | downcase | strip -%}
+      {%- if is_show == true or is_show_str == 'true' or is_show_str == '1' or is_show_str == 'yes' or is_show_str == 'y' -%}
+        {%- assign should_render = true -%}
+      {%- else -%}
+        {%- assign should_render = false -%}
+      {%- endif -%}
+
+      {%- if should_render and short_description != '' -%}
         <div
           class="short-description"
           style="
@@ -125,10 +109,8 @@
                      {{ block.settings.padding_left  | default: 0 }}px;
           "
         >
-          <span>
-            {{ short_description }}
-          </span>
+          <span>{{ short_description | newline_to_br }}</span>
         </div>
-      {% endif %}
+      {%- endif -%}
   {% endcase %}
 {% endfor %}
