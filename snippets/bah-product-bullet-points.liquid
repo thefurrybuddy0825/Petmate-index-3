@@ -37,7 +37,7 @@
       {%- for i in (1..5) -%}
         {%- assign key = 'bullet_point_' | append: i -%}
         {%- assign txt = '' -%}
-
+{{ key }}
         {%- if mo -%}
           {%- comment -%} Find field in mo.fields with matching key {%- endcomment -%}
           {%- for f in mo.fields -%}
