@@ -1,20 +1,23 @@
 {% comment %}
-  BAH — Collapsible Content (FAQ) — Typed Fields + Rich Text
+  BAH — Collapsible Content (FAQ) — Typed Fields + Rich Text + Icons
 
-  Product metafield (optional, preferred):
+  Product metafield (preferred, optional):
     product.metafields.custom.product_collapsible_content → Metaobject reference
 
-  Metaobject typed fields (recommended):
+  Metaobject typed fields (create these):
     - is_show : Boolean
-    - faq_title_1 .. faq_title_5 : Text
-    - faq_content_1 .. faq_content_5 : Rich text (or multi-line text)
+    - faq_title_1..faq_title_5   : Text
+    - faq_content_1..faq_content_5 : Rich text (or multi-line text)
+    - faq_icon_1..faq_icon_5     : Text (emoji like ✔ / 🐾 or hex like 2714)
 
-  Block settings (fallbacks; create matching ids in your block schema):
+  Block settings (fallbacks; create matching ids):
     - is_show (checkbox)
     - faq_title_1..faq_title_5 (text)
     - faq_content_1..faq_content_5 (richtext preferred)
-    - font_size (number)
-    - text_color (color)
+    - faq_icon_1..faq_icon_5 (text)
+    - font_size (number), text_color (color)
+    - emoji_size (number, px) ← icon size
+    - emoji_color (color)     ← icon color
     - margin_top, margin_bottom (numbers)
 {% endcomment %}
 
@@ -77,25 +80,29 @@
       {%- if is_show == nil -%}{%- assign is_show = block.settings.is_show | default: true -%}{%- endif -%}
 
       {%- if is_show == true -%}
-        {%- assign text_sz = block.settings.font_size | default: 16 -%}
-        {%- assign text_col = block.settings.text_color | default: '#000' -%}
+        {%- assign text_sz  = block.settings.font_size   | default: 16 -%}
+        {%- assign text_col = block.settings.text_color  | default: '#000' -%}
+        {%- assign icon_px  = block.settings.emoji_size  | default: text_sz -%}
+        {%- assign icon_col = block.settings.emoji_color | default: text_col -%}
 
-        {%- comment -%} Build rows (titles & rich text contents) {%- endcomment -%}
+        {%- comment -%} Build rows (titles, rich text contents, icons) {%- endcomment -%}
         {%- capture rows -%}
           {%- for i in (1..5) -%}
             {%- assign t_key = 'faq_title_'   | append: i -%}
             {%- assign c_key = 'faq_content_' | append: i -%}
+            {%- assign ic_key = 'icon_'   | append: i -%}
 
             {%- assign t = '' -%}
             {%- assign c_html = '' -%}
+            {%- assign ic = '' -%}
 
             {%- if mo -%}
               {%- case i -%}
-                {%- when 1 -%}{%- assign t = mo.faq_title_1 -%}{%- assign c_obj = mo.faq_content_1 -%}
-                {%- when 2 -%}{%- assign t = mo.faq_title_2 -%}{%- assign c_obj = mo.faq_content_2 -%}
-                {%- when 3 -%}{%- assign t = mo.faq_title_3 -%}{%- assign c_obj = mo.faq_content_3 -%}
-                {%- when 4 -%}{%- assign t = mo.faq_title_4 -%}{%- assign c_obj = mo.faq_content_4 -%}
-                {%- when 5 -%}{%- assign t = mo.faq_title_5 -%}{%- assign c_obj = mo.faq_content_5 -%}
+                {%- when 1 -%}{%- assign t = mo.faq_title_1   -%}{%- assign c_obj = mo.faq_content_1   -%}{%- assign ic = mo.faq_icon_1   -%}
+                {%- when 2 -%}{%- assign t = mo.faq_title_2   -%}{%- assign c_obj = mo.faq_content_2   -%}{%- assign ic = mo.faq_icon_2   -%}
+                {%- when 3 -%}{%- assign t = mo.faq_title_3   -%}{%- assign c_obj = mo.faq_content_3   -%}{%- assign ic = mo.faq_icon_3   -%}
+                {%- when 4 -%}{%- assign t = mo.faq_title_4   -%}{%- assign c_obj = mo.faq_content_4   -%}{%- assign ic = mo.faq_icon_4   -%}
+                {%- when 5 -%}{%- assign t = mo.faq_title_5   -%}{%- assign c_obj = mo.faq_content_5   -%}{%- assign ic = mo.faq_icon_5   -%}
               {%- endcase -%}
 
               {%- if c_obj != blank -%}
@@ -107,15 +114,45 @@
               {%- endif -%}
             {%- endif -%}
 
-            {%- if t == blank -%}{%- assign t = block.settings[t_key] | default: '' -%}{%- endif -%}
+            {%- if t == blank -%}{%- assign t = block.settings[t_key]  | default: '' -%}{%- endif -%}
             {%- if c_html == blank -%}{%- assign c_html = block.settings[c_key] | default: '' -%}{%- endif -%}
+            {%- if ic == blank -%}{%- assign ic = block.settings[ic_key] | default: '' -%}{%- endif -%}
 
-            {%- if t != blank or c_html != blank -%}
+            {%- assign has_any = false -%}
+            {%- if t != blank or c_html != blank -%}{%- assign has_any = true -%}{%- endif -%}
+
+            {%- if has_any -%}
+              {%- comment -%} Prepare icon HTML if provided (emoji or hex) {%- endcomment -%}
+              {%- assign ic_trim = ic | strip -%}
+              {%- assign icon_html = '' -%}
+              {%- if ic_trim != '' -%}
+                {%- assign norm = ic_trim
+                  | downcase
+                  | remove: 'u+' | remove: '0x' | remove: '&#x' | remove: '&#' | remove: ';'
+                  | strip
+                -%}
+                {%- assign HEX = norm | upcase -%}
+                {%- assign clean = HEX
+                  | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
+                  | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+                  | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
+                -%}
+                {%- assign is_hex = false -%}
+                {%- if HEX != '' and clean == '' -%}{%- assign is_hex = true -%}{%- endif -%}
+
+                {%- capture icon_html -%}
+                  <span aria-hidden="true" class="faq-title-icon" style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
+                    {%- if is_hex -%}{{ '&#x' | append: HEX | append: ';' }}{%- else -%}{{ ic_trim }}{%- endif -%}
+                  </span>
+                {%- endcapture -%}
+              {%- endif -%}
+
               {%- assign uid = section.id | append: '-u-' | append: block.id | append: '-' | append: i -%}
               <div class="faqs-main" style="font-size: {{ text_sz }}px;">
                 <div class="panel-group">
                   <button class="panel-header" type="button" aria-controls="faq-{{ uid }}" aria-expanded="false" data-target="#faq-{{ uid }}">
-                    <span style="font-size:{{ text_sz }}px; color:{{ text_col }}; line-height:1.3; padding-right:10px;">
+                    {{ icon_html }}
+                    <span style="font-size:{{ text_sz }}px; color:{{ text_col }}; line-height:1.3;">
                       {{- t | default: 'Details' -}}
                     </span>
                     <span class="caret-icon" aria-hidden="true">
