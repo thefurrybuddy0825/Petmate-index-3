@@ -36,13 +36,13 @@
           {%- when 1 -%}
             {%- if mo and mo.bullet_point_1 != blank -%}{%- assign txt = mo.bullet_point_1 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_1 -%}{%- endif -%}
           {%- when 2 -%}
-            {%- if mo and mo.bullet_2 != blank -%}{%- assign txt = mo.bullet_2 -%}{%- else -%}{%- assign txt = block.settings.bullet_2 -%}{%- endif -%}
+            {%- if mo and mo.bullet_point_2 != blank -%}{%- assign txt = mo.bullet_point_2 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_2 -%}{%- endif -%}
           {%- when 3 -%}
-            {%- if mo and mo.bullet_3 != blank -%}{%- assign txt = mo.bullet_3 -%}{%- else -%}{%- assign txt = block.settings.bullet_3 -%}{%- endif -%}
+            {%- if mo and mo.bullet_point_3 != blank -%}{%- assign txt = mo.bullet_point_3 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_3 -%}{%- endif -%}
           {%- when 4 -%}
-            {%- if mo and mo.bullet_4 != blank -%}{%- assign txt = mo.bullet_4 -%}{%- else -%}{%- assign txt = block.settings.bullet_4 -%}{%- endif -%}
+            {%- if mo and mo.bullet_point_4 != blank -%}{%- assign txt = mo.bullet_point_4 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_4 -%}{%- endif -%}
           {%- when 5 -%}
-            {%- if mo and mo.bullet_5 != blank -%}{%- assign txt = mo.bullet_5 -%}{%- else -%}{%- assign txt = block.settings.bullet_5 -%}{%- endif -%}
+            {%- if mo and mo.bullet_point_5 != blank -%}{%- assign txt = mo.bullet_point_5 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_5 -%}{%- endif -%}
         {%- endcase -%}
 
         {%- if txt != blank -%}
