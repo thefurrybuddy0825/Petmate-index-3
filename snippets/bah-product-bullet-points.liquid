@@ -22,7 +22,7 @@
     {%- if is_show == nil -%}
       {%- assign is_show = block.settings.is_show -%}
     {%- endif -%}
-
+{{ is_show }}
     {%- comment -%} Style settings {%- endcomment -%}
     {%- assign text_sz  = block.settings.body_font_size | default: 14 -%}
     {%- assign text_col = block.settings.text_color    | default: '#000' -%}
