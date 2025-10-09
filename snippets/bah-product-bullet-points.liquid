@@ -23,7 +23,7 @@
     {%- if is_show == nil -%}{%- assign is_show = block.settings.is_show -%}{%- endif -%}
 
     {%- assign base_key = 'bullet_point_' -%}
-    {%- assign icon_char = '✔' -%} {# colorable check mark #}
+    {%- assign icon_char = '✔' -%}
 
     {%- assign icon_px  = block.settings.emoji_size       | default: 18 -%}
     {%- assign icon_col = block.settings.emoji_color      | default: '#000000' -%}
