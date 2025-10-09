@@ -1,97 +1,319 @@
-{%- comment -%}
-  BAH – Product Bullet Points (dynamic keys, hard-coded check icon)
-  Product metafield (optional): custom.product_bullet_points → metaobject reference
-    • Metaobject typed fields (optional): is_show:Boolean, bullet_point_1..bullet_point_5
-  Block settings (your schema):
-    • is_show, bullet_point_1..bullet_point_5
-    • emoji_size, emoji_color, body_font_size, text_color, text_highlighted_color
-    • display_layout ('row' = 1 col, 'column' = 2 cols), column_gap
-    • padding_top, padding_bottom
-{%- endcomment -%}
+{% comment %}
+  BAH — Collapsible Content (FAQ) — Typed Fields Only
+  Order: 1) Custom fields (metaobject) → 2) Theme Editor items (t1..t10)
+  Icons: emoji or standard Unicode hex (e.g., 2714). If no icon on TE item, optional image is used.
+{% endcomment %}
+
+{% style %}
+  .accordion { margin-left: 0 !important; margin-right: 0 !important;}
+
+  /* Row divider */
+  .faq-accordion .faqs-main {
+    position: relative;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.16);
+  }
+  .faq-accordion .faqs-main:last-child { border-bottom: none; }
+
+  /* GPU-friendly underline bar on active */
+  .faq-accordion .faqs-main::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 3px;
+    width: 200px;
+    background: #222222;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s ease;
+    z-index: 1;
+  }
+  .faq-accordion .faqs-main.active::before { transform: scaleX(1); }
+
+  /* Header row */
+  .faq-accordion .panel-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    padding: 1.4rem 0;
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.25s ease;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Caret on the right; rotate when open */
+  .faq-accordion .panel-header .caret-icon {
+    margin-left: auto;
+    transition: transform var(--duration-short, 150ms) ease;
+  }
+  .faq-accordion .panel-header[aria-expanded="true"] .caret-icon { transform: rotate(90deg); }
+
+  /* Animated collapse */
+  .faq-accordion .collapse {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 300ms ease, opacity 240ms ease;
+  }
+  .faq-accordion .collapse.show { opacity: 1; /* max-height set inline by JS */ }
+
+  .faq-accordion .item-content {
+    padding: 0 0 1.4rem 0;
+    font-size: 16px !important;
+    border: none !important;
+  }
+{% endstyle %}
 
 {% for block in section.blocks %}
-  {% if block.type == 'bah-product-bullet-points' %}
-    {%- assign mf = product.metafields.custom.product_bullet_points -%}
-    {%- assign mo = nil -%}
-    {%- if mf != blank and mf.type contains 'metaobject' -%}
-      {%- assign mo = mf.value -%}
-    {%- endif -%}
+  {% if block.type == 'bah-collapsible-content' %}
+    <div class="accordion faq-accordion" id="Accordion-{{ section.id | append: forloop.index }}"
+         style="margin-top: {{ block.settings.margin_top | default: 0 }}px; margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;">
+      {%- assign mf = product.metafields.custom.product_collapsible_content -%}
+      {%- assign mo = nil -%}
+      {%- if mf != blank and mf.type contains 'metaobject' -%}
+        {%- assign mo = mf.value -%}
+      {%- endif -%}
 
-    {%- comment -%} Show/Hide: product first, then block fallback {%- endcomment -%}
-    {%- assign is_show = nil -%}
-    {%- if mo and mo.is_show != nil -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
-    {%- if is_show == nil -%}{%- assign is_show = block.settings.is_show -%}{%- endif -%}
-
-    {%- assign base_key = 'bullet_point_' -%}
-    {%- assign icon_char = '✔' -%}
-
-    {%- assign icon_px  = block.settings.emoji_size       | default: 18 -%}
-    {%- assign icon_col = block.settings.emoji_color      | default: '#000000' -%}
-    {%- assign text_sz  = block.settings.body_font_size   | default: 14 -%}
-    {%- assign text_col = block.settings.text_color       | default: '#505157' -%}
-    {%- assign hl_col   = block.settings.text_highlighted_color | default: text_col -%}
-    {%- assign layout   = block.settings.display_layout   | default: 'row' -%}
-    {%- assign gap_px   = block.settings.column_gap       | default: 8 -%}
-    {%- assign pad_t    = block.settings.padding_top      | default: 0 -%}
-    {%- assign pad_b    = block.settings.padding_bottom   | default: 0 -%}
-
-    {%- comment -%} Build bullet <li>s (prefer product metaobject → fallback to block settings) {%- endcomment -%}
-    {%- capture bullets -%}
-      {%- for i in (1..5) -%}
-        {%- assign key = base_key | append: i -%}
-        {%- assign txt = '' -%}
-
-        {%- if mo -%}
-          {%- case i -%}
-            {%- when 1 -%}{%- assign txt = mo.bullet_point_1 -%}
-            {%- when 2 -%}{%- assign txt = mo.bullet_point_2 -%}
-            {%- when 3 -%}{%- assign txt = mo.bullet_point_3 -%}
-            {%- when 4 -%}{%- assign txt = mo.bullet_point_4 -%}
-            {%- when 5 -%}{%- assign txt = mo.bullet_point_5 -%}
-          {%- endcase -%}
+      {%- comment -%} is_show: metaobject first; else parse text "true/false" from block setting {%- endcomment -%}
+      {%- assign is_show = nil -%}
+      {%- if mo and mo.is_show != nil -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
+      {%- if is_show == nil -%}
+        {%- assign bs = block.settings.is_show | downcase | strip -%}
+        {%- if bs == 'true' or bs == '1' or bs == 'yes' or bs == 'y' -%}
+          {%- assign is_show = true -%}
+        {%- else -%}
+          {%- assign is_show = false -%}
         {%- endif -%}
+      {%- endif -%}
 
-        {%- if txt == blank -%}
-          {%- assign txt = block.settings[key] -%}
+      {%- if is_show == true -%}
+        {%- assign text_sz  = block.settings.font_size   | default: 16 -%}
+        {%- assign text_col = block.settings.text_color  | default: '#000' -%}
+        {%- assign icon_px  = block.settings.emoji_size  | default: text_sz -%}
+        {%- assign icon_col = block.settings.emoji_color | default: text_col -%}
+        {%- assign retina_w = icon_px | times: 2 -%}
+
+        {%- comment -%} 1) Collect ALL rows into a single array, then render once {%- endcomment -%}
+        {%- assign rows = '' | split: ',' -%}
+        {%- assign SEP = '|||~SEP~|||' -%}
+        {%- assign SINGLE = '|||~SINGLE~|||' -%}
+
+        {%- comment -%} 1a) CUSTOM FIELDS (metaobject) — first {%- endcomment -%}
+        {%- for i in (1..5) -%}
+          {%- assign t = '' -%}{%- assign c_html = '' -%}{%- assign ic = '' -%}
+          {%- if mo -%}
+            {%- case i -%}
+              {%- when 1 -%}{%- assign t = mo.faq_title_1  -%}{%- assign c_obj = mo.faq_content_1  -%}{%- assign ic = mo.icon_1  -%}
+              {%- when 2 -%}{%- assign t = mo.faq_title_2  -%}{%- assign c_obj = mo.faq_content_2  -%}{%- assign ic = mo.icon_2  -%}
+              {%- when 3 -%}{%- assign t = mo.faq_title_3  -%}{%- assign c_obj = mo.faq_content_3  -%}{%- assign ic = mo.icon_3  -%}
+              {%- when 4 -%}{%- assign t = mo.faq_title_4  -%}{%- assign c_obj = mo.faq_content_4  -%}{%- assign ic = mo.icon_4  -%}
+              {%- when 5 -%}{%- assign t = mo.faq_title_5  -%}{%- assign c_obj = mo.faq_content_5  -%}{%- assign ic = mo.icon_5  -%}
+            {%- endcase -%}
+            {%- if c_obj != blank -%}
+              {%- assign c_html = c_obj | metafield_tag -%}
+              {%- if c_html == blank and c_obj.value != blank -%}{%- assign c_html = c_obj.value -%}{%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- assign has_any = false -%}
+          {%- if t != blank or c_html != blank -%}{%- assign has_any = true -%}{%- endif -%}
+
+          {%- if has_any -%}
+            {%- capture row -%}
+              {{ t | replace: SEP, '' }}{{ SEP }}
+              {{ c_html | replace: SEP, '' }}{{ SEP }}
+              {{ ic | replace: SEP, '' }}{{ SEP }}
+              {{ '' }}{{ SEP }}{{ '' }}
+            {%- endcapture -%}
+            {%- assign single = row | split: SINGLE -%}
+            {%- assign rows = rows | concat: single -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} 1b) THEME EDITOR ITEMS (t1..t10) — appended below custom fields {%- endcomment -%}
+        {%- for i in (1..10) -%}
+          {%- assign t_id = 't'     | append: i -%}
+          {%- assign c_id = 'c'     | append: i -%}
+          {%- assign i_id = 'icon'  | append: i -%}
+          {%- assign m_id = 'image' | append: i -%}
+
+          {%- assign t  = block.settings[t_id] | default: '' | strip -%}
+          {%- assign cH = block.settings[c_id] | default: '' -%}  {# richtext already HTML #}
+          {%- assign ic = block.settings[i_id] | default: '' | strip -%}
+          {%- assign im = block.settings[m_id] -%}
+
+          {%- assign has_any = false -%}
+          {%- if t != '' or cH != '' -%}{%- assign has_any = true -%}{%- endif -%}
+
+          {%- if has_any -%}
+            {%- assign img1x = '' -%}{%- assign img2x = '' -%}
+            {%- if im != blank -%}
+              {%- assign img1x = im | image_url: width: icon_px -%}
+              {%- assign img2x = im | image_url: width: retina_w -%}
+            {%- endif -%}
+
+            {%- capture row -%}
+              {{ t | replace: SEP, '' }}{{ SEP }}
+              {{ cH | replace: SEP, '' }}{{ SEP }}
+              {{ ic | replace: SEP, '' }}{{ SEP }}
+              {{ img1x }}{{ SEP }}{{ img2x }}
+            {%- endcapture -%}
+            {%- assign single = row | split: SINGLE -%}
+            {%- assign rows = rows | concat: single -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} 2) Render once from unified `rows` {%- endcomment -%}
+        {%- assign rows_trim = rows | join: '' | strip -%}
+        {%- if rows_trim != '' -%}
+          {%- for row in rows -%}
+            {%- assign parts = row | split: SEP -%}
+            {%- assign q = parts[0] | default: '' | strip -%}
+            {%- assign a = parts[1] | default: '' -%}
+            {%- assign ic = parts[2] | default: '' | strip -%}
+            {%- assign img1x = parts[3] | default: '' | strip -%}
+            {%- assign img2x = parts[4] | default: '' | strip -%}
+
+            {%- if q != '' or a != '' -%}
+              {%- comment -%} Build icon HTML: emoji/hex first; else image (retina) {%- endcomment -%}
+              {%- assign icon_html = '' -%}
+              {%- if ic != '' -%}
+                {%- assign norm = ic | downcase | remove: 'u+' | remove: '0x' | remove: '&#x' | remove: '&#' | remove: ';' | strip -%}
+                {%- assign HEX = norm | upcase -%}
+                {%- assign hex_clean = HEX
+                  | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
+                  | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+                  | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
+                -%}
+                {%- assign looks_hex = false -%}
+                {%- if HEX != '' and hex_clean == '' -%}{%- assign looks_hex = true -%}{%- endif -%}
+
+                {%- capture icon_html -%}
+                  <span class="faq-title-icon" aria-hidden="true"
+                        style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
+                    {%- if looks_hex -%}{{ '&#x' | append: HEX | append: ';' }}{%- else -%}{{ ic }}{%- endif -%}
+                  </span>
+                {%- endcapture -%}
+              {%- elsif img1x != '' or img2x != '' -%}
+                {%- assign img_src = img2x | default: img1x -%}
+                {%- capture icon_html -%}
+                  <img
+                    src="{{ img_src | escape }}"
+                    {% if img1x != '' and img2x != '' %}srcset="{{ img1x | escape }} 1x, {{ img2x | escape }} 2x"{% endif %}
+                    alt=""
+                    width="{{ icon_px }}" height="{{ icon_px }}"
+                    style="display:inline-block; width:{{ icon_px }}px; height:{{ icon_px }}px; object-fit:contain; margin-right:8px;">
+                {%- endcapture -%}
+              {%- endif -%}
+
+              {%- assign uid = section.id | append: '-u-' | append: block.id | append: '-' | append: forloop.index -%}
+
+              <div class="faqs-main" style="font-size: {{ text_sz }}px;">
+                <div class="panel-group">
+                  <button class="panel-header" type="button" aria-controls="faq-{{ uid }}" aria-expanded="false" data-target="#faq-{{ uid }}">
+                    {{ icon_html }}
+                    <span style="font-size:{{ text_sz }}px; color:{{ text_col }}; line-height:1.3; padding-left: 0;">
+                      {{- q | default: 'Details' -}}
+                    </span>
+                    <span class="caret-icon" aria-hidden="true">
+                      <svg class="icon-accordion" viewBox="0 0 20 20" width="20" height="20">
+                        <path fill-rule="evenodd"
+                          d="M7.5 5.5a.75.75 0 011.06 0l4 4a.75.75 0 010 1.06l-4 4a.75.75 0 11-1.06-1.06L10.44 10 7.5 7.06a.75.75 0 010-1.56z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <div class="panel-body">
+                    <div id="faq-{{ uid }}" class="collapse" data-parent="#Accordion-{{ section.id }}">
+                      <div class="item-content rte" style="padding: 0 0 20px 0; color: {{ text_col }};">
+                        {{ a }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
         {%- endif -%}
+      {%- endif -%}
+    </div>
 
-        {%- if txt != blank -%}
-          <li class="bah-bp__item" style="display:flex;align-items:center;gap:8px;{% if layout == 'row' %}margin-bottom:{{ gap_px }}px;{% endif %}">
-            <span aria-hidden="true" class="bah-bp__icon" style="font-size:{{ icon_px }}px;color:{{ icon_col }};line-height:1;display:inline-block;">{{ icon_char }}</span>
-            <span class="bah-bp__text" style="font-size:{{ text_sz }}px;color:{{ text_col }};line-height:1.3;">{{ txt | newline_to_br }}</span>
-          </li>
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endcapture -%}
+    <script>
+      (function () {
+        var root = document.getElementById('Accordion-{{ section.id | append: forloop.index }}');
+        if (!root) return;
 
-    {%- assign has_bullets = bullets | strip -%}
+        // Initialize max-heights for smooth animation
+        root.querySelectorAll('.collapse').forEach(function (el) {
+          el.style.maxHeight = el.classList.contains('show') ? el.scrollHeight + 'px' : '0px';
+        });
 
-    {%- if is_show == true and has_bullets != '' -%}
-      <ul
-        class="bah-product-bullet-points"
-        style="
-          margin:0;
-          padding: {{ pad_t }}px 0 {{ pad_b }}px 0;
-          list-style:none;
-          {% if layout == 'column' %}
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            column-gap: {{ gap_px }}px;
-            row-gap: {{ gap_px }}px;
-          {% else %}
-            display:flex;
-            flex-direction:column;
-          {% endif %}
-        "
-      >
-        {{ bullets }}
-      </ul>
+        function openPanel(panel, header) {
+          var main = header.closest('.faqs-main');
+          panel.classList.add('show');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          if (main) main.classList.add('active');
+        }
 
-      {%- comment -%} Highlight color for <strong>/<b> inside bullets {%- endcomment -%}
-      <style>
-        .bah-product-bullet-points .bah-bp__text strong,
-        .bah-product-bullet-points .bah-bp__text b { color: {{ hl_col }}; }
-      </style>
-    {%- endif -%}
+        function closePanel(panel, header) {
+          var main = header.closest('.faqs-main');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          requestAnimationFrame(function () {
+            panel.style.maxHeight = '0px';
+            panel.addEventListener('transitionend', function handler() {
+              panel.classList.remove('show');
+              if (main) main.classList.remove('active');
+              panel.removeEventListener('transitionend', handler);
+            });
+          });
+        }
+
+        function closeSiblings(except) {
+          root.querySelectorAll('.collapse.show').forEach(function (openEl) {
+            if (openEl !== except) {
+              var head = root.querySelector('.panel-header[data-target="#' + openEl.id + '"]');
+              closePanel(openEl, head);
+              if (head) head.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+
+        root.addEventListener('click', function (e) {
+          var btn = e.target.closest('.panel-header');
+          if (!btn) return;
+
+          var targetSel = btn.getAttribute('data-target');
+          var panel = root.querySelector(targetSel);
+          if (!panel) return;
+
+          var isOpen = panel.classList.contains('show');
+          if (isOpen) {
+            btn.setAttribute('aria-expanded', 'false');
+            closePanel(panel, btn);
+          } else {
+            closeSiblings(panel);
+            btn.setAttribute('aria-expanded', 'true');
+            openPanel(panel, btn);
+          }
+        });
+
+        document.addEventListener('shopify:section:load', function (e) {
+          if (e.detail && e.detail.sectionId === '{{ section.id }}') {
+            var newRoot = document.getElementById('Accordion-{{ section.id | append: forloop.index }}');
+            if (!newRoot) return;
+            newRoot.querySelectorAll('.collapse').forEach(function (el) {
+              el.style.maxHeight = el.classList.contains('show') ? el.scrollHeight + 'px' : '0px';
+            });
+          }
+        });
+      })();
+    </script>
   {% endif %}
 {% endfor %}
