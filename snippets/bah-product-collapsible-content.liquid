@@ -1,16 +1,16 @@
 {% comment %}
-  BAH — Collapsible Content (FAQ) — Typed Fields + Rich Text + Per-item Icons
+  BAH — Collapsible Content (FAQ) — Typed Fields + Rich Text + Per-item Icons (No JSON)
 
-  Product metafield (preferred, optional):
+  Product metafield (optional, preferred):
     product.metafields.custom.product_collapsible_content → Metaobject reference
 
-  Metaobject typed fields (create these on your metaobject):
+  Metaobject typed fields (create these):
     - is_show : Boolean
     - faq_title_1..faq_title_5     : Text
     - faq_content_1..faq_content_5 : Rich text (or multi-line text)
-    - faq_icon_1..faq_icon_5       : Text (emoji '✔' / '✅' or hex like 2714 / U+2714)
+    - faq_icon_1..faq_icon_5       : Text (emoji like ✔ / ✅ or hex like 2714 / U+2714)
 
-  Block settings (fallbacks; create matching ids in your block schema):
+  Block settings (fallbacks; create matching ids):
     - is_show (checkbox)
     - faq_title_1..faq_title_5 (text)
     - faq_content_1..faq_content_5 (richtext preferred)
@@ -23,11 +23,9 @@
 {% style %}
   .accordion { margin-left: 0 !important; margin-right: 0 !important; }
 
-  /* Row divider */
   .faq-accordion .faqs-main { position: relative; border-bottom: 1px solid rgba(var(--color-foreground), 0.16); }
   .faq-accordion .faqs-main:last-child { border-bottom: none; }
 
-  /* Underline bar on active */
   .faq-accordion .faqs-main::before {
     content: '';
     position: absolute; top: -1px; left: 0; height: 3px; width: 200px;
@@ -36,20 +34,17 @@
   }
   .faq-accordion .faqs-main.active::before { transform: scaleX(1); }
 
-  /* Header row */
   .faq-accordion .panel-header {
     display:flex; align-items:center; width:100%; text-align:left; background:transparent; border:0;
     padding:1.4rem 0; margin:0; font-weight:600; font-size:16px; cursor:pointer; transition: color .25s ease;
     border-top: 1px solid var(--color-border);
   }
 
-  /* Caret rotation */
   .faq-accordion .panel-header .caret-icon { margin-left:auto; transition: transform var(--duration-short,150ms) ease; }
   .faq-accordion .panel-header[aria-expanded="true"] .caret-icon { transform: rotate(90deg); }
 
-  /* Animated collapse */
   .faq-accordion .collapse { overflow:hidden; max-height:0; opacity:0; transition:max-height 300ms ease, opacity 240ms ease; }
-  .faq-accordion .collapse.show { opacity:1; /* max-height set inline by JS */ }
+  .faq-accordion .collapse.show { opacity:1; }
 
   .faq-accordion .item-content { padding: 0 0 1.4rem 0; font-size: 16px !important; border: none !important; }
 {% endstyle %}
@@ -99,7 +94,6 @@
               {%- endcase -%}
 
               {%- if c_obj != blank -%}
-                {%- comment -%} For metaobject Rich text, prefer metafield_tag; .value as fallback {%- endcomment -%}
                 {%- assign c_html = c_obj | metafield_tag -%}
                 {%- if c_html == blank and c_obj.value != blank -%}
                   {%- assign c_html = c_obj.value -%}
@@ -112,22 +106,19 @@
             {%- if ic == blank   -%}{%- assign ic = block.settings[ic_key] | default: '' -%}{%- endif -%}
 
             {%- if t != blank or c_html != blank -%}
-              {%- comment -%} Build icon HTML (emoji or standard Unicode hex). Material codepoints like 'e873' require loading that font separately. {%- endcomment -%}
+              {%- comment -%} Build icon HTML (emoji or standard Unicode hex) {%- endcomment -%}
               {%- assign ic_trim = ic | strip -%}
               {%- assign icon_html = '' -%}
               {%- if ic_trim != '' -%}
-                {%- assign norm = ic_trim
-                  | downcase
-                  | remove: 'u+' | remove: '0x' | remove: '&#x' | remove: '&#' | remove: ';'
-                  | strip
-                -%}
+                {%- assign norm = ic_trim | downcase | remove: 'u+' | remove: '0x' | remove: '&#x' | remove: '&#' | remove: ';' | strip -%}
                 {%- assign HEX = norm | upcase -%}
                 {%- assign hex_test = HEX
                   | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
                   | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
                   | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
                 -%}
-                {%- assign looks_hex = (HEX != '' and hex_test == '') -%}
+                {%- assign looks_hex = false -%}
+                {%- if HEX != '' and hex_test == '' -%}{%- assign looks_hex = true -%}{%- endif -%}
 
                 {%- capture icon_html -%}
                   <span class="faq-title-icon"
