@@ -53,15 +53,15 @@
       style="margin-top: {{ block.settings.margin_top | default: 0 }}px; margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;"
     >
       {%- assign mf = product.metafields.custom.product_collapsible_content -%}
-      {%- assign mo = nil -%}
+      {%- assign mo = null -%}
       {%- if mf != blank and mf.type contains 'metaobject' -%}
         {%- assign mo = mf.value -%}
       {%- endif -%}
 
       {%- comment -%} 1) Resolve show/hide (product → block) {%- endcomment -%}
-      {%- assign is_show = nil -%}
-      {%- if mo and mo.is_show != nil -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
-      {%- if is_show == nil -%}{%- assign is_show = block.settings.is_show | default: true -%}{%- endif -%}
+      {%- assign is_show = null -%}
+      {%- if mo and mo.is_show != null -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
+      {%- if is_show == null -%}{%- assign is_show = block.settings.is_show | default: true -%}{%- endif -%}
 
       {%- if is_show == true -%}
         {%- assign text_sz = block.settings.font_size | default: 16 -%}
@@ -121,7 +121,8 @@
           {%- endfor -%}
         {%- endcapture -%}
 
-        {%- if rows | strip != '' -%}
+        {%- assign rows_trim = rows | strip -%}
+        {%- if rows_trim != '' -%}
           {{ rows }}
         {%- endif -%}
       {%- endif -%}
