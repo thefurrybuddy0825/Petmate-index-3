@@ -41,13 +41,14 @@
         {%- if mo -%}
           {%- comment -%} Find field in mo.fields with matching key {%- endcomment -%}
           {%- for f in mo.fields -%}
+            {{ f }}
             {%- if f.key == key and f.value != blank -%}
               {%- assign txt = f.value -%}
               {%- break -%}
             {%- endif -%}
           {%- endfor -%}
         {%- endif -%}
-{{ txt }}
+
         {%- if txt == '' -%}
           {%- assign txt = block.settings[key] -%}
         {%- endif -%}
