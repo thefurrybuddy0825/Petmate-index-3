@@ -1,9 +1,12 @@
 {%- comment -%}
-  BAH – Product Bullet Points (typed fields + loop + safe fallbacks)
-  Product metafield: custom.product_bullet_points  → Metaobject reference
-  Metaobject fields: is_show:Boolean, bullet_1..bullet_5: Multi-line text
-  Block settings   : is_show (checkbox), bullet_1..bullet_5 (textarea),
-                     body_font_size, text_color, row_gap
+  BAH – Product Bullet Points (dynamic keys, hard-coded icon)
+  Metaobject (product.metafields.custom.product_bullet_points → value):
+    - is_show:Boolean
+    - bullet_point_1 … bullet_point_5 : Multi-line text
+  Block settings fallbacks:
+    - is_show (checkbox)
+    - bullet_point_1 … bullet_point_5 (textarea)
+    - body_font_size, text_color, row_gap
 {%- endcomment -%}
 
 {% for block in section.blocks %}
@@ -14,39 +17,32 @@
       {%- assign mo = mf.value -%}
     {%- endif -%}
 
-    {%- comment -%} is_show: product first, then block fallback {%- endcomment -%}
     {%- assign is_show = nil -%}
-    {%- if mo and mo.is_show != nil -%}
-      {%- assign is_show = mo.is_show -%}
-    {%- endif -%}
-    {%- if is_show == nil -%}
-      {%- assign is_show = block.settings.is_show -%}
-    {%- endif -%}
+    {%- if mo and mo.is_show != nil -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
+    {%- if is_show == nil -%}{%- assign is_show = block.settings.is_show -%}{%- endif -%}
 
-    {%- comment -%} Style settings {%- endcomment -%}
     {%- assign text_sz  = block.settings.body_font_size | default: 14 -%}
     {%- assign text_col = block.settings.text_color    | default: '#000' -%}
     {%- assign row_gap  = block.settings.row_gap       | default: 8 -%}
+    {%- assign ICON_CHAR = '🐾' -%}
+    {%- assign ICON_SIZE = text_sz -%}
 
-    {%- comment -%} Build bullets via a simple 1..5 loop + CASE mapping {%- endcomment -%}
+    {%- assign base = 'bullet_point_' -%}
     {%- capture bullets -%}
       {%- for i in (1..5) -%}
+        {%- assign key = base | append: i -%}
         {%- assign txt = '' -%}
-        {%- case i -%}
-          {%- when 1 -%}
-            {%- if mo and mo.bullet_point_1 != blank -%}{%- assign txt = mo.bullet_point_1 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_1 -%}{%- endif -%}
-          {%- when 2 -%}
-            {%- if mo and mo.bullet_point_2 != blank -%}{%- assign txt = mo.bullet_point_2 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_2 -%}{%- endif -%}
-          {%- when 3 -%}
-            {%- if mo and mo.bullet_point_3 != blank -%}{%- assign txt = mo.bullet_point_3 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_3 -%}{%- endif -%}
-          {%- when 4 -%}
-            {%- if mo and mo.bullet_point_4 != blank -%}{%- assign txt = mo.bullet_point_4 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_4 -%}{%- endif -%}
-          {%- when 5 -%}
-            {%- if mo and mo.bullet_point_5 != blank -%}{%- assign txt = mo.bullet_point_5 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_5 -%}{%- endif -%}
-        {%- endcase -%}
+
+        {%- if mo and mo[key] != blank -%}
+          {%- assign txt = mo[key] -%}
+        {%- endif -%}
+        {%- if txt == '' -%}
+          {%- assign txt = block.settings[key] -%}
+        {%- endif -%}
 
         {%- if txt != blank -%}
           <li style="display:flex;align-items:flex-start;gap:8px;margin:0 0 {{ row_gap }}px 0;">
+            <span aria-hidden="true" style="font-size:{{ ICON_SIZE }}px;line-height:1;display:inline-block;">{{ ICON_CHAR }}</span>
             <span style="font-size:{{ text_sz }}px;color:{{ text_col }};line-height:1.3;">{{ txt | newline_to_br }}</span>
           </li>
         {%- endif -%}
