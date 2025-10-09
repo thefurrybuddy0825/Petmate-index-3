@@ -1,9 +1,9 @@
 {%- comment -%}
-  BAH – Product Bullet Points (typed fields + loop)
-  - Product metafield: custom.product_bullet_points (Metaobject reference)
-    Metaobject fields: is_show:Boolean, bullet_1..bullet_5: Multi-line text
-  - Block settings (fallbacks): is_show (checkbox), bullet_1..bullet_5 (textarea),
-    body_font_size, text_color, row_gap
+  BAH – Product Bullet Points (typed fields + loop + safe fallbacks)
+  Product metafield: custom.product_bullet_points  → Metaobject reference
+  Metaobject fields: is_show:Boolean, bullet_1..bullet_5: Multi-line text
+  Block settings   : is_show (checkbox), bullet_1..bullet_5 (textarea),
+                     body_font_size, text_color, row_gap
 {%- endcomment -%}
 
 {% for block in section.blocks %}
@@ -14,7 +14,7 @@
       {%- assign mo = mf.value -%}
     {%- endif -%}
 
-    {%- comment -%} is_show: product first, else block {%- endcomment -%}
+    {%- comment -%} is_show: product first, then block fallback {%- endcomment -%}
     {%- assign is_show = nil -%}
     {%- if mo and mo.is_show != nil -%}
       {%- assign is_show = mo.is_show -%}
@@ -28,30 +28,22 @@
     {%- assign text_col = block.settings.text_color    | default: '#000' -%}
     {%- assign row_gap  = block.settings.row_gap       | default: 8 -%}
 
-    {%- comment -%}
-      Build <li> items via a loop. For each i in 1..5:
-      - Try mo.bullet_i (via mo.fields scan)
-      - Fallback to block.settings['bullet_i']
-    {%- endcomment -%}
-    {%- capture bullet_items -%}
+    {%- comment -%} Build bullets via a simple 1..5 loop + CASE mapping {%- endcomment -%}
+    {%- capture bullets -%}
       {%- for i in (1..5) -%}
-        {%- assign key = 'bullet_point_' | append: i -%}
         {%- assign txt = '' -%}
-            {{ mo.value }}
-        {%- if mo -%}
-          {%- comment -%} Find field in mo.fields with matching key {%- endcomment -%}
-          {%- for f in mo.fields -%}
-
-            {%- if f.key == key and f.value != blank -%}
-              {%- assign txt = f.value -%}
-              {%- break -%}
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endif -%}
-
-        {%- if txt == '' -%}
-          {%- assign txt = block.settings[key] -%}
-        {%- endif -%}
+        {%- case i -%}
+          {%- when 1 -%}
+            {%- if mo and mo.bullet_1 != blank -%}{%- assign txt = mo.bullet_1 -%}{%- else -%}{%- assign txt = block.settings.bullet_1 -%}{%- endif -%}
+          {%- when 2 -%}
+            {%- if mo and mo.bullet_2 != blank -%}{%- assign txt = mo.bullet_2 -%}{%- else -%}{%- assign txt = block.settings.bullet_2 -%}{%- endif -%}
+          {%- when 3 -%}
+            {%- if mo and mo.bullet_3 != blank -%}{%- assign txt = mo.bullet_3 -%}{%- else -%}{%- assign txt = block.settings.bullet_3 -%}{%- endif -%}
+          {%- when 4 -%}
+            {%- if mo and mo.bullet_4 != blank -%}{%- assign txt = mo.bullet_4 -%}{%- else -%}{%- assign txt = block.settings.bullet_4 -%}{%- endif -%}
+          {%- when 5 -%}
+            {%- if mo and mo.bullet_5 != blank -%}{%- assign txt = mo.bullet_5 -%}{%- else -%}{%- assign txt = block.settings.bullet_5 -%}{%- endif -%}
+        {%- endcase -%}
 
         {%- if txt != blank -%}
           <li style="display:flex;align-items:flex-start;gap:8px;margin:0 0 {{ row_gap }}px 0;">
@@ -61,9 +53,9 @@
       {%- endfor -%}
     {%- endcapture -%}
 
-    {%- if is_show == true and bullet_items != blank -%}
+    {%- if is_show == true and bullets != blank -%}
       <ul class="bah-product-bullet-points" style="margin:10px 0; padding:0; list-style:none;">
-        {{ bullet_items }}
+        {{ bullets }}
       </ul>
     {%- endif -%}
   {% endif %}
