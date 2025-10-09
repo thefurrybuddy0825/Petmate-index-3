@@ -125,6 +125,7 @@
                         aria-hidden="true"
                         style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
                     {%- if looks_hex -%}
+                      ✔
                       {{ '&#x' | append: HEX | append: ';' }}
                     {%- else -%}
                       {{ ic_trim }}
