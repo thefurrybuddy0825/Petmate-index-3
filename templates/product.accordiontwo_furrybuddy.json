@@ -27,7 +27,12 @@
         "bah_product_bullet_points_Y3pemB": {
           "type": "bah-product-bullet-points",
           "settings": {
-            "is_show": "true",
+            "is_show": false,
+            "bullet_point_1": "aaa",
+            "bullet_point_2": "sss",
+            "bullet_point_3": "ddd",
+            "bullet_point_4": "fff",
+            "bullet_point_5": "ggg",
             "emoji_size": 18,
             "body_font_size": 14,
             "display_layout": "row",
