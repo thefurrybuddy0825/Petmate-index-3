@@ -34,7 +34,7 @@
         {%- assign txt = '' -%}
         {%- case i -%}
           {%- when 1 -%}
-            {%- if mo and mo.bullet_1 != blank -%}{%- assign txt = mo.bullet_1 -%}{%- else -%}{%- assign txt = block.settings.bullet_1 -%}{%- endif -%}
+            {%- if mo and mo.bullet_point_1 != blank -%}{%- assign txt = mo.bullet_point_1 -%}{%- else -%}{%- assign txt = block.settings.bullet_point_1 -%}{%- endif -%}
           {%- when 2 -%}
             {%- if mo and mo.bullet_2 != blank -%}{%- assign txt = mo.bullet_2 -%}{%- else -%}{%- assign txt = block.settings.bullet_2 -%}{%- endif -%}
           {%- when 3 -%}
