@@ -64,43 +64,6 @@
       {%- endfor -%}
     {%- endcapture -%}
 
-    {%- comment -%} 1b) THEME EDITOR ITEMS (t1..t10) — appended below custom fields {%- endcomment -%}
-    {%- for i in (1..10) -%}
-      {{ i }}
-      {%- assign t_id = 't' | append: i -%}
-      {%- assign c_id = 'c' | append: i -%}
-      {%- assign i_id = 'icon' | append: i -%}
-      {%- assign m_id = 'image' | append: i -%}
-
-      {%- assign t = block.settings[t_id] | default: '' | strip -%}
-      {%- assign cH = block.settings[c_id] | default: '' -%}
-      {# richtext already HTML #}
-      {%- assign ic = block.settings[i_id] | default: '' | strip -%}
-      {%- assign im = block.settings[m_id] -%}
-
-      {%- assign has_any = false -%}
-      {%- if t != '' or cH != '' -%}{%- assign has_any = true -%}{%- endif -%}
-
-      {%- if has_any -%}
-        {%- assign img1x = '' -%}
-        {%- assign img2x = '' -%}
-        {%- if im != blank -%}
-          {%- assign img1x = im | image_url: width: icon_px -%}
-          {%- assign img2x = im | image_url: width: retina_w -%}
-        {%- endif -%}
-
-        {%- capture row -%}
-              {{ t | replace: SEP, '' }}{{ SEP }}
-              {{ cH | replace: SEP, '' }}{{ SEP }}
-              {{ ic | replace: SEP, '' }}{{ SEP }}
-              {{ img1x }}{{ SEP }}{{ img2x }}
-            {%- endcapture -%}
-        {%- assign single = row | split: SINGLE -%}
-        {%- assign rows = rows | concat: single -%}
-        {{ rows }}
-      {%- endif -%}
-    {%- endfor -%}
-
     {%- assign has_bullets = bullets | strip -%}
 
     {%- if is_show == true and has_bullets != '' -%}
