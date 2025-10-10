@@ -214,7 +214,7 @@
 
               {%- assign uid = section.id | append: '-u-' | append: block.id | append: '-' | append: forloop.index -%}
 
-              <div class="faqs-main" style="font-size: {{ text_sz }}px;">
+              {% comment %} <div class="faqs-main" style="font-size: {{ text_sz }}px;">
                 <div class="panel-group">
                   <button class="panel-header" type="button" aria-controls="faq-{{ uid }}" aria-expanded="false" data-target="#faq-{{ uid }}">
                     {{ icon_html }}
@@ -238,7 +238,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> {% endcomment %}
             {%- endif -%}
           {%- endfor -%}
         {%- endif -%}
