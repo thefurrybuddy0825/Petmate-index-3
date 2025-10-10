@@ -1,3 +1,7 @@
+{%- comment -%}
+  Pick the current resource that actually holds the metafields.
+  Change the priority order if needed (e.g., product → page → collection → shop).
+{%- endcomment -%}
 {%- assign entity = product -%}
 {%- if entity == nil -%}{% assign entity = page %}{% endif -%}
 {%- if entity == nil -%}{% assign entity = collection %}{% endif -%}
@@ -6,21 +10,20 @@
 {%- for i in (1..5) -%}
   {%- assign key = 'product_image_with_text_' | append: i -%}
   {%- assign entry = entity.metafields.custom[key].value -%}
+
   {%- if entry != blank -%}
     {%- assign _title = entry.title -%}
     {%- assign _text  = entry.text  -%}
     {%- assign _media = entry.media -%}
 
-    {# --- OPTION A: HTML output --- #}
+    {# Render rich text as HTML: #}
     {{ _text | metafield_tag }}
 
-    {# --- OPTION B: plain text only --- #}
+    {# If you want plain text instead, use this line and remove the one above: #}
     {# {{ _text | metafield_text }} #}
-
-    {# --- OPTION C: plain text but keep one paragraph per line --- #}
-    {# {{ _text | metafield_tag | strip_html | strip }} #}
   {%- endif -%}
 {%- endfor -%}
+
 
 
 {% comment %}
