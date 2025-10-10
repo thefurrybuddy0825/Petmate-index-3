@@ -123,7 +123,7 @@ Hard-set to product / page / collection / shop if you know it.
    { title: string, text: HTML string, media_type: 'image'|'video'|'file'|'', media_src: string }
 → Render your component from here:
 {%- endcomment -%}
-
+{{ items }}
 {%- for it in items -%}
   {%- assign title = it.title -%}
   {%- assign text  = it.text  -%}
