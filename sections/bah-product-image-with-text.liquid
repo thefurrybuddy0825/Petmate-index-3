@@ -60,8 +60,8 @@
               {% for block in section.blocks %}
                 {% assign bst = block.settings %}
                 <div
-                    class="nov-text {{ bst.t_fw }} block-{{ 1 }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ 1 | times: 0.1 }}s"
+                    class="nov-text {{ bst.t_fw }} block-{{ '1' }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                    data-wow-delay="{{ '1' | times: 0.1 }}s"
                   >
                     {{ _title }}
                   </div>
