@@ -77,12 +77,13 @@
 
 {%- else -%}
   {# -------- Use array-driven render (replace with your component markup) -------- #}
+  {{ items }}
   {% for it in items %}
     {%- assign _title = it.title -%}
     {%- assign _text  = it.text  -%}
     {%- assign _type  = it.media_type -%}
     {%- assign _src   = it.media_src  -%}
-{{ _title }}
+{}
     {# === PLACEHOLDER STRUCTURE (edit/replace) === #}
     <div class="image-with-text">
       {% if _title %}<h3 class="title">{{ _title }}</h3>{% endif %}
