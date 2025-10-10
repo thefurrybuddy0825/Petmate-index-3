@@ -115,7 +115,7 @@
         "enable_zoom": false,
         "show_progress_deals": true,
         "show_countdown": true,
-        "show_related": true,
+        "show_related": false,
         "related_limit": 10,
         "show_description": true,
         "show_payments": true,
