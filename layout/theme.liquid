@@ -8,7 +8,13 @@
     {% assign iso_rtl = false %}
   {% endif %}
 {%- endif -%}
-<html class="no-js{% if settings.enable_rtl and iso_rtl %} lang-rtl{% endif %}"{% if settings.enable_rtl and iso_rtl %} dir="rtl"{% endif %} lang="{{ request.locale.iso_code }}">
+<html
+  class="no-js{% if settings.enable_rtl and iso_rtl %} lang-rtl{% endif %}"
+  {% if settings.enable_rtl and iso_rtl %}
+    dir="rtl"
+  {% endif %}
+  lang="{{ request.locale.iso_code }}"
+>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,9 +31,19 @@
     {% if settings.type_google == true %}
       {%- assign type_base = settings.type_base_family_google | strip | replace: ' ', '+' -%}
       {%- assign type_header = settings.type_header_family_google | strip | replace: ' ', '+' -%}
-      <link rel="preload" href="https://fonts.googleapis.com/css?family={{ type_base }}:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css?family={{ type_base }}:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+      >
       {% if type_base != type_header %}
-        <link rel="preload" href="https://fonts.googleapis.com/css?family={{ type_header }}:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css?family={{ type_header }}:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'"
+        >
       {% endif %}
     {% endif %}
     <title>
@@ -48,11 +64,28 @@
     {% include 'nov-head-js' %}
     {% render 'variant-options' %}
     <script src="{{ 'shopify_global.js' | asset_url }}" defer="defer"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+      .material-symbols-outlined {
+        font-family: "Material Symbols Outlined";
+        font-weight: normal;
+        font-style: normal;
+        font-size: inherit; /* inherit from inline size */
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        direction: ltr;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
   </head>
 
   <body class="template-{{ template | split: '.' | first }}">
     <a class="in-page-link hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-    {% if template.name != "index" and settings.enable_loadpage %}
+    {% if template.name != 'index' and settings.enable_loadpage %}
       <div class="preloader_nov">
         <div class="nov_load"></div>
       </div>
@@ -86,7 +119,11 @@
     {% include 'nov-popup-GDPR' %}
     {% if template.name == 'product' %}
       <div id="nov-sizeguide-product" nov-item-act data-act="CanvasSizeGuide">
-        <div class="pointer mb-40" nov-btn-close data-close="CanvasSizeGuide"><svg aria-hidden="true" viewBox="0 0 16 14"><path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path></svg></div>
+        <div class="pointer mb-40" nov-btn-close data-close="CanvasSizeGuide">
+          <svg aria-hidden="true" viewBox="0 0 16 14">
+            <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+          </svg>
+        </div>
         {% section 'nov-page-sizeguide' %}
       </div>
     {% endif %}
