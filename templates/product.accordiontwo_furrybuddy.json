@@ -49,7 +49,7 @@
           "settings": {
             "is_show": "true",
             "emoji_color": "#9b2400",
-            "emoji_size": 24,
+            "emoji_size": 28,
             "text_color": "#000000",
             "font_size": 14,
             "margin_top": 0,
@@ -59,7 +59,7 @@
             "icon1": "f3a1",
             "t2": "30 DAYS MONEY-BACK GUARANTEE ",
             "c2": "<p>If you would like to return your order for any issues, please contact us within 30 calendar days after delivery.</p><p>To return a purchase, simply email us through <a href=\"mailto:support@funnyfuzzy.com\"><strong>support@thefurrybuddy.com</strong></a>. </p><p>Once your return is received and inspected, we will email you to notify that we have received your returned item. We will also notify you of the approval of your refund.</p><p><strong>Learn More Here - Return Policy</strong></p>",
-            "icon2": "",
+            "icon2": "ef76",
             "t3": "",
             "c3": "",
             "icon3": "",
