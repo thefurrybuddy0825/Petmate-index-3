@@ -1,6 +1,6 @@
 {%- comment -%}
-1) Choose the resource that actually holds the metafields.
-   If they live only on products (or pages/collections), hard-set host to that.
+Pick the resource that actually holds the metafields.
+Hard-set to product / page / collection / shop if you know it.
 {%- endcomment -%}
 {%- assign host = product -%}
 {%- if host == nil or host == empty -%}{% assign host = page %}{% endif -%}
@@ -10,100 +10,143 @@
 {%- assign keys = "product_image_with_text_1,product_image_with_text_2,product_image_with_text_3,product_image_with_text_4,product_image_with_text_5" | split: "," -%}
 
 {%- comment -%}
-2) Build a JSON array string of items, then parse into a Liquid array (objects).
-   Each item: { title, text, media_type, media_src }
+1) Build JSON array from custom metaobjects (title, text, media*)
+   -> items_json → items (array)
 {%- endcomment -%}
-{%- assign _items_json = '' -%}
-{%- assign _sep = '' -%}
+{%- assign items_json = '' -%}
+{%- assign sep = '' -%}
 
 {%- for key in keys -%}
   {%- assign ref   = host.metafields.custom[key] -%}
   {%- assign entry = ref.value -%}
   {%- if entry != blank -%}
     {%- assign _title = entry.title -%}
-    {%- assign _text  = entry.text  -%}
-    {%- assign _media = entry.media -%}
+    {%- assign _text  = entry.text  -%}               {# rich text or plain #}
+    {%- assign _media = entry.media -%}               {# image/video/file #}
 
-    {%- comment -%} Detect media type + canonical src {%- endcomment -%}
-    {%- assign _image_src = _media | image_url: width: 1600 -%}
-    {%- assign _file_src  = _media | file_url -%}
-    {%- assign _media_type = '' -%}
-    {%- assign _media_src  = '' -%}
+    {%- comment -%} normalize media -> (media_type, media_src) {%- endcomment -%}
+    {%- assign image_src = _media | image_url: width: 1600 -%}
+    {%- assign file_src  = _media | file_url -%}
+    {%- assign media_type = '' -%}
+    {%- assign media_src  = '' -%}
 
     {%- if _media and _media.sources and _media.sources.size > 0 -%}
-      {%- assign _media_type = 'video' -%}
-      {%- assign _media_src  = _media.sources[0].url -%}
-    {%- elsif _image_src != blank -%}
-      {%- assign _media_type = 'image' -%}
-      {%- assign _media_src  = _image_src -%}
-    {%- elsif _file_src != blank -%}
-      {%- assign _media_type = 'file' -%}
-      {%- assign _media_src  = _file_src -%}
+      {%- assign media_type = 'video' -%}
+      {%- assign media_src  = _media.sources[0].url -%}
+    {%- elsif image_src != blank -%}
+      {%- assign media_type = 'image' -%}
+      {%- assign media_src  = image_src -%}
+    {%- elsif file_src != blank -%}
+      {%- assign media_type = 'file' -%}
+      {%- assign media_src  = file_src -%}
     {%- endif -%}
 
-    {%- comment -%} Append item JSON safely (use | json for proper escaping) {%- endcomment -%}
-    {%- capture _one -%}
-      {"title": {{ _title | json }}, "text": {{ _text | json }}, "media_type": {{ _media_type | json }}, "media_src": {{ _media_src | json }}}
+    {%- capture one -%}
+      {"title": {{ _title | json }}, "text": {{ _text | metafield_tag | json }}, "media_type": {{ media_type | json }}, "media_src": {{ media_src | json }}}
     {%- endcapture -%}
-    {%- assign _items_json = _items_json | append: _sep | append: _one -%}
-    {%- assign _sep = ',' -%}
+    {%- assign items_json = items_json | append: sep | append: one -%}
+    {%- assign sep = ',' -%}
   {%- endif -%}
 {%- endfor -%}
 
-{%- assign items = '[' | append: _items_json | append: ']' | parse_json -%}
-
-{%- comment -%}
-3) Conditional render:
-   - If items is empty -> render your existing blocks (fallback).
-   - Else -> render using the items array. Replace placeholders with your component.
-{%- endcomment -%}
+{%- assign items = '[' | append: items_json | append: ']' | parse_json -%}
 
 {%- if items.size == 0 -%}
-  {# -------- Fallback: render with block settings (your current component) -------- #}
-  {% for block in section.blocks %}
-    {% assign bst = block.settings %}
-    {% case block.type %}
-      {% when 'text' %}
-        {{ bst.text }}
-      {% when 'btn' %}
-        {% if bst.btn %}<a href="{{ bst.btn_link }}" class="btn">{{ bst.btn }}</a>{% endif %}
-        {% if bst.btn2 %}<a href="{{ bst.btn_link2 }}" class="btn alt">{{ bst.btn2 }}</a>{% endif %}
-      {% when 'image' %}
-        {% if bst.img1 %}{{ bst.img1 | image_url: width: 1200 | image_tag }}{% endif %}
-      {% else %}
-        {# add other fallback pieces as needed #}
-    {% endcase %}
-  {% endfor %}
+  {%- comment -%}
+  2) Fallback: collect from blocks (text & image1) → build a new JSON array
+     We gather all TEXT blocks & all IMAGE blocks, then pair by index.
+  {%- endcomment -%}
 
-{%- else -%}
-  {# -------- Use array-driven render (replace with your component markup) -------- #}
-{%- assign _items = items | parse_json -%}
-  {% for it in _items %}
-    {%- assign _title = it.title -%}
-    {%- assign _text  = it.text  -%}
-    {%- assign _type  = it.media_type -%}
-    {%- assign _src   = it.media_src  -%}
-{{ _title.value }}
-    {# === PLACEHOLDER STRUCTURE (edit/replace) === #}
-    <div class="image-with-text">
-      {% if _title %}<h3 class="title">{{ _title }}</h3>{% endif %}
-      {% if _text %}<div class="copy">{{ _text }}</div>{% endif %}
+  {%- assign texts_json = '' -%}
+  {%- assign imgs_json  = '' -%}
+  {%- assign t_sep = '' -%}
+  {%- assign i_sep = '' -%}
 
-      {% if _src %}
-        {% if _type == 'image' %}
-          <img src="{{ _src }}" alt="{{ _title | escape }}" loading="lazy">
-        {% elsif _type == 'video' %}
-          <video autoplay playsinline loop muted controls>
-            <source src="{{ _src }}" type="video/mp4">
-          </video>
-        {% else %}
-          <a href="{{ _src }}" target="_blank" rel="noopener">Download</a>
-        {% endif %}
-      {% endif %}
-    </div>
-    {# === /PLACEHOLDER === #}
-  {% endfor %}
+  {%- for block in section.blocks -%}
+    {%- assign bst = block.settings -%}
+    {%- if block.type == 'text' and bst.text != blank -%}
+      {%- capture t -%}{{ bst.text }}{%- endcapture -%}
+      {%- assign texts_json = texts_json | append: t_sep | append: t | json -%}
+      {%- assign t_sep = ',' -%}
+    {%- endif -%}
+    {%- if block.type == 'image' and bst.img1 != blank -%}
+      {%- assign img_src = bst.img1 | image_url: width: 1600 -%}
+      {%- assign imgs_json = imgs_json | append: i_sep | append: img_src | json -%}
+      {%- assign i_sep = ',' -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- assign texts = '[' | append: texts_json | append: ']' | parse_json -%}
+  {%- assign imgs  = '[' | append: imgs_json  | append: ']' | parse_json -%}
+  {%- assign n_texts = texts.size -%}
+  {%- assign n_imgs  = imgs.size  -%}
+
+  {%- comment -%} compute max length {%- endcomment -%}
+  {%- assign n = 0 -%}
+  {%- if n_texts > n_imgs -%}
+    {%- assign n = n_texts -%}
+  {%- else -%}
+    {%- assign n = n_imgs -%}
+  {%- endif -%}
+
+  {%- assign fb_json = '' -%}
+  {%- assign fb_sep  = '' -%}
+
+  {%- if n > 0 -%}
+    {%- for idx in (0..n-1) -%}
+      {%- assign t_val = texts[idx] -%}
+      {%- assign i_val = imgs[idx]  -%}
+
+      {%- assign title_guess = t_val | default: '' | strip_html | strip | truncate: 60 -%}
+      {%- assign text_html   = t_val | default: '' -%}
+      {%- assign media_type2 = '' -%}
+      {%- assign media_src2  = '' -%}
+
+      {%- if i_val and i_val != '' -%}
+        {%- assign media_type2 = 'image' -%}
+        {%- assign media_src2  = i_val -%}
+      {%- endif -%}
+
+      {%- capture one -%}
+        {"title": {{ title_guess | json }}, "text": {{ text_html | json }}, "media_type": {{ media_type2 | json }}, "media_src": {{ media_src2 | json }}}
+      {%- endcapture -%}
+      {%- assign fb_json = fb_json | append: fb_sep | append: one -%}
+      {%- assign fb_sep = ',' -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- assign items = '[' | append: fb_json | append: ']' | parse_json -%}
 {%- endif -%}
+
+{%- comment -%}
+3) Now `items` is guaranteed to be an array of:
+   { title: string, text: HTML string, media_type: 'image'|'video'|'file'|'', media_src: string }
+→ Render your component from here:
+{%- endcomment -%}
+
+{%- for it in items -%}
+  {%- assign title = it.title -%}
+  {%- assign text  = it.text  -%}
+  {%- assign kind  = it.media_type -%}
+  {%- assign src   = it.media_src  -%}
+
+  {# === PLACEHOLDER MARKUP — replace with your component === #}
+  <div class="image-with-text">
+    {% if title %}<h3 class="title">{{ title }}</h3>{% endif %}
+    {% if text %}<div class="copy">{{ text }}</div>{% endif %}
+
+    {% if src %}
+      {% if kind == 'image' %}
+        <img src="{{ src }}" alt="{{ title | escape }}" loading="lazy">
+      {% elsif kind == 'video' %}
+        <video controls playsinline><source src="{{ src }}" type="video/mp4"></video>
+      {% else %}
+        <a href="{{ src }}" target="_blank" rel="noopener">Open file</a>
+      {% endif %}
+    {% endif %}
+  </div>
+  {# === /PLACEHOLDER === #}
+{%- endfor -%}
 
 
 
