@@ -1,82 +1,42 @@
 {%- comment -%}
-  Choose where the metafields live. If only on product (or page/collection),
-  hard-set: {% assign host = product %} to simplify.
+Pick the resource that actually holds the metafields.
+If yours live only on products (or pages/collections), hard-set host = product/page/collection.
 {%- endcomment -%}
 {%- assign host = product -%}
-{%- if host == null or host == empty -%}{% assign host = page %}{% endif -%}
-{%- if host == null or host == empty -%}{% assign host = collection %}{% endif -%}
-{%- if host == null or host == empty -%}{% assign host = shop %}{% endif -%}
+{%- if host == nil or host == empty -%}{% assign host = page %}{% endif -%}
+{%- if host == nil or host == empty -%}{% assign host = collection %}{% endif -%}
+{%- if host == nil or host == empty -%}{% assign host = shop %}{% endif -%}
 
-{%- assign keys = 'product_image_with_text_1,product_image_with_text_2,product_image_with_text_3,product_image_with_text_4,product_image_with_text_5'
-  | split: ','
--%}
+{%- assign keys = "product_image_with_text_1,product_image_with_text_2,product_image_with_text_3,product_image_with_text_4,product_image_with_text_5" | split: "," -%}
 
-{%- assign DEBUG_OUTPUT = false -%}
-{# set to true to print current values #}
-
+{%- comment -%}
+Loop through the five custom fields → read the metaobject → pull fields.
+No rendering here; just placeholders for you to use later.
+{%- endcomment -%}
 {%- for key in keys -%}
   {%- assign ref = host.metafields.custom[key] -%}
-  {%- assign entry = ref.value -%}
-  {# metaobject instance or blank #}
+  {%- assign entry = ref.value -%}  {# metaobject instance; nil/blank if not set #}
 
   {%- if entry != blank -%}
-    {%- assign _title = entry.title -%}
-    {# text or rich_text #}
-    {%- assign _text = entry.text -%}
-    {# text or rich_text #}
-    {%- assign _media = entry.media -%}
-    {# image / video / file (depends on your definition) #}
+    {%- assign _heading = entry.heading -%}     {# text / rich_text #}
+    {%- assign _text    = entry.text -%}        {# text / rich_text #}
+    {%- assign _image   = entry.image -%}       {# file_reference (image) #}
+    {%- assign _video   = entry.video -%}       {# optional: file_reference (video) #}
 
     {%- comment -%}
-      ============================================================
-      STRUCTURE: values are now available as:
-        _title  -> string or rich_text
-        _text   -> string or rich_text
-        _media  -> file reference (could be image/video/file)
-      ============================================================
-    {%- endcomment -%}
-
-    {%- if DEBUG_OUTPUT -%}
-      <pre style="font:12px/1.4 monospace; white-space:pre-wrap;">
-key: {{ key }}
-title: {{ _title | default: '(blank)' }}
-text (raw): {{ _text | default: '(blank)' }}
-media (json): {{ _media | json }}
-      </pre>
-    {%- endif -%}
-
-    {%- comment -%}
-      ┌─────────────── MEDIA HANDLING (examples, leave commented) ───────────────┐
-      │ If your metaobject's "media" field is an IMAGE (image or file_reference):│
-      │   {{ _media | image_url: width: 1600 | image_tag: loading: 'lazy', alt: _title }}  │
-      │                                                                          │
-      │ If it's a VIDEO metafield (has .sources):                                │
-      │   {% if _media and _media.sources and _media.sources.size > 0 %}         │
-      │     <video autoplay playsinline loop muted controls>                      │
-      │       <source src="{{ _media.sources[0].url }}" type="video/mp4">        │
-      │     </video>                                                              │
-      │   {% endif %}                                                             │
-      │                                                                          │
-      │ If it's a GENERIC FILE (file_reference):                                  │
-      │   <a href="{{ _media | file_url }}" target="_blank" rel="noopener">Download</a>       │
-      └───────────────────────────────────────────────────────────────────────────┘
-
-      ┌────────────── TEXT / RICHTEXT (examples, leave commented) ───────────────┐
-      │ If title/text are RICH TEXT metafields:                                   │
-      │   {{ _title | metafield_tag }}                                            │
-      │   {{ _text  | metafield_tag }}                                            │
-      │ If they are plain strings:                                                │
-      │   {{ _title }}                                                            │
-      │   {{ _text }}                                                             │
-      └───────────────────────────────────────────────────────────────────────────┘
-    {%- endcomment -%}
-
-    {%- comment -%}
-      ====== YOUR RENDER GOES HERE ======
-      Use _title, _text, and _media as needed.
+    ====== YOUR RENDER GOES HERE ======
+    Examples (for later, when you render):
+      {{ _heading }}
+      {{ _text | metafield_tag }}   {# if rich_text; else just {{ _text }} #}
+      {{ _image | image_url: width: 1600 }}   {# or pass _image to your snippet #}
+      {%- if _video and _video.sources and _video.sources.size > 0 -%}
+        {%- assign _mp4 = _video.sources[0].url -%}
+      {%- endif -%}
+    ====================================
     {%- endcomment -%}
   {%- endif -%}
 {%- endfor -%}
+
 
 {% comment %}
   {%- assign sst = section.settings -%}
