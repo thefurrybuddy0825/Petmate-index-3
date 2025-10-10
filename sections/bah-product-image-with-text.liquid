@@ -18,11 +18,10 @@ No rendering here; just placeholders for you to use later.
   {%- assign entry = ref.value -%}
 
   {%- if entry != blank -%}
-    {%- assign _heading = entry.heading -%}
+    {%- assign _title = entry.title -%}
     {%- assign _text    = entry.text -%}
-    {%- assign _image   = entry.image -%}
-    {%- assign _video   = entry.video -%}
-
+    {%- assign _media   = entry.media -%}
+{{ _title }}
     {%- comment -%}
     ====== YOUR RENDER GOES HERE ======
     Examples (for later, when you render):
@@ -34,7 +33,6 @@ No rendering here; just placeholders for you to use later.
       {%- endif -%}
     ====================================
     {%- endcomment -%}
-     {{ _heading }}
   {%- endif -%}
 {%- endfor -%}
 
