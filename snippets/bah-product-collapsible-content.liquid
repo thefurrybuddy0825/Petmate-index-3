@@ -144,7 +144,7 @@
           {%- assign m_id = 'image' | append: i -%}
 
           {%- assign t  = block.settings[t_id] | default: '' | strip -%}
-          {%- assign cH = block.settings[c_id] | default: '' -%}
+          {%- assign cH = block.settings[c_id] | default: '' -%} 
           {%- assign ic = block.settings[i_id] | default: '' | strip -%}
           {%- assign im = block.settings[m_id] -%}
 
@@ -181,59 +181,25 @@
             {%- assign img2x = parts[4] | default: '' | strip -%}
 
             {%- if q != '' or a != '' -%}
-              {%- comment -%} Build icon HTML: code point (hex/decimal) or literal emoji; else image {%- endcomment -%}
+              {%- comment -%} Build icon HTML: emoji/hex first; else image (retina) {%- endcomment -%}
               {%- assign icon_html = '' -%}
-              {%- assign ic_raw  = ic | to_s | strip -%}
-              {%- assign ic_uc   = ic_raw | upcase -%}
+              {%- if ic != '' -%}
+                {%- assign norm = ic | downcase | remove: 'u+' | remove: '0x' | remove: '&#x' | remove: '&#' | remove: ';' | strip -%}
+                {%- assign HEX = norm | upcase -%}
+                {%- assign hex_clean = HEX
+                  | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
+                  | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+                  | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
+                -%}
+                {%- assign looks_hex = false -%}
+                {%- if HEX != '' and hex_clean == '' -%}{%- assign looks_hex = true -%}{%- endif -%}
 
-              {%- comment -%}
-                Detection rules:
-                - If already typed as entity (&#x2714; or &#128293;), use as-is.
-                - HEX candidate: only 0-9/A-F, length 2–6, and not already an entity.
-                - DEC candidate: only digits, and not already an entity.
-              {%- endcomment -%}
-
-              {%- assign is_entity = false -%}
-              {%- if ic_uc contains '&#X' or ic_uc contains '&#' -%}
-                {%- assign is_entity = true -%}
-              {%- endif -%}
-
-              {%- assign hex_clean = ic_uc
-                | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
-                | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
-                | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
-              -%}
-              {%- assign is_hex_candidate = false -%}
-              {%- if ic_uc != '' and hex_clean == '' and ic_uc.size >= 2 and ic_uc.size <= 6 and is_entity == false -%}
-                {%- assign is_hex_candidate = true -%}
-              {%- endif -%}
-
-              {%- assign dec_clean = ic_uc
-                | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
-                | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
-              -%}
-              {%- assign is_dec_candidate = false -%}
-              {%- if ic_uc != '' and dec_clean == '' and is_entity == false -%}
-                {%- assign is_dec_candidate = true -%}
-              {%- endif -%}
-
-              {%- capture icon_markup -%}
-                <span class="faq-title-icon" aria-hidden="true"
-                      style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
-                  {%- if is_entity -%}
-                    {{ ic_raw }}
-                  {%- elsif is_hex_candidate -%}
-                    {{ '&#x' | append: ic_uc | append: ';' }}
-                  {%- elsif is_dec_candidate -%}
-                    {{ '&#'  | append: ic_uc | append: ';' }}
-                  {%- elsif ic_raw != '' -%}
-                    {{ ic_raw }}
-                  {%- endif -%}
-                </span>
-              {%- endcapture -%}
-
-              {%- if ic_raw != '' -%}
-                {%- assign icon_html = icon_markup -%}
+                {%- capture icon_html -%}
+                  <span class="faq-title-icon" aria-hidden="true"
+                        style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
+                    {%- if looks_hex -%}{{ '&#x' | append: HEX | append: ';' }}{%- else -%}{{ ic }}{%- endif -%}
+                  </span>
+                {%- endcapture -%}
               {%- elsif img1x != '' or img2x != '' -%}
                 {%- assign img_src = img2x | default: img1x -%}
                 {%- capture icon_html -%}
