@@ -125,12 +125,12 @@
           {%- if t != blank or c_html != blank -%}{%- assign has_any = true -%}{%- endif -%}
 
           {%- if has_any -%}
-            {%- capture row -%}
+            {% comment %} {%- capture row -%}
               {{ t | replace: SEP, '' }}{{ SEP }}
               {{ c_html | replace: SEP, '' }}{{ SEP }}
               {{ ic | replace: SEP, '' }}{{ SEP }}
               {{ '' }}{{ SEP }}{{ '' }}
-            {%- endcapture -%}
+            {%- endcapture -%} {% endcomment %}
             {%- assign single = row | split: SINGLE -%}
             {%- assign rows = rows | concat: single -%}
           {%- endif -%}
