@@ -61,12 +61,12 @@
               {% for block in section.blocks %}
                 {% assign bst = block.settings %}
                 {% if block.type == 'text' %}
-                  <div
+                  {% comment %} <div
                     class="nov-text {{ bst.t_fw }} block-{{ forloop.index }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
                     data-wow-delay="{{ forloop.index | times: 0.1 }}s"
                   >
                     {{ _title }}
-                  </div>
+                  </div> {% endcomment %}
                   <div
                     class="nov-text {{ bst.t_fw }} block-{{ forloop.index | plus: 1 }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
                     data-wow-delay="{{ forloop.index | plus: 1 | times: 0.1 }}s"
