@@ -77,7 +77,7 @@
 
 {%- else -%}
   {# -------- Use array-driven render (replace with your component markup) -------- #}
-  {{ items }}
+
   {% for it in items %}
     {%- assign _title = it.title -%}
     {%- assign _text  = it.text  -%}
