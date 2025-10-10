@@ -18,7 +18,7 @@ Change the priority order if needed (e.g., product → page → collection → s
     theme editor controls still work if a field is missing.
     Update the right-hand sides to your actual metaobject field handles.
     {%- endcomment -%}
-    {%- assign _heading    = it.heading     | default: sst.heading -%}
+    {%- assign _heading    = it.heading     | default: sst.title -%}
     {%- assign _subheading = it.subheading  | default: sst.subheading -%}
     {%- assign _image      = it.image       | default: sst.image -%}
     {%- assign _video      = it.video       | default: sst.video -%}
