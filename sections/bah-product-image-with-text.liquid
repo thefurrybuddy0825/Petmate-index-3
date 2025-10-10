@@ -15,13 +15,13 @@ No rendering here; just placeholders for you to use later.
 {%- endcomment -%}
 {%- for key in keys -%}
   {%- assign ref = host.metafields.custom[key] -%}
-  {%- assign entry = ref.value -%}  {# metaobject instance; nil/blank if not set #}
+  {%- assign entry = ref.value -%}
 
   {%- if entry != blank -%}
-    {%- assign _heading = entry.heading -%}     {# text / rich_text #}
-    {%- assign _text    = entry.text -%}        {# text / rich_text #}
-    {%- assign _image   = entry.image -%}       {# file_reference (image) #}
-    {%- assign _video   = entry.video -%}       {# optional: file_reference (video) #}
+    {%- assign _heading = entry.heading -%}
+    {%- assign _text    = entry.text -%}
+    {%- assign _image   = entry.image -%}
+    {%- assign _video   = entry.video -%}
 
     {%- comment -%}
     ====== YOUR RENDER GOES HERE ======
