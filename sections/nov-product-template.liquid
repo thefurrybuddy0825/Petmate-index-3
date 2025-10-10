@@ -232,6 +232,14 @@
 {%- endif -%}
 {{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
 {{ 'jquery.products.min.js' | asset_url | script_tag }}
+
+{% if sst.show_related %}
+  <div class="BottomContent overflow_hidden">
+    <div class="container">
+      {% include 'nov-related' %}
+    </div>
+  </div>
+{% endif %}
 <script>
   Shopify.Products.recordRecentlyViewed();
 </script>
