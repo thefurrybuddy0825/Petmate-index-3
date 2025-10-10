@@ -1,101 +1,193 @@
-{%- comment -%}
-Pick the current resource that actually holds the metafields.
-Change the priority order if needed (e.g., product → page → collection → shop).
-{%- endcomment -%}
-{%- assign entity = product -%}
-{%- if entity == nil -%}{% assign entity = page %}{% endif -%}
-{%- if entity == nil -%}{% assign entity = collection %}{% endif -%}
-{%- if entity == nil -%}{% assign entity = shop %}{% endif -%}
-
 {%- assign sst = section.settings -%}
+<div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
+  {% if sst.container == 'container' %}
+    <div class="container">
+  {% elsif sst.container == 'container-fluid' %}
+    <div class="container-fluid">
+  {% else %}
+    <div class="container-full">
+  {% endif %}
+  <div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner position-relative{% if sst.br_container != 0 %} overflow_hidden{% endif %}">
+    {% if sst.heading != blank or sst.subheading != blank %}
+      <div class="title_section {{ sst.title_alignment }}">
+        {% if sst.subheading != blank %}
+          <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
+        {% endif %}
+        {% if sst.heading != blank %}
+          <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
 
-{%- comment -%}
-Get a baseline "bst" from the first text block so you can reuse its styles
-without looping over section.blocks while rendering items.
-If no text block exists, defaults are used.
-{%- endcomment -%}
-{%- assign first_text_block = section.blocks | where: 'type','text' | first -%}
-{%- if first_text_block -%}
-  {%- assign bst = first_text_block.settings -%}
-{%- endif -%}
+    {%- assign entity = product -%}
+    {%- if entity == null -%}{% assign entity = page %}{% endif -%}
+    {%- if entity == null -%}{% assign entity = collection %}{% endif -%}
+    {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
 
-{%- assign ff = bst.ff | default: '' -%}
-{%- capture base_cls -%}
-  nov-text {{ bst.t_fw | default: 'font-400' }}{% if ff == 'f_pr' %} f_pr{% endif %}{% if bst and bst.icon != blank %} list-icon{% endif %}{% if sst.animate %} wow fadeInUp animated{% endif %}
-{%- endcapture -%}
-{%- assign base_cls = base_cls | strip -%}
+    {%- for i in (1..5) -%}
+      {%- assign key = 'product_image_with_text_' | append: i -%}
+      {%- assign entry = entity.metafields.custom[key].value -%}
 
-{%- assign any_rendered = false -%}
+      {%- if entry != blank -%}
+        {%- assign _title = entry.title -%}
+        {%- assign _text = entry.text | metafield_tag -%}
+        {%- assign _media = entry.media -%}
 
-{%- comment -%}
-Render up to 5 metaobject refs:
-custom.product_image_with_text_1..5
-Each metaobject has fields: title (text), text (rich_text), media (file/image/video).
-{%- endcomment -%}
-{%- for i in (1..5) -%}
-  {%- assign key = 'product_image_with_text_' | append: i -%}
-  {%- assign entry = entity.metafields.custom[key].value -%}
-  {%- if entry != blank -%}
-    {%- assign any_rendered = true -%}
-    {%- assign _title = entry.title -%}
-    {%- assign _text  = entry.text  -%}  {# rich_text metafield #}
-    {%- assign _media = entry.media -%}
-
-    <div class="image-with-text-item item-{{ i }}">
-      {%- if _title != blank -%}
-        <div class="{{ base_cls }} block-{{ i }}-title"
-             data-wow-delay="{{ i | times: 0.1 }}s">
-          {{ _title }} {# if this were rich_text, use | metafield_text or | metafield_tag #}
-        </div>
-      {%- endif -%}
-
-      {%- if _text != blank -%}
-        <div class="{{ base_cls }} block-{{ i }}-text"
-             data-wow-delay="{{ i | plus: 1 | times: 0.1 }}s">
-          {{ _text | metafield_tag }} {# rich text → HTML; for plain text use |metafield_text #}
-        </div>
-      {%- endif -%}
-
-      {%- if _media != blank -%}
-        {%- assign __probe = _media | image_url: width: 1 -%}
-        {%- if __probe != blank -%}
-          {%- assign _alt = _title | default: '' -%}
-          <div class="block-{{ i }}-media" data-wow-delay="{{ i | plus: 2 | times: 0.1 }}s">
-            {{ _media | image_url: width: 1600 | image_tag: alt: _alt, loading: 'lazy' }}
-          </div>
-        {%- elsif _media.sources and _media.sources.size > 0 -%}
-          {%- assign _mp4 = '' -%}
-          {%- for s in _media.sources -%}
-            {%- if s.mime_type contains 'mp4' -%}{% assign _mp4 = s.url %}{% break %}{%- endif -%}
-          {%- endfor -%}
-          {%- if _mp4 == '' -%}{% assign _mp4 = _media.sources[0].url %}{%- endif -%}
-          <div class="block-{{ i }}-media" data-wow-delay="{{ i | plus: 2 | times: 0.1 }}s">
-            <video controls playsinline>
-              <source src="{{ _mp4 }}" type="video/mp4">
-            </video>
-          </div>
-        {%- else -%}
-          {%- assign _url = _media | file_url -%}
-          {%- if _url != blank -%}
-            {%- assign _name = _url | split:'/' | last | split:'?' | first -%}
-            <div class="block-{{ i }}-media" data-wow-delay="{{ i | plus: 2 | times: 0.1 }}s">
-              <a href="{{ _url }}" target="_blank" rel="noopener">{{ _name }}</a>
+        <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == 'right' %} flex-lg-row-reverse{% endif %}">
+          <div class="{{ sst.width_img }}">
+            <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
+              {% if sst.image != blank and sst.video == blank %}
+                <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
+                  {%- render 'nov-aspect-image', image: sst.image -%}
+                </div>
+              {% else %}
+                {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+              {% if sst.video != blank %}
+                <video autoplay playsinline loop muted style="object-fit: cover;width: 100%">
+                  {% if sst.video.sources[0].url contains '.m3u8' %}
+                    {%- assign video = sst.video.sources[1].url -%}
+                  {%- else -%}
+                    {%- assign video = sst.video.sources[0].url -%}
+                  {%- endif -%}
+                  <source src="{{ video }}" type="video/mp4">
+                </video>
+              {% endif %}
             </div>
-          {%- endif -%}
-        {%- endif -%}
+          </div>
+          <div class="{{ sst.width_text }} d-flex align-items-{{ sst.text_position_vertical }} justify-content-lg-{{ sst.text_position_horizontal }} mt-md-50">
+            <div class="block-text {{ sst.alignment }}">
+              {% for block in section.blocks %}
+                {% assign bst = block.settings %}
+                {% if block.type == 'text' %}
+                  {{ forloop.index }}
+                  <div
+                    class="nov-text {{ bst.t_fw }} block-{{ forloop.index }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
+                  >
+                    {{ _title }}
+                  </div>
+                {% endif %}
+                {% if block.type == 'btn' %}
+                  <div
+                    class="block-btn block-{{ forloop.index }}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
+                  >
+                    {% if bst.btn != blank %}
+                      <a href="{{ bst.btn_link }}" class="btn btn-1 btn-{{ bst.btn_size }}">{{ bst.btn }}</a>
+                    {% endif %}
+                    {% if bst.btn2 != blank %}
+                      <a href="{{ bst.btn_link2 }}" class="btn btn-2 btn-{{ bst.btn_size }}">{{ bst.btn2 }}</a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if block.type == 'policy' %}
+                  <div class="policy block-{{ forloop.index }} mb-sm-20">
+                    <div
+                      class="policy-item{% if bst.p2 %} two-p{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                      data-wow-delay="{{ forloop.index | times: 0.1 }}s"
+                    >
+                      <div class="policy-item-content d-flex align-items-center">
+                        {% if bst.icon != blank %}
+                          <div class="p-icon text-center">
+                            <img data-src="{{ bst.icon | img_url: '75x' }}" class="lazyload d-inline-block">
+                          </div>
+                        {% endif %}
+                        <div class="policy-text">
+                          {% if bst.t %}
+                            <div class="title">{{ bst.t }}</div>
+                          {% endif %}
+                          {% if bst.d %}
+                            <div class="desc">{{ bst.d }}</div>
+                          {% endif %}
+                        </div>
+                      </div>
+                      {% if bst.p2 %}
+                        <div class="policy-item-content d-flex align-items-center">
+                          {% if bst.icon2 != blank %}
+                            <div class="p-icon text-center">
+                              <img data-src="{{ bst.icon2 | img_url: '75x' }}" class="lazyload d-inline-block">
+                            </div>
+                          {% endif %}
+                          <div class="policy-text">
+                            {% if bst.t2 %}
+                              <div class="title">{{ bst.t2 }}</div>
+                            {% endif %}
+                            {% if bst.d2 %}
+                              <div class="desc">{{ bst.d2 }}</div>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+                {% if block.type == 'contact' %}
+                  <div
+                    class="contact block-{{ forloop.index }}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
+                  >
+                    {% if bst.hotline != blank %}
+                      <div class="item-contact d-flex align-items-center">
+                        <div class="item-icon"><i class="rbb-icon-phone-2"></i></div>
+                        <span class="font-700">{{ bst.hotline }}</span>
+                      </div>
+                    {% endif %}
+                    {% if bst.email != blank %}
+                      <div class="item-contact d-flex align-items-center">
+                        <div class="item-icon"><i class="rbb-icon-email-6"></i></div>
+                        <span>{{ bst.email }}</span>
+                      </div>
+                    {% endif %}
+                    {% if bst.time != blank %}
+                      <div class="item-contact d-flex align-items-center">
+                        <div class="item-icon"><i class="rbb-icon-time-1"></i></div>
+                        <span>{{ bst.time }}</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if block.type == 'image' %}
+                  <div
+                    class="images d-flex block-{{ forloop.index }}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
+                  >
+                    {% if bst.img1 != blank %}
+                      <div
+                        class="item-image"
+                        style="{% if bst.img2 != blank %}width: 50%{% else %}width: 100%{% endif %}"
+                      >
+                        {% if bst.img1l != blank %}
+                          <a href="{{ bst.img1l }}">
+                        {% endif %}
+                        {% render 'nov-aspect-image', image: bst.img1 %}
+                        {% if bst.img1l != blank %}
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    {% if bst.img2 != blank %}
+                      <div class="item-image" style="width: 50%">
+                        {% if bst.img2l != blank %}
+                          <a href="{{ bst.img2l }}">
+                        {% endif %}
+                        {% render 'nov-aspect-image', image: bst.img2 %}
+                        {% if bst.img2l != blank %}
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
       {%- endif -%}
-    </div>
-  {%- endif -%}
-{%- endfor -%}
-
-{%- unless any_rendered -%}
-  {# Optional fallback if none of the 5 metafields are set #}
-  {# <div class="image-with-text-empty">No custom items configured.</div> #}
-{%- endunless -%}
-
-
-
-
+    {%- endfor -%}
+  </div>
+</div>
+</div>
 {% comment %}
   {%- assign sst = section.settings -%}
   <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
