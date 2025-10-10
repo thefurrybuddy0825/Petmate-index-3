@@ -83,7 +83,7 @@
     {%- assign _text  = it.text  -%}
     {%- assign _type  = it.media_type -%}
     {%- assign _src   = it.media_src  -%}
-{}
+{{ _title.value }}
     {# === PLACEHOLDER STRUCTURE (edit/replace) === #}
     <div class="image-with-text">
       {% if _title %}<h3 class="title">{{ _title }}</h3>{% endif %}
