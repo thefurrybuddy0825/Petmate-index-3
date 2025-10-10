@@ -147,6 +147,63 @@
     },
     "bah_product_image_with_text_xBTVbF": {
       "type": "bah-product-image-with-text",
+      "blocks": {
+        "text_bHAMpi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Vinova Text</p>",
+            "tb_c": "",
+            "t_s": 13,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 5
+          }
+        },
+        "text_CdtqbR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Vinova Text</p>",
+            "tb_c": "",
+            "t_s": 13,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 5
+          }
+        },
+        "btn_hfcPpy": {
+          "type": "btn",
+          "settings": {
+            "btn": "Shop now",
+            "btn_link": "",
+            "btn2": "",
+            "btn_link2": "",
+            "btn_size": "normal",
+            "c_btn": "#ffffff",
+            "b_btn": "#222222",
+            "bd_btn": "#ffffff",
+            "c_btn_h": "#ffffff",
+            "b_btn_h": "#222222",
+            "distance_bottom": 5
+          }
+        }
+      },
+      "block_order": [
+        "text_bHAMpi",
+        "text_CdtqbR",
+        "btn_hfcPpy"
+      ],
       "name": "BAH Product Images With Text",
       "settings": {
         "heading": "<h1><strong>Product Key Features</strong></h1>",
