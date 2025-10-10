@@ -206,7 +206,7 @@
       ],
       "name": "BAH Product Images With Text",
       "settings": {
-        "heading": "<h1>Product Key Features</h1>",
+        "heading": "<h1><strong>Product Key Features</strong></h1>",
         "heading_c": "#505157",
         "subheading": "",
         "subheading_c": "#666666",
