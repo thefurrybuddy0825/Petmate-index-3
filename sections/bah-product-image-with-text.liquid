@@ -9,13 +9,6 @@ Hard-set to product / page / collection / shop if you know it.
 
 {%- assign keys = "product_image_with_text_1,product_image_with_text_2,product_image_with_text_3,product_image_with_text_4,product_image_with_text_5" | split: "," -%}
 
-{%- comment -%}
-1) Build JSON array from custom metaobjects (title, text, media*)
-   -> items_json → items (array)
-{%- endcomment -%}
-{%- assign items_json = '' -%}
-{%- assign sep = '' -%}
-
 {%- for key in keys -%}
   {%- assign ref   = host.metafields.custom[key] -%}
   {%- assign entry = ref.value -%}
@@ -24,119 +17,8 @@ Hard-set to product / page / collection / shop if you know it.
     {%- assign _text  = entry.text  -%}
     {%- assign _media = entry.media -%}
 {{ _title }}
-    {%- comment -%} normalize media -> (media_type, media_src) {%- endcomment -%}
-    {%- assign image_src = _media | image_url: width: 1600 -%}
-    {%- assign file_src  = _media | file_url -%}
-    {%- assign media_type = '' -%}
-    {%- assign media_src  = '' -%}
-
-    {%- if _media and _media.sources and _media.sources.size > 0 -%}
-      {%- assign media_type = 'video' -%}
-      {%- assign media_src  = _media.sources[0].url -%}
-    {%- elsif image_src != blank -%}
-      {%- assign media_type = 'image' -%}
-      {%- assign media_src  = image_src -%}
-    {%- elsif file_src != blank -%}
-      {%- assign media_type = 'file' -%}
-      {%- assign media_src  = file_src -%}
-    {%- endif -%}
-
-    {%- capture one -%}
-      {"title": {{ _title | json }}, "text": {{ _text | metafield_tag | json }}, "media_type": {{ media_type | json }}, "media_src": {{ media_src | json }}}
-    {%- endcapture -%}
-    {%- assign items_json = items_json | append: sep | append: one -%}
-    {%- assign sep = ',' -%}
   {%- endif -%}
 {%- endfor -%}
-
-{%- assign items = '[' | append: items_json | append: ']' | parse_json -%}
-{{ items.size }}
-{%- if items.size == 0 -%}
-  {%- comment -%}
-  2) Fallback: collect from blocks (text & image1) → build a new JSON array
-     We gather all TEXT blocks & all IMAGE blocks, then pair by index.
-  {%- endcomment -%}
-
-  {%- assign texts_json = '' -%}
-  {%- assign imgs_json  = '' -%}
-  {%- assign t_sep = '' -%}
-  {%- assign i_sep = '' -%}
-
-  {%- for block in section.blocks -%}
-    {%- assign bst = block.settings -%}
-    {{ block.settings  }}
-    {%- if block.type == 'text' and bst.text != blank -%}
-        {{ bst.text }}
-      {%- capture t -%}{{ bst.text }}{%- endcapture -%}
-      {%- assign texts_json = texts_json | append: t_sep | append: t | json -%}
-      {%- assign t_sep = ',' -%}
-    {%- endif -%}
-    {%- if block.type == 'image' and bst.img1 != blank -%}
-      {%- assign img_src = bst.img1 | image_url: width: 1600 -%}
-      {%- assign imgs_json = imgs_json | append: i_sep | append: img_src | json -%}
-      {%- assign i_sep = ',' -%}
-    {%- endif -%}
-  {%- endfor -%}
-
-  {%- assign texts = '[' | append: texts_json | append: ']' | parse_json -%}
-  {%- assign imgs  = '[' | append: imgs_json  | append: ']' | parse_json -%}
-  {%- assign n_texts = texts.size -%}
-  {%- assign n_imgs  = imgs.size  -%}
-
-  {%- comment -%} compute max length {%- endcomment -%}
-  {%- assign n = 0 -%}
-  {%- if n_texts > n_imgs -%}
-    {%- assign n = n_texts -%}
-  {%- else -%}
-    {%- assign n = n_imgs -%}
-  {%- endif -%}
-
-  {%- assign fb_json = '' -%}
-  {%- assign fb_sep  = '' -%}
-
-  {%- if n > 0 -%}
-    {%- for idx in (0..n-1) -%}
-      {%- assign t_val = texts[idx] -%}
-      {%- assign i_val = imgs[idx]  -%}
-
-      {%- assign title_guess = t_val | default: '' | strip_html | strip | truncate: 60 -%}
-      {%- assign text_html   = t_val | default: '' -%}
-      {%- assign media_type2 = '' -%}
-      {%- assign media_src2  = '' -%}
-
-      {%- if i_val and i_val != '' -%}
-        {%- assign media_type2 = 'image' -%}
-        {%- assign media_src2  = i_val -%}
-      {%- endif -%}
-
-      {%- capture one -%}
-        {"title": {{ title_guess | json }}, "text": {{ text_html | json }}, "media_type": {{ media_type2 | json }}, "media_src": {{ media_src2 | json }}}
-      {%- endcapture -%}
-      {%- assign fb_json = fb_json | append: fb_sep | append: one -%}
-      {%- assign fb_sep = ',' -%}
-    {%- endfor -%}
-  {%- endif -%}
-
-  {%- assign items = '[' | append: fb_json | append: ']' | parse_json -%}
-{%- endif -%}
-
-{%- comment -%}
-3) Now `items` is guaranteed to be an array of:
-   { title: string, text: HTML string, media_type: 'image'|'video'|'file'|'', media_src: string }
-→ Render your component from here:
-{%- endcomment -%}
-{{ items }}
-{%- for it in items -%}
-  {%- assign title = it.title -%}
-  {%- assign text  = it.text  -%}
-  {%- assign kind  = it.media_type -%}
-  {%- assign src   = it.media_src  -%}
-
-  {{ title }}
-{%- endfor -%}
-
-
-
 
 
 {% comment %} {%- assign sst = section.settings -%}
