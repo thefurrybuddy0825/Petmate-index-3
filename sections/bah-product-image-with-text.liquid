@@ -19,7 +19,7 @@ Change the priority order if needed (e.g., product → page → collection → s
     Update the right-hand sides to your actual metaobject field handles.
     {%- endcomment -%}
     {%- assign _heading    = it.title     | default: sst.title -%}
-    {%- assign _subheading = it.subheading  | default: sst.subheading -%}
+    {%- assign _subheading = it.text  | default: sst.text -%}
     {%- assign _image      = it.image       | default: sst.image -%}
     {%- assign _video      = it.video       | default: sst.video -%}
     {%- assign _btn_label  = it.btn_label   | default: blank -%}
