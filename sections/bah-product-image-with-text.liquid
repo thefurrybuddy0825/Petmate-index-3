@@ -57,6 +57,7 @@
           </div>
           <div class="{{ sst.width_text }} d-flex align-items-{{ sst.text_position_vertical }} justify-content-lg-{{ sst.text_position_horizontal }} mt-md-50">
             <div class="block-text {{ sst.alignment }}">
+              {% assign bst = null %}
               {% for block in section.blocks %}
                 {% assign bst = block.settings %}
                 {% if block.type == 'text' %}
@@ -65,6 +66,12 @@
                     data-wow-delay="{{ forloop.index | times: 0.1 }}s"
                   >
                     {{ _text }}
+                  </div>
+                  <div
+                    class="nov-text {{ bst.t_fw }} block-{{ forloop.index }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
+                  >
+                    {{ _title }}
                   </div>
                 {% endif %}
                 {% if block.type == 'btn' %}
