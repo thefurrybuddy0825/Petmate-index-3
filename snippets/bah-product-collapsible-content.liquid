@@ -91,7 +91,7 @@
           {%- assign is_show = false -%}
         {%- endif -%}
       {%- endif -%}
-
+ssss
       {%- if is_show == true -%}
         {%- assign text_sz  = block.settings.font_size   | default: 16 -%}
         {%- assign text_col = block.settings.text_color  | default: '#000' -%}
@@ -125,12 +125,12 @@
           {%- if t != blank or c_html != blank -%}{%- assign has_any = true -%}{%- endif -%}
 
           {%- if has_any -%}
-            {% comment %} {%- capture row -%}
+            {%- capture row -%}
               {{ t | replace: SEP, '' }}{{ SEP }}
               {{ c_html | replace: SEP, '' }}{{ SEP }}
               {{ ic | replace: SEP, '' }}{{ SEP }}
               {{ '' }}{{ SEP }}{{ '' }}
-            {%- endcapture -%} {% endcomment %}
+            {%- endcapture -%}
             {%- assign single = row | split: SINGLE -%}
             {%- assign rows = rows | concat: single -%}
           {%- endif -%}
