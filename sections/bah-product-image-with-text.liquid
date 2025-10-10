@@ -1,38 +1,3 @@
-{%- if product -%}{{ product }}
-  {%- assign sst = section.settings -%}
-
-  {%- comment -%}
-    Pick the resource that actually holds your metafields.
-    Change the order (or hard-set) if needed.
-  {%- endcomment -%}
-  {%- assign host = product -%}
-  {%- if host == null or host == empty -%}{% assign host = page %}{% endif -%}
-  {%- if host == null or host == empty -%}{% assign host = collection %}{% endif -%}
-  {%- if host == null or host == empty -%}{% assign host = shop %}{% endif -%}
-
-  {%- assign keys = 'product_image_with_text_1,product_image_with_text_2,product_image_with_text_3,product_image_with_text_4,product_image_with_text_5'
-    | split: ','
-  -%}
-
-  {%- comment -%}
-    Loop through the five custom metaobject references.
-    Each entry is expected to have: heading (text/richtext), text (text/richtext), image (file/image).
-  {%- endcomment -%}
-  {%- for key in keys -%}
-    {%- assign ref = host.metafields.custom[key] -%}
-    {%- assign entry = ref.value -%}
-    {%- if entry != blank -%}
-      {%- assign _heading = entry.heading -%}
-      {%- assign _text = entry.text -%}
-      {%- assign _image = entry.image -%}
-      {%- assign _video = entry.video -%}
-
-      {{ _heading }}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
-
-{% comment %}
   {%- assign sst = section.settings -%}
   <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
     {% if sst.container == 'container' %}
@@ -177,7 +142,7 @@
       </div>
     </div>
   </div>
-{% endcomment %}
+
 {% schema %}
 {
   "name": "Product Images With Text",
