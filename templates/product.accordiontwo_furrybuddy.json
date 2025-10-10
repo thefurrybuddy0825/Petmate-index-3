@@ -178,20 +178,6 @@
         "bg_review": "#f1f1f1"
       }
     },
-    "1f27e4c9-5a83-40d1-a579-111353e08822": {
-      "type": "nov-line",
-      "settings": {
-        "height": 1,
-        "color": "#dcdcdc",
-        "style": "solid",
-        "opacity": 100,
-        "animate": false,
-        "container": "container-full",
-        "class": "",
-        "distance_top": 60,
-        "distance_bottom": 60
-      }
-    },
     "nov_img_text_KiKMcV": {
       "type": "nov-img-text",
       "blocks": {
@@ -286,6 +272,20 @@
         "px": 0,
         "distance_top": 30,
         "distance_bottom": 30
+      }
+    },
+    "1f27e4c9-5a83-40d1-a579-111353e08822": {
+      "type": "nov-line",
+      "settings": {
+        "height": 1,
+        "color": "#dcdcdc",
+        "style": "solid",
+        "opacity": 100,
+        "animate": false,
+        "container": "container-full",
+        "class": "",
+        "distance_top": 60,
+        "distance_bottom": 60
       }
     },
     "166243121355988ca2": {
