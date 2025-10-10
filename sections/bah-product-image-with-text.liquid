@@ -130,22 +130,7 @@ Hard-set to product / page / collection / shop if you know it.
   {%- assign kind  = it.media_type -%}
   {%- assign src   = it.media_src  -%}
 
-  {# === PLACEHOLDER MARKUP — replace with your component === #}
-  <div class="image-with-text">
-    {% if title %}<h3 class="title">{{ title }}</h3>{% endif %}
-    {% if text %}<div class="copy">{{ text }}</div>{% endif %}
-
-    {% if src %}
-      {% if kind == 'image' %}
-        <img src="{{ src }}" alt="{{ title | escape }}" loading="lazy">
-      {% elsif kind == 'video' %}
-        <video controls playsinline><source src="{{ src }}" type="video/mp4"></video>
-      {% else %}
-        <a href="{{ src }}" target="_blank" rel="noopener">Open file</a>
-      {% endif %}
-    {% endif %}
-  </div>
-  {# === /PLACEHOLDER === #}
+  {{ title }}
 {%- endfor -%}
 
 
