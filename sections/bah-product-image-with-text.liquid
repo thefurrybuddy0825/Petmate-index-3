@@ -1,37 +1,26 @@
-{%- assign _media = entry.media -%}
-{%- if _media != blank -%}
-  {%- comment -%}
-  Try IMAGE first: image_url returns a URL only for image/file refs that are images.
-  {%- endcomment -%}
-  {%- assign __probe = _media | image_url: width: 1 -%}
-  {%- if __probe != blank -%}
-    {%- assign _alt = _media.alt | default: _title -%}
-    {{ _media | image_url: width: 1600 | image_tag: alt: _alt, loading: 'lazy' }}
-    {# or, if your theme uses a helper: {% render 'nov-aspect-image', image: _media %} #}
+{%- comment -%}
+  Pick the current resource that actually holds the metafields.
+  Change the priority order if needed (e.g., product → page → collection → shop).
+{%- endcomment -%}
+{%- assign entity = product -%}
+{%- if entity == nil -%}{% assign entity = page %}{% endif -%}
+{%- if entity == nil -%}{% assign entity = collection %}{% endif -%}
+{%- if entity == nil -%}{% assign entity = shop %}{% endif -%}
 
-  {%- elsif _media.sources and _media.sources.size > 0 -%}
-    {%- comment -%}
-    VIDEO: pick an mp4 source if available, else fall back to the first source.
-    {%- endcomment -%}
-    {%- assign _mp4 = '' -%}
-    {%- for s in _media.sources -%}
-      {%- if s.mime_type contains 'mp4' -%}{% assign _mp4 = s.url %}{% break %}{%- endif -%}
-    {%- endfor -%}
-    {%- if _mp4 == '' -%}{% assign _mp4 = _media.sources[0].url %}{%- endif -%}
-    <video controls playsinline>
-      <source src="{{ _mp4 }}" type="video/mp4">
-    </video>
+{%- for i in (1..5) -%}
+  {%- assign key = 'product_image_with_text_' | append: i -%}
+  {%- assign entry = entity.metafields.custom[key].value -%}
 
-  {%- else -%}
-    {%- comment -%}
-    GENERIC FILE (pdf/doc/etc.): link to file url; show filename.
-    {%- endcomment -%}
-    {%- assign _url = _media | file_url -%}
-    {%- assign _name = _url | split:'/' | last | split:'?' | first -%}
-    <a href="{{ _url }}" target="_blank" rel="noopener">{{ _name }}</a>
+  {%- if entry != blank -%}
+    {%- assign _title = entry.title -%}
+    {%- assign _text  = entry.text | metafield_tag -%}
+    {%- assign _media = entry.media -%}
+
+    {{ _text  }}
+
+
   {%- endif -%}
-{%- endif -%}
-
+{%- endfor -%}
 
 
 
