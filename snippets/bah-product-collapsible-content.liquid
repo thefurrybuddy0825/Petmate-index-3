@@ -1,7 +1,9 @@
 {% comment %}
   BAH — Collapsible Content (FAQ) — Typed Fields Only
   Order: 1) Custom fields (metaobject) → 2) Theme Editor items (t1..t10)
-  Icons: emoji or standard Unicode hex (e.g., 2714). If no icon on TE item, optional image is used.
+  Icons: emoji, Unicode code point (hex like 2714 or decimal like 128293), or PUA hex like E88E (requires icon font).
+  Tip: If you plan to use PUA code points (E000–F8FF) such as "e88e", load an icon font (e.g., Material Symbols) in theme.liquid:
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 {% endcomment %}
 
 {% style %}
@@ -67,6 +69,16 @@
     padding: 0 0 1.4rem 0;
     font-size: 16px !important;
     border: none !important;
+  }
+
+  /* Minimal class if you load Material Symbols (for PUA like E88E) */
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal; font-style: normal;
+    font-size: inherit; line-height: 1;
+    letter-spacing: normal; text-transform: none;
+    display: inline-block; white-space: nowrap; direction: ltr;
+    -webkit-font-smoothing: antialiased;
   }
 {% endstyle %}
 
@@ -144,7 +156,7 @@
           {%- assign m_id = 'image' | append: i -%}
 
           {%- assign t  = block.settings[t_id] | default: '' | strip -%}
-          {%- assign cH = block.settings[c_id] | default: '' -%} 
+          {%- assign cH = block.settings[c_id] | default: '' -%}
           {%- assign ic = block.settings[i_id] | default: '' | strip -%}
           {%- assign im = block.settings[m_id] -%}
 
@@ -181,25 +193,68 @@
             {%- assign img2x = parts[4] | default: '' | strip -%}
 
             {%- if q != '' or a != '' -%}
-              {%- comment -%} Build icon HTML: emoji/hex first; else image (retina) {%- endcomment -%}
+              {%- comment -%} Build icon HTML: code point (hex/decimal), PUA (needs icon font), or literal emoji; else image {%- endcomment -%}
               {%- assign icon_html = '' -%}
-              {%- if ic != '' -%}
-                {%- assign norm = ic | downcase | remove: 'u+' | remove: '0x' | remove: '&#x' | remove: '&#' | remove: ';' | strip -%}
-                {%- assign HEX = norm | upcase -%}
-                {%- assign hex_clean = HEX
-                  | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
-                  | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
-                  | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
-                -%}
-                {%- assign looks_hex = false -%}
-                {%- if HEX != '' and hex_clean == '' -%}{%- assign looks_hex = true -%}{%- endif -%}
+              {%- assign ic_raw  = ic | to_s | strip -%}
+              {%- assign ic_uc   = ic_raw | upcase -%}
 
-                {%- capture icon_html -%}
-                  <span class="faq-title-icon" aria-hidden="true"
-                        style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
-                    {%- if looks_hex -%}{{ '&#x' | append: HEX | append: ';' }}{%- else -%}{{ ic }}{%- endif -%}
-                  </span>
-                {%- endcapture -%}
+              {%- assign is_entity = false -%}
+              {%- if ic_uc contains '&#X' or ic_uc contains '&#' -%}
+                {%- assign is_entity = true -%}
+              {%- endif -%}
+
+              {%- assign hex_clean = ic_uc
+                | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
+                | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+                | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
+              -%}
+              {%- assign is_hex_candidate = false -%}
+              {%- if ic_uc != '' and hex_clean == '' and ic_uc.size >= 2 and ic_uc.size <= 6 and is_entity == false -%}
+                {%- assign is_hex_candidate = true -%}
+              {%- endif -%}
+
+              {%- assign dec_clean = ic_uc
+                | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
+                | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+              -%}
+              {%- assign is_dec_candidate = false -%}
+              {%- if ic_uc != '' and dec_clean == '' and is_entity == false -%}
+                {%- assign is_dec_candidate = true -%}
+              {%- endif -%}
+
+              {%- comment -%} If looks like PUA (E000–F8FF), we’ll apply an icon font class/style {%- endcomment -%}
+              {%- assign needs_icon_font = false -%}
+              {%- if is_hex_candidate -%}
+                {%- assign first_char = ic_uc | slice: 0, 1 -%}
+                {%- if first_char == 'E' or first_char == 'F' -%}
+                  {%- assign needs_icon_font = true -%}
+                {%- endif -%}
+              {%- endif -%}
+
+              {%- assign extra_font_style = '' -%}
+              {%- assign extra_font_class = '' -%}
+              {%- if needs_icon_font -%}
+                {%- assign extra_font_style = 'font-family:Material Symbols Outlined, "Material Icons", "Material Icons Outlined", sans-serif;' -%}
+                {%- assign extra_font_class = ' material-symbols-outlined' -%}
+              {%- endif -%}
+
+              {%- capture icon_markup -%}
+                <span class="faq-title-icon{{ extra_font_class }}" aria-hidden="true"
+                      style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px; {{ extra_font_style }}">
+                  {%- if is_entity -%}
+                    {{ ic_raw }}
+                  {%- elsif is_hex_candidate -%}
+                    {{ '&#x' | append: ic_uc | append: ';' }}
+                  {%- elsif is_dec_candidate -%}
+                    {{ '&#'  | append: ic_uc | append: ';' }}
+                  {%- elsif ic_raw != '' -%}
+                    {{ ic_raw }}
+                  {%- endif -%}
+                </span>
+              {%- endcapture -%}
+
+              {%- if ic_raw != '' -%}
+                {%- assign icon_html = icon_markup -%}
               {%- elsif img1x != '' or img2x != '' -%}
                 {%- assign img_src = img2x | default: img1x -%}
                 {%- capture icon_html -%}
