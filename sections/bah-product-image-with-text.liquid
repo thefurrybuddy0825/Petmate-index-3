@@ -1,39 +1,37 @@
-
-    {%- assign sst = section.settings -%}
-    <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
-      {% if sst.container == 'container' %}
-        <div class="container">
-      {% elsif sst.container == 'container-fluid' %}
-        <div class="container-fluid">
-      {% else %}
-        <div class="container-full">
-      {% endif %}
-      <div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner position-relative{% if sst.br_container != 0 %} overflow_hidden{% endif %}">
-        {% if sst.heading != blank or sst.subheading != blank %}
-          <div class="title_section {{ sst.title_alignment }}">
-            {% if sst.subheading != blank %}
-              <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
-            {% endif %}
-            {% if sst.heading != blank %}
-              <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
-            {% endif %}
-          </div>
+{%- assign sst = section.settings -%}
+<div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
+  {% if sst.container == 'container' %}
+    <div class="container">
+  {% elsif sst.container == 'container-fluid' %}
+    <div class="container-fluid">
+  {% else %}
+    <div class="container-full">
+  {% endif %}
+  <div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner position-relative{% if sst.br_container != 0 %} overflow_hidden{% endif %}">
+    {% if sst.heading != blank or sst.subheading != blank %}
+      <div class="title_section {{ sst.title_alignment }}">
+        {% if sst.subheading != blank %}
+          <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
         {% endif %}
+        {% if sst.heading != blank %}
+          <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
 
-{%- assign entity = product -%}
-{%- if entity == null -%}{% assign entity = page %}{% endif -%}
-{%- if entity == null -%}{% assign entity = collection %}{% endif -%}
-{%- if entity == null -%}{% assign entity = shop %}{% endif -%}
+    {%- assign entity = product -%}
+    {%- if entity == null -%}{% assign entity = page %}{% endif -%}
+    {%- if entity == null -%}{% assign entity = collection %}{% endif -%}
+    {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
 
-{%- for i in (1..5) -%}
-  {%- assign key = 'product_image_with_text_' | append: i -%}
-  {%- assign entry = entity.metafields.custom[key].value -%}
+    {%- for i in (1..5) -%}
+      {%- assign key = 'product_image_with_text_' | append: i -%}
+      {%- assign entry = entity.metafields.custom[key].value -%}
 
-  {%- if entry != blank -%}
-    {%- assign _title = entry.title -%}
-    {%- assign _text = entry.text | metafield_tag -%}
-    {%- assign _media = entry.media -%}
-
+      {%- if entry != blank -%}
+        {%- assign _title = entry.title -%}
+        {%- assign _text = entry.text | metafield_tag -%}
+        {%- assign _media = entry.media -%}
 
         <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == 'right' %} flex-lg-row-reverse{% endif %}">
           <div class="{{ sst.width_img }}">
@@ -184,14 +182,10 @@
             </div>
           </div>
         </div>
-
-  {%- endif -%}
-{%- endfor -%}
-
-      </div>
-    </div>
-    </div>
-
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
 
 {% comment %}
   {%- assign sst = section.settings -%}
