@@ -145,6 +145,102 @@
         "bg_review": "#f1f1f1"
       }
     },
+    "bah_product_image_with_text_xBTVbF": {
+      "type": "bah-product-image-with-text",
+      "blocks": {
+        "text_XGgKzE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum</p>",
+            "tb_c": "",
+            "t_s": 20,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-700",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 5
+          }
+        },
+        "text_Fha4VB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Maecenas eu nibh pulvinar, mattis lorem eget, convallis turpis. Maecenas sollicitudin lectus augue, vel vehicula nulla condimentum sit amet. Nam id tellus convallis, sollicitudin est a, rhoncus quam. Ut a sem aliquam, aliquet tortor non, cursus enim. Cras at aliquet risus.</p>",
+            "tb_c": "",
+            "t_s": 16,
+            "t_s_md": 13,
+            "t_c": "#222222",
+            "ff": "f_df",
+            "t_fw": "font-400",
+            "t_tt": "none",
+            "t_lh": "1.5",
+            "t_lt": "0",
+            "t_m": 1320,
+            "distance_bottom": 5
+          }
+        },
+        "btn_y8FxPL": {
+          "type": "btn",
+          "settings": {
+            "btn": "Shop now",
+            "btn_link": "",
+            "btn2": "",
+            "btn_link2": "",
+            "btn_size": "normal",
+            "c_btn": "#ffffff",
+            "b_btn": "#222222",
+            "bd_btn": "#ffffff",
+            "c_btn_h": "#ffffff",
+            "b_btn_h": "#222222",
+            "distance_bottom": 5
+          }
+        }
+      },
+      "block_order": [
+        "text_XGgKzE",
+        "text_Fha4VB",
+        "btn_y8FxPL"
+      ],
+      "name": "BAH Product Images With Text",
+      "settings": {
+        "heading": "<p>BAH Product Images With Text</p>",
+        "heading_c": "#222222",
+        "subheading": "<p>Subtitle from happy customers</p>",
+        "subheading_c": "#666666",
+        "title_alignment": "text-left",
+        "width_img": "col-lg-6",
+        "image_object_fit": "cover",
+        "image_size": "full",
+        "img_radius": 0,
+        "position_lg": "left",
+        "position": "up",
+        "image_animate": true,
+        "autoplay": false,
+        "time": 3,
+        "show_dots": false,
+        "dots_c": "",
+        "dots_ca": "",
+        "width_text": "col-lg-6",
+        "alignment": "text-left",
+        "text_position_horizontal": "center",
+        "text_position_vertical": "center",
+        "spacing_horizontal": 0,
+        "animate": true,
+        "spacing": 30,
+        "br_container": 0,
+        "container": "container",
+        "background_color": "",
+        "gradient": "",
+        "bg_size": "full",
+        "class": "",
+        "px": 0,
+        "distance_top": 30,
+        "distance_bottom": 30
+      }
+    },
     "1f27e4c9-5a83-40d1-a579-111353e08822": {
       "type": "nov-line",
       "settings": {
@@ -349,6 +445,7 @@
   },
   "order": [
     "main",
+    "bah_product_image_with_text_xBTVbF",
     "1f27e4c9-5a83-40d1-a579-111353e08822",
     "166243121355988ca2",
     "6ea2ec42-cb99-4c9e-8813-1337ac056a4d",
