@@ -65,6 +65,7 @@ Hard-set to product / page / collection / shop if you know it.
   {%- for block in section.blocks -%}
     {%- assign bst = block.settings -%}
     {%- if block.type == 'text' and bst.text != blank -%}
+        {{ bst.text }}
       {%- capture t -%}{{ bst.text }}{%- endcapture -%}
       {%- assign texts_json = texts_json | append: t_sep | append: t | json -%}
       {%- assign t_sep = ',' -%}
