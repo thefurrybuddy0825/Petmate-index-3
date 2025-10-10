@@ -1,20 +1,3 @@
-{%- comment -%}
-  Pick the current resource that actually holds the metafields.
-  Change the priority order if needed (e.g., product → page → collection → shop).
-{%- endcomment -%}
-{%- assign entity = product -%}
-{%- if entity == null -%}{% assign entity = page %}{% endif -%}
-{%- if entity == null -%}{% assign entity = collection %}{% endif -%}
-{%- if entity == null -%}{% assign entity = shop %}{% endif -%}
-
-{%- for i in (1..5) -%}
-  {%- assign key = 'product_image_with_text_' | append: i -%}
-  {%- assign entry = entity.metafields.custom[key].value -%}
-
-  {%- if entry != blank -%}
-    {%- assign _title = entry.title -%}
-    {%- assign _text = entry.text | metafield_tag -%}
-    {%- assign _media = entry.media -%}
 
     {%- assign sst = section.settings -%}
     <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
@@ -36,6 +19,22 @@
             {% endif %}
           </div>
         {% endif %}
+
+{%- assign entity = product -%}
+{%- if entity == null -%}{% assign entity = page %}{% endif -%}
+{%- if entity == null -%}{% assign entity = collection %}{% endif -%}
+{%- if entity == null -%}{% assign entity = shop %}{% endif -%}
+
+{%- for i in (1..5) -%}
+  {%- assign key = 'product_image_with_text_' | append: i -%}
+  {%- assign entry = entity.metafields.custom[key].value -%}
+
+  {%- if entry != blank -%}
+    {%- assign _title = entry.title -%}
+    {%- assign _text = entry.text | metafield_tag -%}
+    {%- assign _media = entry.media -%}
+
+
         <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == 'right' %} flex-lg-row-reverse{% endif %}">
           <div class="{{ sst.width_img }}">
             <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
@@ -185,11 +184,14 @@
             </div>
           </div>
         </div>
+
+  {%- endif -%}
+{%- endfor -%}
+
       </div>
     </div>
     </div>
-  {%- endif -%}
-{%- endfor -%}
+
 
 {% comment %}
   {%- assign sst = section.settings -%}
