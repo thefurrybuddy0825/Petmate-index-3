@@ -64,6 +64,7 @@ Hard-set to product / page / collection / shop if you know it.
 
   {%- for block in section.blocks -%}
     {%- assign bst = block.settings -%}
+    {{ block.settings  }}
     {%- if block.type == 'text' and bst.text != blank -%}
         {{ bst.text }}
       {%- capture t -%}{{ bst.text }}{%- endcapture -%}
