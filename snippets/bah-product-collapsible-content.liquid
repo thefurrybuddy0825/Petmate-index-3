@@ -72,18 +72,21 @@
 
 {% for block in section.blocks %}
   {% if block.type == 'bah-collapsible-content' %}
-    <div class="accordion faq-accordion" id="Accordion-{{ section.id | append: forloop.index }}"
-         style="margin-top: {{ block.settings.margin_top | default: 0 }}px; margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;">
+    <div
+      class="accordion faq-accordion"
+      id="Accordion-{{ section.id | append: forloop.index }}"
+      style="margin-top: {{ block.settings.margin_top | default: 0 }}px; margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;"
+    >
       {%- assign mf = product.metafields.custom.product_collapsible_content -%}
-      {%- assign mo = nil -%}
+      {%- assign mo = null -%}
       {%- if mf != blank and mf.type contains 'metaobject' -%}
         {%- assign mo = mf.value -%}
       {%- endif -%}
 
       {%- comment -%} is_show: metaobject first; else parse text "true/false" from block setting {%- endcomment -%}
-      {%- assign is_show = nil -%}
-      {%- if mo and mo.is_show != nil -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
-      {%- if is_show == nil -%}
+      {%- assign is_show = null -%}
+      {%- if mo and mo.is_show != null -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
+      {%- if is_show == null -%}
         {%- assign bs = block.settings.is_show | downcase | strip -%}
         {%- if bs == 'true' or bs == '1' or bs == 'yes' or bs == 'y' -%}
           {%- assign is_show = true -%}
@@ -93,9 +96,9 @@
       {%- endif -%}
 
       {%- if is_show == true -%}
-        {%- assign text_sz  = block.settings.font_size   | default: 16 -%}
-        {%- assign text_col = block.settings.text_color  | default: '#000' -%}
-        {%- assign icon_px  = block.settings.emoji_size  | default: text_sz -%}
+        {%- assign text_sz = block.settings.font_size | default: 16 -%}
+        {%- assign text_col = block.settings.text_color | default: '#000' -%}
+        {%- assign icon_px = block.settings.emoji_size | default: text_sz -%}
         {%- assign icon_col = block.settings.emoji_color | default: text_col -%}
         {%- assign retina_w = icon_px | times: 2 -%}
 
@@ -106,14 +109,31 @@
 
         {%- comment -%} 1a) CUSTOM FIELDS (metaobject) — first {%- endcomment -%}
         {%- for i in (1..5) -%}
-          {%- assign t = '' -%}{%- assign c_html = '' -%}{%- assign ic = '' -%}
+          {%- assign t = '' -%}
+          {%- assign c_html = '' -%}
+          {%- assign ic = '' -%}
           {%- if mo -%}
             {%- case i -%}
-              {%- when 1 -%}{%- assign t = mo.faq_title_1  -%}{%- assign c_obj = mo.faq_content_1  -%}{%- assign ic = mo.icon_1  -%}
-              {%- when 2 -%}{%- assign t = mo.faq_title_2  -%}{%- assign c_obj = mo.faq_content_2  -%}{%- assign ic = mo.icon_2  -%}
-              {%- when 3 -%}{%- assign t = mo.faq_title_3  -%}{%- assign c_obj = mo.faq_content_3  -%}{%- assign ic = mo.icon_3  -%}
-              {%- when 4 -%}{%- assign t = mo.faq_title_4  -%}{%- assign c_obj = mo.faq_content_4  -%}{%- assign ic = mo.icon_4  -%}
-              {%- when 5 -%}{%- assign t = mo.faq_title_5  -%}{%- assign c_obj = mo.faq_content_5  -%}{%- assign ic = mo.icon_5  -%}
+              {%- when 1 -%}
+                {%- assign t = mo.faq_title_1 -%}
+                {%- assign c_obj = mo.faq_content_1 -%}
+                {%- assign ic = mo.icon_1 -%}
+              {%- when 2 -%}
+                {%- assign t = mo.faq_title_2 -%}
+                {%- assign c_obj = mo.faq_content_2 -%}
+                {%- assign ic = mo.icon_2 -%}
+              {%- when 3 -%}
+                {%- assign t = mo.faq_title_3 -%}
+                {%- assign c_obj = mo.faq_content_3 -%}
+                {%- assign ic = mo.icon_3 -%}
+              {%- when 4 -%}
+                {%- assign t = mo.faq_title_4 -%}
+                {%- assign c_obj = mo.faq_content_4 -%}
+                {%- assign ic = mo.icon_4 -%}
+              {%- when 5 -%}
+                {%- assign t = mo.faq_title_5 -%}
+                {%- assign c_obj = mo.faq_content_5 -%}
+                {%- assign ic = mo.icon_5 -%}
             {%- endcase -%}
             {%- if c_obj != blank -%}
               {%- assign c_html = c_obj | metafield_tag -%}
@@ -138,13 +158,13 @@
 
         {%- comment -%} 1b) THEME EDITOR ITEMS (t1..t10) — appended below custom fields {%- endcomment -%}
         {%- for i in (1..10) -%}
-          {%- assign t_id = 't'     | append: i -%}
-          {%- assign c_id = 'c'     | append: i -%}
-          {%- assign i_id = 'icon'  | append: i -%}
+          {%- assign t_id = 't' | append: i -%}
+          {%- assign c_id = 'c' | append: i -%}
+          {%- assign i_id = 'icon' | append: i -%}
           {%- assign m_id = 'image' | append: i -%}
 
-          {%- assign t  = block.settings[t_id] | default: '' | strip -%}
-          {%- assign cH = block.settings[c_id] | default: '' -%} 
+          {%- assign t = block.settings[t_id] | default: '' | strip -%}
+          {%- assign cH = block.settings[c_id] | default: '' -%}
           {%- assign ic = block.settings[i_id] | default: '' | strip -%}
           {%- assign im = block.settings[m_id] -%}
 
@@ -152,7 +172,8 @@
           {%- if t != '' or cH != '' -%}{%- assign has_any = true -%}{%- endif -%}
 
           {%- if has_any -%}
-            {%- assign img1x = '' -%}{%- assign img2x = '' -%}
+            {%- assign img1x = '' -%}
+            {%- assign img2x = '' -%}
             {%- if im != blank -%}
               {%- assign img1x = im | image_url: width: icon_px -%}
               {%- assign img2x = im | image_url: width: retina_w -%}
@@ -181,42 +202,103 @@
             {%- assign img2x = parts[4] | default: '' | strip -%}
 
             {%- if q != '' or a != '' -%}
-              {%- comment -%} Build icon HTML: emoji/hex first; else image (retina) {%- endcomment -%}
+              {%- comment -%} Build icon HTML: code point (hex/decimal) or literal emoji; else image {%- endcomment -%}
               {%- assign icon_html = '' -%}
-              {%- if ic != '' -%}
-                {%- assign norm = ic | downcase | remove: 'u+' | remove: '0x' | remove: '&#x' | remove: '&#' | remove: ';' | strip -%}
-                {%- assign HEX = norm | upcase -%}
-                {%- assign hex_clean = HEX
-                  | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
-                  | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
-                  | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
-                -%}
-                {%- assign looks_hex = false -%}
-                {%- if HEX != '' and hex_clean == '' -%}{%- assign looks_hex = true -%}{%- endif -%}
+              {%- assign ic_raw = ic | to_s | strip -%}
+              {%- assign ic_uc = ic_raw | upcase -%}
 
-                {%- capture icon_html -%}
-                  <span class="faq-title-icon" aria-hidden="true"
-                        style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
-                    {%- if looks_hex -%}{{ '&#x' | append: HEX | append: ';' }}{%- else -%}{{ ic }}{%- endif -%}
-                  </span>
-                {%- endcapture -%}
+              {%- comment -%}
+                Helpers to detect formats without regex:
+                - If user already typed an entity (&#...;), just use it.
+                - HEX: only characters 0-9 A-F, length 2–6 (common range), no '&#' present
+                - DEC: only digits 0-9, no '&#' present
+              {%- endcomment -%}
+
+              {%- assign is_entity = false -%}
+              {%- if ic_uc contains '&#X' or ic_uc contains '&#' -%}
+                {%- assign is_entity = true -%}
+              {%- endif -%}
+
+              {%- assign hex_clean = ic_uc
+                | remove: '0'
+                | remove: '1'
+                | remove: '2'
+                | remove: '3'
+                | remove: '4'
+                | remove: '5'
+                | remove: '6'
+                | remove: '7'
+                | remove: '8'
+                | remove: '9'
+                | remove: 'A'
+                | remove: 'B'
+                | remove: 'C'
+                | remove: 'D'
+                | remove: 'E'
+                | remove: 'F'
+              -%}
+              {%- assign is_hex_candidate = false -%}
+              {%- if ic_uc != '' and hex_clean == '' and ic_uc.size >= 2 and ic_uc.size <= 6 and is_entity == false -%}
+                {%- assign is_hex_candidate = true -%}
+              {%- endif -%}
+
+              {%- assign dec_clean = ic_uc
+                | remove: '0'
+                | remove: '1'
+                | remove: '2'
+                | remove: '3'
+                | remove: '4'
+                | remove: '5'
+                | remove: '6'
+                | remove: '7'
+                | remove: '8'
+                | remove: '9'
+              -%}
+              {%- assign is_dec_candidate = false -%}
+              {%- if ic_uc != '' and dec_clean == '' and is_entity == false -%}
+                {%- assign is_dec_candidate = true -%}
+              {%- endif -%}
+
+              {%- capture icon_markup -%}
+  <span class="faq-title-icon" aria-hidden="true"
+        style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px;">
+    {%- if is_entity -%}
+      {{ ic_raw }}             {# Already an entity like &#x2714; or &#128293; #}
+    {%- elsif is_hex_candidate -%}
+      {{ '&#x' | append: ic_uc | append: ';' }}
+    {%- elsif is_dec_candidate -%}
+      {{ '&#'  | append: ic_uc | append: ';' }}
+    {%- elsif ic_raw != '' -%}
+      {{ ic_raw }}             {# Literal emoji/text (✅, ⭐, etc.) #}
+    {%- endif -%}
+  </span>
+{%- endcapture -%}
+
+              {%- if ic_raw != '' -%}
+                {%- assign icon_html = icon_markup -%}
               {%- elsif img1x != '' or img2x != '' -%}
                 {%- assign img_src = img2x | default: img1x -%}
                 {%- capture icon_html -%}
-                  <img
-                    src="{{ img_src | escape }}"
-                    {% if img1x != '' and img2x != '' %}srcset="{{ img1x | escape }} 1x, {{ img2x | escape }} 2x"{% endif %}
-                    alt=""
-                    width="{{ icon_px }}" height="{{ icon_px }}"
-                    style="display:inline-block; width:{{ icon_px }}px; height:{{ icon_px }}px; object-fit:contain; margin-right:8px;">
-                {%- endcapture -%}
+    <img
+      src="{{ img_src | escape }}"
+      {% if img1x != '' and img2x != '' %}srcset="{{ img1x | escape }} 1x, {{ img2x | escape }} 2x"{% endif %}
+      alt=""
+      width="{{ icon_px }}" height="{{ icon_px }}"
+      style="display:inline-block; width:{{ icon_px }}px; height:{{ icon_px }}px; object-fit:contain; margin-right:8px;">
+  {%- endcapture -%}
               {%- endif -%}
 
               {%- assign uid = section.id | append: '-u-' | append: block.id | append: '-' | append: forloop.index -%}
 
               <div class="faqs-main" style="font-size: {{ text_sz }}px;">
                 <div class="panel-group">
-                  <button class="panel-header" type="button" aria-controls="faq-{{ uid }}" aria-expanded="false" data-target="#faq-{{ uid }}">
+                  <button
+                    class="panel-header"
+                    type="button"
+                    aria-controls="faq-{{ uid }}"
+                    aria-expanded="false"
+                    data-target="#faq-{{ uid }}"
+                  >
                     {{ icon_html }}
                     <span style="font-size:{{ text_sz }}px; color:{{ text_col }}; line-height:1.3; padding-left: 0;">
                       {{- q | default: 'Details' -}}
