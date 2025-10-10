@@ -85,45 +85,12 @@
             "c10": "",
             "icon10": ""
           }
-        },
-        "017de3aa-924c-4bbc-b2b0-94c01780f48d": {
-          "type": "policy",
-          "settings": {
-            "title_policy": "FREE SHIPPING",
-            "desc_policy": "<p>Free shipping order above $200</p>",
-            "tl": "Learn More",
-            "link": "#",
-            "class": "mb-sm-30"
-          }
-        },
-        "51918806-a73f-4609-b19a-664f3d28b59c": {
-          "type": "policy",
-          "settings": {
-            "title_policy": "SUPPORT 24/7",
-            "desc_policy": "<p>Contact us 24 hours a day, 7 days a week</p>",
-            "tl": "Learn More",
-            "link": "#",
-            "class": "mb-sm-30"
-          }
-        },
-        "b7cfd8ab-e741-45a8-bd02-9bb90b8bc10b": {
-          "type": "policy",
-          "settings": {
-            "title_policy": "7 DAYS RETURN",
-            "desc_policy": "<p>Return it within 30 days for an exchange.</p>",
-            "tl": "Learn More",
-            "link": "#",
-            "class": ""
-          }
         }
       },
       "block_order": [
         "bah_product_short_des_nMVT3M",
         "bah_product_bullet_points_Y3pemB",
-        "bah_collapsible_content_MMpUhg",
-        "017de3aa-924c-4bbc-b2b0-94c01780f48d",
-        "51918806-a73f-4609-b19a-664f3d28b59c",
-        "b7cfd8ab-e741-45a8-bd02-9bb90b8bc10b"
+        "bah_collapsible_content_MMpUhg"
       ],
       "settings": {
         "aspect": "auto",
