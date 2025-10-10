@@ -1,30 +1,27 @@
-{%- comment -%}
-  Pick the current resource that actually holds the metafields.
-  Change the priority order if needed (e.g., product → page → collection → shop).
-{%- endcomment -%}
 {%- assign entity = product -%}
-{%- if entity == null -%}{% assign entity = page %}{% endif -%}
-{%- if entity == null -%}{% assign entity = collection %}{% endif -%}
-{%- if entity == null -%}{% assign entity = shop %}{% endif -%}
+{%- if entity == nil -%}{% assign entity = page %}{% endif -%}
+{%- if entity == nil -%}{% assign entity = collection %}{% endif -%}
+{%- if entity == nil -%}{% assign entity = shop %}{% endif -%}
 
 {%- for i in (1..5) -%}
   {%- assign key = 'product_image_with_text_' | append: i -%}
-  {%- assign ref = entity.metafields.custom[key] -%}
-  {%- assign it = ref.value -%}
+  {%- assign entry = entity.metafields.custom[key].value -%}
+  {%- if entry != blank -%}
+    {%- assign _title = entry.title -%}
+    {%- assign _text  = entry.text  -%}
+    {%- assign _media = entry.media -%}
 
-  {%- if it != blank -%}
-    {%- comment -%}
-      Map metaobject fields to locals, with fallbacks to section settings so your
-      theme editor controls still work if a field is missing.
-      Update the right-hand sides to your actual metaobject field handles.
-    {%- endcomment -%}
-    {%- assign _title = it.title -%}
-    {%- assign _text = it.text -%}
-    {%- assign _media = it.media -%}
+    {# --- OPTION A: HTML output --- #}
+    {{ _text | metafield_tag }}
 
-    {{ _text }}
+    {# --- OPTION B: plain text only --- #}
+    {# {{ _text | metafield_text }} #}
+
+    {# --- OPTION C: plain text but keep one paragraph per line --- #}
+    {# {{ _text | metafield_tag | strip_html | strip }} #}
   {%- endif -%}
 {%- endfor -%}
+
 
 {% comment %}
   {%- assign sst = section.settings -%}
