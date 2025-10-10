@@ -1,4 +1,129 @@
-{%- assign sst = section.settings -%}
+{%- comment -%}
+Pick the current resource that actually holds the metafields.
+Change the priority order if needed (e.g., product → page → collection → shop).
+{%- endcomment -%}
+{%- assign entity = product -%}
+{%- if entity == nil -%}{% assign entity = page %}{% endif -%}
+{%- if entity == nil -%}{% assign entity = collection %}{% endif -%}
+{%- if entity == nil -%}{% assign entity = shop %}{% endif -%}
+
+{%- for i in (1..5) -%}
+  {%- assign key = 'product_image_with_text_' | append: i -%}
+  {%- assign ref = entity.metafields['custom'][key] -%}
+  {%- assign it  = ref.value -%} {# metaobject instance #}
+
+  {%- if it != blank -%}
+    {%- comment -%}
+    Map metaobject fields to locals, with fallbacks to section settings so your
+    theme editor controls still work if a field is missing.
+    Update the right-hand sides to your actual metaobject field handles.
+    {%- endcomment -%}
+    {%- assign _heading    = it.heading     | default: sst.heading -%}
+    {%- assign _subheading = it.subheading  | default: sst.subheading -%}
+    {%- assign _image      = it.image       | default: sst.image -%}
+    {%- assign _video      = it.video       | default: sst.video -%}
+    {%- assign _btn_label  = it.btn_label   | default: blank -%}
+    {%- assign _btn_link   = it.btn_link    | default: blank -%}
+    {%- assign _btn2_label = it.btn2_label  | default: blank -%}
+    {%- assign _btn2_link  = it.btn2_link   | default: blank -%}
+
+    <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
+      {% if sst.container == 'container' %}
+        <div class="container">
+      {% elsif sst.container == 'container-fluid' %}
+        <div class="container-fluid">
+      {% else %}
+        <div class="container-full">
+      {% endif %}
+          <div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner position-relative{% if sst.br_container != 0 %} overflow_hidden{% endif %}">
+
+            {% if _heading != blank or _subheading != blank %}
+              <div class="title_section {{ sst.title_alignment }}">
+                {% if _subheading != blank %}
+                  <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ _subheading }}</span>
+                {% endif %}
+                {% if _heading != blank %}
+                  <span class="title" style="color: {{ sst.heading_c }};">{{ _heading }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == 'right' %} flex-lg-row-reverse{% endif %}">
+              <div class="{{ sst.width_img }}">
+                <div class="block-image h-100{% if _video != blank %} d-flex{% endif %}">
+                  {% if _image != blank and _video == blank %}
+                    <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
+                      {%- render 'nov-aspect-image', image: _image -%}
+                    </div>
+                  {% else %}
+                    {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+
+                  {% if _video != blank %}
+                    <video autoplay playsinline loop muted style="object-fit: cover;width: 100%">
+                      {% if _video.sources[0].url contains '.m3u8' %}
+                        {%- assign video_src = _video.sources[1].url -%}
+                      {%- else -%}
+                        {%- assign video_src = _video.sources[0].url -%}
+                      {%- endif -%}
+                      <source src="{{ video_src }}" type="video/mp4"/>
+                    </video>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="{{ sst.width_text }} d-flex align-items-{{ sst.text_position_vertical }} justify-content-lg-{{ sst.text_position_horizontal }} mt-md-50">
+                <div class="block-text {{ sst.alignment }}">
+                  {# Optional: keep your existing blocks; they’ll render for each item #}
+                  {% for block in section.blocks %}
+                    {% assign bst = block.settings %}
+                    {% if block.type == 'text' %}
+                      <div class="nov-text {{ bst.t_fw }} block-{{ forloop.index }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}" data-wow-delay="{{ forloop.index | times: 0.1 }}s">{{ bst.text }}</div>
+                    {% endif %}
+                    {% if block.type == 'btn' %}
+                      <div class="block-btn block-{{ forloop.index }}{% if sst.animate == true %} wow fadeInUp animated{% endif %}" data-wow-delay="{{ forloop.index | times: 0.1 }}s">
+                        {% if _btn_label != blank %}
+                          <a href="{{ _btn_link }}" class="btn btn-1 btn-{{ bst.btn_size }}">{{ _btn_label }}</a>
+                        {% endif %}
+                        {% if _btn2_label != blank %}
+                          <a href="{{ _btn2_link }}" class="btn btn-2 btn-{{ bst.btn_size }}">{{ _btn2_label }}</a>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    {% if block.type == 'policy' %}
+                      {# your existing policy block render stays as-is #}
+                    {% endif %}
+                    {% if block.type == 'contact' %}
+                      {# your existing contact block render stays as-is #}
+                    {% endif %}
+                    {% if block.type == 'image' %}
+                      {# your existing image block render stays as-is #}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div><!-- /.container-inner -->
+        </div><!-- /.container/container-fluid/full -->
+    </div><!-- /.distance/wow -->
+  {%- endif -%}
+{%- endfor -%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {%- assign sst = section.settings -%}
 <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
   {% if sst.container == 'container' %}
     <div class="container">
@@ -141,7 +266,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
 {% schema %}
   {
     "name": "Product Images With Text",
