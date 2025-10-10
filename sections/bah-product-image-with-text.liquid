@@ -77,8 +77,8 @@
 
 {%- else -%}
   {# -------- Use array-driven render (replace with your component markup) -------- #}
-{{ items }}
-  {% for it in items %}
+{%- assign _items = items | parse_json -%}
+  {% for it in _items %}
     {%- assign _title = it.title -%}
     {%- assign _text  = it.text  -%}
     {%- assign _type  = it.media_type -%}
