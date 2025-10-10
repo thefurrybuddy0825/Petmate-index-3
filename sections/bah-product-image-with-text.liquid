@@ -23,7 +23,7 @@ Hard-set to product / page / collection / shop if you know it.
     {%- assign _title = entry.title -%}
     {%- assign _text  = entry.text  -%}
     {%- assign _media = entry.media -%}
-
+{{ _title }}
     {%- comment -%} normalize media -> (media_type, media_src) {%- endcomment -%}
     {%- assign image_src = _media | image_url: width: 1600 -%}
     {%- assign file_src  = _media | file_url -%}
