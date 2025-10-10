@@ -22,7 +22,7 @@ Each entry is expected to have: heading (text/richtext), text (text/richtext), i
     {%- assign _heading = entry.heading -%}
     {%- assign _text    = entry.text -%}
     {%- assign _image   = entry.image -%}
-    {%- assign _video   = entry.video -%} {# optional, if your metaobject includes it #}
+    {%- assign _video   = entry.video -%}
 
 <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
   {% if sst.container == 'container' %}
