@@ -147,27 +147,6 @@
     },
     "bah_product_image_with_text_xBTVbF": {
       "type": "bah-product-image-with-text",
-      "blocks": {
-        "btn_hfcPpy": {
-          "type": "btn",
-          "settings": {
-            "btn": "Shop now",
-            "btn_link": "",
-            "btn2": "",
-            "btn_link2": "",
-            "btn_size": "normal",
-            "c_btn": "#ffffff",
-            "b_btn": "#222222",
-            "bd_btn": "#ffffff",
-            "c_btn_h": "#ffffff",
-            "b_btn_h": "#222222",
-            "distance_bottom": 5
-          }
-        }
-      },
-      "block_order": [
-        "btn_hfcPpy"
-      ],
       "name": "BAH Product Images With Text",
       "settings": {
         "heading": "<h1><strong>Product Key Features</strong></h1>",
