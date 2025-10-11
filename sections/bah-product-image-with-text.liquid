@@ -66,22 +66,22 @@
           <div class="{{ sst.width_text }} d-flex align-items-{{ sst.text_position_vertical }} justify-content-lg-{{ sst.text_position_horizontal }} mt-md-50">
             <div class="block-text {{ sst.alignment }}">
 
-                  <div
-                    class="nov-text {{ sst.title_t_fw }} block-1{% if sst.title_ff == 'f_pr' %} f_pr{% endif %}{% if sst.title_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ 1 | times: 0.1 }}s"
-                  >
-                    <p>{{ _title }}</p>
-                  </div>
+              <div
+                class="nov-text {{ sst.title_t_fw }} block-1{% if sst.title_ff == 'f_pr' %} f_pr{% endif %}{% if sst.title_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                data-wow-delay="{{ 1 | times: 0.1 }}s"
+              >
+                <p>{{ _title }}</p>
+              </div>
 
-                  <div
-                    class="nov-text {{ sst.text_t_fw }} block-2{% if sst.text_ff == 'f_pr' %} f_pr{% endif %}{% if sst.text_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ 2 | times: 0.1 }}s"
-                  >
-                    <p>{{ _text }}</p>
-                  </div>
+              <div
+                class="nov-text {{ sst.text_t_fw }} block-2{% if sst.text_ff == 'f_pr' %} f_pr{% endif %}{% if sst.text_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                data-wow-delay="{{ 2 | times: 0.1 }}s"
+              >
+                <p>{{ _text }}</p>
+              </div>
 
 
-              {% for block in section.blocks %}
+              {% comment %} {% for block in section.blocks %}
                 {% assign bst = block.settings %}                
                 {% if block.type == 'text' %}
                   <div
@@ -202,7 +202,8 @@
                     {% endif %}
                   </div>
                 {% endif %}
-              {% endfor %}
+              {% endfor %} {% endcomment %}
+
             </div>
           </div>
         </div>
