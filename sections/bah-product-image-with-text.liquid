@@ -634,6 +634,120 @@
       "label": "Spacing horizontal",
       "default": 0
     },
+
+
+    /* === MOVED FROM TEXT BLOCK → SETTINGS (all ids prefixed with text_) === */
+    {
+      "type": "header",
+      "content": "Text content & styles"
+    },
+    {
+      "type": "richtext",
+      "id": "text_text",
+      "label": "Text",
+      "default": "<p>Vinova Text</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_tb_c",
+      "label": "Text bold color"
+    },
+    {
+      "type": "range",
+      "id": "text_t_s",
+      "min": 11,
+      "max": 50,
+      "step": 1,
+      "label": "Text size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "text_t_s_md",
+      "min": 11,
+      "max": 50,
+      "step": 1,
+      "label": "Text size tablet",
+      "default": 13,
+      "info": "Breakpoint 991px ↓"
+    },
+    {
+      "type": "color",
+      "id": "text_t_c",
+      "label": "Text color",
+      "default": "#222222"
+    },
+    {
+      "type": "radio",
+      "id": "text_ff",
+      "label": "Font family",
+      "default": "f_df",
+      "options": [
+        { "value": "f_df", "label": "Body font" },
+        { "value": "f_pr", "label": "Heading font" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_t_fw",
+      "label": "Text font weight",
+      "default": "font-400",
+      "options": [
+        { "value": "font-300", "label": "Light" },
+        { "value": "font-400", "label": "Regular" },
+        { "value": "font-500", "label": "Medium" },
+        { "value": "font-600", "label": "SemiBold" },
+        { "value": "font-700", "label": "Bold" },
+        { "value": "font-800", "label": "ExtraBold" },
+        { "value": "font-900", "label": "Black" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_t_tt",
+      "label": "Text transform",
+      "default": "none",
+      "options": [
+        { "value": "capitalize", "label": "Capitalize" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "none", "label": "None" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "text_t_lh",
+      "label": "Text line height",
+      "default": "1.5"
+    },
+    {
+      "type": "text",
+      "id": "text_t_lt",
+      "label": "Text letter spacing",
+      "default": "0"
+    },
+    {
+      "type": "image_picker",
+      "id": "text_icon",
+      "label": "Icon list",
+      "info": "Icon for unordered list"
+    },
+    {
+      "type": "number",
+      "id": "text_t_m",
+      "label": "Text max with (px)",
+      "default": 1320
+    },
+    {
+      "type": "number",
+      "id": "text_distance_bottom",
+      "label": "Bottom spacing section (px)",
+      "default": 5
+    },
+
+
+ /* === END TEXT BLOCK → SETTINGS (all ids prefixed with text_) === */
+
+
     {
       "type": "header",
       "content": "Design option"
