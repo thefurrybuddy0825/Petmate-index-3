@@ -60,8 +60,8 @@
 
 
                   <div
-                    class="nov-text {{ sst.text_t_fw }} block-{{ forloop.index }}{% if sst.text_ff == 'f_pr' %} f_pr{% endif %}{% if sst.text_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
+                    class="nov-text {{ sst.text_t_fw }} block-{{ forloop.index | plus: 1 }}{% if sst.text_ff == 'f_pr' %} f_pr{% endif %}{% if sst.text_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                    data-wow-delay="{{ forloop.index | plus: 1 | times: 0.1 }}s"
                   >
                     {{ _text }}
                   </div>
