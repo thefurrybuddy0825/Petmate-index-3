@@ -80,6 +80,39 @@
                 <p>{{ _text }}</p>
               </div>
 
+              <div
+                class="images d-flex block-1{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                data-wow-delay="{{ 1 | times: 0.1 }}s"
+              >
+
+                {% render 'nov-aspect-image', image: _media %}
+                {% if _media != blank %}
+                  <div
+                    class="item-image"
+                    style="{% if bst.img2 != blank %}width: 50%{% else %}width: 100%{% endif %}"
+                  >
+                    {% if bst.img1l != blank %}
+                      <a href="{{ bst.img1l }}">
+                    {% endif %}
+                    {% render 'nov-aspect-image', image: _media %}
+                    {% if bst.img1l != blank %}
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if bst.img2 != blank %}
+                  <div class="item-image" style="width: 50%">
+                    {% if bst.img2l != blank %}
+                      <a href="{{ bst.img2l }}">
+                    {% endif %}
+                    {% render 'nov-aspect-image', image: bst.img2 %}
+                    {% if bst.img2l != blank %}
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+
 
               {% comment %} {% for block in section.blocks %}
                 {% assign bst = block.settings %}                
