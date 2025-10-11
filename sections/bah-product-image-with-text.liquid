@@ -68,7 +68,7 @@ _decide if we have media to show and what kind it is
       {%- if _is_image -%}
         <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
     {%- assign alt_text = _title | default: '' -%}
-    {{ _media | image_url: width: 1600 | image_tag: alt: alt_text, loading: 'lazy' }}
+    {{ _media | image_url: width: 700 | image_tag: alt: alt_text, loading: 'lazy' }}
   </div>
 
       {%- elsif _is_video -%}
