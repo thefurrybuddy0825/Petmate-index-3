@@ -28,12 +28,20 @@
       {%- assign key = 'product_image_with_text_' | append: i -%}
       {%- assign entry = entity.metafields.custom[key].value -%}
 
+      {%- comment -%} Odd indices (1,3,5) => right; even (2,4) => left {%- endcomment -%}
+      {%- assign is_odd = i | modulo: 2 -%}
+      {%- if is_odd == 1 -%}
+        {%- assign position_lg = 'right' -%}
+      {%- else -%}
+        {%- assign position_lg = 'left' -%}
+      {%- endif -%}
+
       {%- if entry != blank -%}
         {%- assign _title = entry.title -%}
         {%- assign _text = entry.text | metafield_tag -%}
         {%- assign _media = entry.media -%}
 
-        <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == 'right' %} flex-lg-row-reverse{% endif %}">
+        <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == position_lg %} flex-lg-row-reverse{% endif %}">
           <div class="{{ sst.width_img }}">
             <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
               {% if sst.image != blank and sst.video == blank %}
