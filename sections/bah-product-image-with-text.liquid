@@ -67,9 +67,10 @@ _decide if we have media to show and what kind it is
     {%- if _has_media -%}
       {%- if _is_image -%}
         <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
-    {%- assign alt_text = _title | default: '' -%}
-    {{ _media | image_url: width: 500 | image_tag: alt: alt_text, loading: 'lazy' }}
-  </div>
+          {%- assign alt_text = _title | default: '' -%}
+          {% comment %} {{ _media | image_url: width: 500 | image_tag: alt: alt_text, loading: 'lazy' }} {% endcomment %}
+          {%- render 'nov-aspect-image', image: _media -%}
+        </div>
 
       {%- elsif _is_video -%}
         {%- assign _mp4 = '' -%}
