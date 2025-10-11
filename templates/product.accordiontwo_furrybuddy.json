@@ -356,7 +356,7 @@
         "animate": true,
         "spacing": 0,
         "container": "container-full",
-        "width_block": "col-lg-7",
+        "width_block": "col-lg-6",
         "background_color": "",
         "gradient": "",
         "class": "",
