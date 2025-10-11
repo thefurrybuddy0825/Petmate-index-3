@@ -44,9 +44,9 @@
         <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == position_lg %} flex-lg-row-reverse{% endif %}">
           <div class="{{ sst.width_img }}">
             <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
-              {% if _media != blank and sst.video == blank %}
+              {% if sst.image != blank and sst.video == blank %}
                 <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
-                  {%- render 'nov-aspect-image', image: _media -%}
+                  {%- render 'nov-aspect-image', image: sst.image -%}
                 </div>
               {% else %}
                 {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
