@@ -1448,6 +1448,16 @@
       margin-bottom: {{ sst.title_distance_bottom | append: 'px' }};
     }
 
+    #shopify-section-{{ section.id }} .block-2.nov-text, #shopify-section-{{ section.id }} .nov-text.block-2 a {
+      color: {{ sst.text_t_c }};
+      font-size: {{ sst.text_t_s | divided_by: 10.0 | append: 'rem' }};
+      line-height: {{ sst.text_t_lh }};
+      letter-spacing: {{ sst.text_t_lt | append: 'px' }};
+      text-transform: {{ sst.text_t_tt }};
+      max-width: {{ sst.text_t_m | append: 'px' }};
+      margin-bottom: {{ sst.text_distance_bottom | append: 'px' }};
+    }
+
 
   {% for block in section.blocks %}
     {% assign bst = block.settings %}
