@@ -1436,6 +1436,19 @@
       background-color: {{ sst.dots_ca }};
     }
   {%- endif -%}
+
+
+    #shopify-section-{{ section.id }} .block-1.nov-text, #shopify-section-{{ section.id }} .nov-text.block-1 a {
+      color: {{ sst.title_t_c }};
+      font-size: {{ sst.title_t_s | divided_by: 10.0 | append: 'rem' }};
+      line-height: {{ sst.title_t_lh }};
+      letter-spacing: {{ sst.title_t_lt | append: 'px' }};
+      text-transform: {{ sst.title_t_tt }};
+      max-width: {{ sst.title_t_m | append: 'px' }};
+      margin-bottom: {{ sst.title_distance_bottom | append: 'px' }};
+    }
+
+
   {% for block in section.blocks %}
     {% assign bst = block.settings %}
     #shopify-section-{{ section.id }} .block-{{ forloop.index }}.nov-text, #shopify-section-{{ section.id }} .nov-text.block-{{ forloop.index }} a {
