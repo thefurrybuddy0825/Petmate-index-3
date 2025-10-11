@@ -42,27 +42,72 @@
         {%- assign _media = entry.media -%}
 
         <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == position_lg %} flex-lg-row-reverse{% endif %}">
-          <div class="{{ sst.width_img }}">
-            <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
-              {% if sst.image != blank and sst.video == blank %}
-                <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
-                  {%- render 'nov-aspect-image', image: sst.image -%}
-                </div>
-              {% else %}
-                {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {% endif %}
-              {% if sst.video != blank %}
-                <video autoplay playsinline loop muted style="object-fit: cover;width: 100%">
-                  {% if sst.video.sources[0].url contains '.m3u8' %}
-                    {%- assign video = sst.video.sources[1].url -%}
-                  {%- else -%}
-                    {%- assign video = sst.video.sources[0].url -%}
-                  {%- endif -%}
-                  <source src="{{ video }}" type="video/mp4">
-                </video>
-              {% endif %}
-            </div>
-          </div>
+          {%- comment -%}
+_decide if we have media to show and what kind it is
+{%- endcomment -%}
+{%- assign _has_media = false -%}
+{%- assign _is_image  = false -%}
+{%- assign _is_video  = false -%}
+{%- assign _file_url  = '' -%}
+{%- if _media != blank -%}
+  {%- assign _probe_img = _media | image_url: width: 1 -%}
+  {%- if _probe_img != blank -%}
+    {%- assign _has_media = true -%}{%- assign _is_image = true -%}
+  {%- elsif _media.sources and _media.sources.size > 0 -%}
+    {%- assign _has_media = true -%}{%- assign _is_video = true -%}
+  {%- else -%}
+    {%- assign _file_url = _media | file_url -%}
+    {%- if _file_url != blank -%}{%- assign _has_media = true -%}{%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+<div class="{{ sst.width_img }}">
+  <div class="block-image h-100{% if _has_media or sst.video != blank %} d-flex{% endif %}">
+
+    {%- if _has_media -%}
+      {%- if _is_image -%}
+        <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
+    {%- assign alt_text = _title | default: '' -%}
+    {{ _media | image_url: width: 1600 | image_tag: alt: alt_text, loading: 'lazy' }}
+  </div>
+
+      {%- elsif _is_video -%}
+        {%- assign _mp4 = '' -%}
+        {%- for s in _media.sources -%}
+          {%- if s.mime_type contains 'mp4' -%}{%- assign _mp4 = s.url -%}{%- break -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if _mp4 == '' and _media.sources.size > 0 -%}{%- assign _mp4 = _media.sources[0].url -%}{%- endif -%}
+        <video autoplay playsinline loop muted style="object-fit: cover; width: 100%">
+          <source src="{{ _mp4 }}" type="video/mp4">
+        </video>
+
+      {%- else -%} {# generic file #}
+        <a href="{{ _file_url }}" target="_blank" rel="noopener">
+          {{ _file_url | split: '/' | last | split: '?' | first }}
+        </a>
+      {%- endif -%}
+
+    {%- elsif sst.image != blank and sst.video == blank -%}
+      <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
+        {%- render 'nov-aspect-image', image: sst.image -%}
+      </div>
+
+    {%- elsif sst.video != blank -%}
+      <video autoplay playsinline loop muted style="object-fit: cover; width: 100%">
+        {%- if sst.video.sources[0].url contains '.m3u8' -%}
+          {%- assign video = sst.video.sources[1].url -%}
+        {%- else -%}
+          {%- assign video = sst.video.sources[0].url -%}
+        {%- endif -%}
+        <source src="{{ video }}" type="video/mp4">
+      </video>
+
+    {%- else -%}
+      {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+
+  </div>
+</div>
           <div class="{{ sst.width_text }} d-flex align-items-{{ sst.text_position_vertical }} justify-content-lg-{{ sst.text_position_horizontal }} mt-md-50">
             <div class="block-text {{ sst.alignment }}">
 
