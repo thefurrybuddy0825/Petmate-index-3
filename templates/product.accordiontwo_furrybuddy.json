@@ -346,9 +346,9 @@
       "name": "BAH FAQ Accordion",
       "settings": {
         "is_show": "true",
-        "heading": "<p>BAH Image Width Text</p>",
+        "heading": "<p>Frequently Asked Questions</p>",
         "heading_color": "#222222",
-        "subheading": "<p>Subtitle from happy customers</p>",
+        "subheading": "<p>Here are a few of the questions we get the most. If you don't see what's on your mind, reach out to us anytime on email.</p>",
         "subheading_color": "#666666",
         "emoji_color": "#000000",
         "emoji_size": 32,
