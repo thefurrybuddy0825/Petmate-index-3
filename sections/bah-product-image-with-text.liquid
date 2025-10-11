@@ -46,7 +46,8 @@
             <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
               {% if _media != blank and sst.video == blank %}
                 <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
-                  {%- render 'nov-aspect-image', image: sst.image -%}
+                  {% comment %} {%- render 'nov-aspect-image', image: sst.image -%} {% endcomment %}
+                   {{ _media | image_url: width: 628 | image_tag: alt: alt_text, loading: 'lazy' }}
                 </div>
               {% else %}
                 {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
