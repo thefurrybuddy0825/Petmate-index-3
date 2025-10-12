@@ -258,7 +258,7 @@
         "emoji_size": 32,
         "heading_alignment": "text-center",
         "animate": true,
-        "spacing": 10,
+        "spacing": 0,
         "container": "container-full",
         "width_block": "col-lg-6",
         "background_color": "",
