@@ -1,217 +1,111 @@
 {%- assign sst = section.settings -%}
-<div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
-  {% if sst.container == 'container' %}
-    <div class="container">
-  {% elsif sst.container == 'container-fluid' %}
-    <div class="container-fluid">
-  {% else %}
-    <div class="container-full">
-  {% endif %}
-  <div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner position-relative{% if sst.br_container != 0 %} overflow_hidden{% endif %}">
-    {% if sst.heading != blank or sst.subheading != blank %}
-      <div class="title_section {{ sst.title_alignment }}">
-        {% if sst.subheading != blank %}
-          <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
-        {% endif %}
-        {% if sst.heading != blank %}
-          <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
-        {% endif %}
-      </div>
+
+{%- assign entity = product -%}
+{%- if entity == null -%}{% assign entity = page %}{% endif -%}
+{%- if entity == null -%}{% assign entity = collection %}{% endif -%}
+{%- if entity == null -%}{% assign entity = shop %}{% endif -%}
+
+{%- comment -%} Check for any product_image_with_text_* entries {%- endcomment -%}
+{%- assign has_pit = false -%}
+{%- for i in (1..5) -%}
+  {%- assign key = 'product_image_with_text_' | append: i -%}
+  {%- assign entry = entity.metafields.custom[key].value -%}
+  {%- if entry != blank -%}
+    {%- assign has_pit = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{% if has_pit %}
+  <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
+    {% if sst.container == 'container' %}
+      <div class="container">
+    {% elsif sst.container == 'container-fluid' %}
+      <div class="container-fluid">
+    {% else %}
+      <div class="container-full">
     {% endif %}
-
-    {%- assign entity = product -%}
-    {%- if entity == null -%}{% assign entity = page %}{% endif -%}
-    {%- if entity == null -%}{% assign entity = collection %}{% endif -%}
-    {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
-
-    {%- for i in (1..5) -%}
-      {%- assign key = 'product_image_with_text_' | append: i -%}
-      {%- assign entry = entity.metafields.custom[key].value -%}
-
-      {%- comment -%} Odd indices (1,3,5) => right; even (2,4) => left {%- endcomment -%}
-      {%- assign is_odd = i | modulo: 2 -%}
-      {%- if is_odd == 1 -%}
-        {%- assign position_lg = 'right' -%}
-      {%- else -%}
-        {%- assign position_lg = 'left' -%}
-      {%- endif -%}
-
-      {%- if entry != blank -%}
-        {%- assign _title = entry.title -%}
-        {%- assign _text = entry.text | metafield_tag -%}
-        {%- assign _media = entry.media -%}
-
-        <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == position_lg %} flex-lg-row-reverse{% endif %}">
-          <div class="{{ sst.width_img }}">
-            <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
-              {% if _media != blank and sst.video == blank %}
-                <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
-                  {% comment %} {%- render 'nov-aspect-image', image: sst.image -%} {% endcomment %}
-                   {{ _media | image_url: width: 628 | image_tag: alt: alt_text, loading: 'lazy' }}
-                </div>
-              {% else %}
-                {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {% endif %}
-              {% if sst.video != blank %}
-                <video autoplay playsinline loop muted style="object-fit: cover;width: 100%">
-                  {% if sst.video.sources[0].url contains '.m3u8' %}
-                    {%- assign video = sst.video.sources[1].url -%}
-                  {%- else -%}
-                    {%- assign video = sst.video.sources[0].url -%}
-                  {%- endif -%}
-                  <source src="{{ video }}" type="video/mp4">
-                </video>
-              {% endif %}
-            </div>
-          </div>
-          <div class="{{ sst.width_text }} d-flex align-items-{{ sst.text_position_vertical }} justify-content-lg-{{ sst.text_position_horizontal }} mt-md-50">
-            <div class="block-text {{ sst.alignment }}">
-
-              <div
-                class="nov-text {{ sst.title_t_fw }} block-1{% if sst.title_ff == 'f_pr' %} f_pr{% endif %}{% if sst.title_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                data-wow-delay="{{ 1 | times: 0.1 }}s"
-              >
-                <p>{{ _title }}</p>
-              </div>
-
-              <div
-                class="nov-text {{ sst.text_t_fw }} block-2{% if sst.text_ff == 'f_pr' %} f_pr{% endif %}{% if sst.text_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                data-wow-delay="{{ 2 | times: 0.1 }}s"
-              >
-                <p>{{ _text }}</p>
-              </div>
-
-              {% comment %} {% for block in section.blocks %}
-                {% assign bst = block.settings %}                
-                {% if block.type == 'text' %}
-                  <div
-                    class="nov-text {{ bst.t_fw }} block-{{ forloop.index }}{% if bst.ff == 'f_pr' %} f_pr{% endif %}{% if bst.icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
-                  >
-                    {{ _title }}
-                  </div>
-                {% endif %}
-                {% if block.type == 'btn' %}
-                  <div
-                    class="block-btn block-{{ forloop.index }}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
-                  >
-                    {% if bst.btn != blank %}
-                      <a href="{{ bst.btn_link }}" class="btn btn-1 btn-{{ bst.btn_size }}">{{ bst.btn }}</a>
-                    {% endif %}
-                    {% if bst.btn2 != blank %}
-                      <a href="{{ bst.btn_link2 }}" class="btn btn-2 btn-{{ bst.btn_size }}">{{ bst.btn2 }}</a>
-                    {% endif %}
-                  </div>
-                {% endif %}
-                {% if block.type == 'policy' %}
-                  <div class="policy block-{{ forloop.index }} mb-sm-20">
-                    <div
-                      class="policy-item{% if bst.p2 %} two-p{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                      data-wow-delay="{{ forloop.index | times: 0.1 }}s"
-                    >
-                      <div class="policy-item-content d-flex align-items-center">
-                        {% if bst.icon != blank %}
-                          <div class="p-icon text-center">
-                            <img data-src="{{ bst.icon | img_url: '75x' }}" class="lazyload d-inline-block">
-                          </div>
-                        {% endif %}
-                        <div class="policy-text">
-                          {% if bst.t %}
-                            <div class="title">{{ bst.t }}</div>
-                          {% endif %}
-                          {% if bst.d %}
-                            <div class="desc">{{ bst.d }}</div>
-                          {% endif %}
-                        </div>
-                      </div>
-                      {% if bst.p2 %}
-                        <div class="policy-item-content d-flex align-items-center">
-                          {% if bst.icon2 != blank %}
-                            <div class="p-icon text-center">
-                              <img data-src="{{ bst.icon2 | img_url: '75x' }}" class="lazyload d-inline-block">
-                            </div>
-                          {% endif %}
-                          <div class="policy-text">
-                            {% if bst.t2 %}
-                              <div class="title">{{ bst.t2 }}</div>
-                            {% endif %}
-                            {% if bst.d2 %}
-                              <div class="desc">{{ bst.d2 }}</div>
-                            {% endif %}
-                          </div>
-                        </div>
-                      {% endif %}
-                    </div>
-                  </div>
-                {% endif %}
-                {% if block.type == 'contact' %}
-                  <div
-                    class="contact block-{{ forloop.index }}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
-                  >
-                    {% if bst.hotline != blank %}
-                      <div class="item-contact d-flex align-items-center">
-                        <div class="item-icon"><i class="rbb-icon-phone-2"></i></div>
-                        <span class="font-700">{{ bst.hotline }}</span>
-                      </div>
-                    {% endif %}
-                    {% if bst.email != blank %}
-                      <div class="item-contact d-flex align-items-center">
-                        <div class="item-icon"><i class="rbb-icon-email-6"></i></div>
-                        <span>{{ bst.email }}</span>
-                      </div>
-                    {% endif %}
-                    {% if bst.time != blank %}
-                      <div class="item-contact d-flex align-items-center">
-                        <div class="item-icon"><i class="rbb-icon-time-1"></i></div>
-                        <span>{{ bst.time }}</span>
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endif %}
-                {% if block.type == 'image' %}
-                  <div
-                    class="images d-flex block-{{ forloop.index }}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
-                    data-wow-delay="{{ forloop.index | times: 0.1 }}s"
-                  >
-                    {% if bst.img1 != blank %}
-                      <div
-                        class="item-image"
-                        style="{% if bst.img2 != blank %}width: 50%{% else %}width: 100%{% endif %}"
-                      >
-                        {% if bst.img1l != blank %}
-                          <a href="{{ bst.img1l }}">
-                        {% endif %}
-                        {% render 'nov-aspect-image', image: bst.img1 %}
-                        {% if bst.img1l != blank %}
-                          </a>
-                        {% endif %}
-                      </div>
-                    {% endif %}
-                    {% if bst.img2 != blank %}
-                      <div class="item-image" style="width: 50%">
-                        {% if bst.img2l != blank %}
-                          <a href="{{ bst.img2l }}">
-                        {% endif %}
-                        {% render 'nov-aspect-image', image: bst.img2 %}
-                        {% if bst.img2l != blank %}
-                          </a>
-                        {% endif %}
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              {% endfor %} {% endcomment %}
-
-            </div>
-          </div>
+    <div class="{% if sst.bg_size == 'content' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %} {% endif %}container-inner position-relative{% if sst.br_container != 0 %} overflow_hidden{% endif %}">
+      {% if sst.heading != blank or sst.subheading != blank %}
+        <div class="title_section {{ sst.title_alignment }}">
+          {% if sst.subheading != blank %}
+            <span class="sub_title" style="color: {{ sst.subheading_c }};">{{ sst.subheading }}</span>
+          {% endif %}
+          {% if sst.heading != blank %}
+            <span class="title" style="color: {{ sst.heading_c }};">{{ sst.heading }}</span>
+          {% endif %}
         </div>
-      {%- endif -%}
-    {%- endfor -%}
+      {% endif %}
+
+      {%- assign entity = product -%}
+      {%- if entity == null -%}{% assign entity = page %}{% endif -%}
+      {%- if entity == null -%}{% assign entity = collection %}{% endif -%}
+      {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
+
+      {%- for i in (1..5) -%}
+        {%- assign key = 'product_image_with_text_' | append: i -%}
+        {%- assign entry = entity.metafields.custom[key].value -%}
+
+        {%- comment -%} Odd indices (1,3,5) => right; even (2,4) => left {%- endcomment -%}
+        {%- assign is_odd = i | modulo: 2 -%}
+        {%- if is_odd == 1 -%}
+          {%- assign position_lg = 'right' -%}
+        {%- else -%}
+          {%- assign position_lg = 'left' -%}
+        {%- endif -%}
+
+        {%- if entry != blank -%}
+          {%- assign _title = entry.title -%}
+          {%- assign _text = entry.text | metafield_tag -%}
+          {%- assign _media = entry.media -%}
+
+          <div class="row content-{{ sst.image_size }} spacing-{{ sst.spacing }}{% if sst.position == 'under' %} flex-column-reverse flex-lg-row{% endif %}{% if sst.position_lg == position_lg %} flex-lg-row-reverse{% endif %}">
+            <div class="{{ sst.width_img }}">
+              <div class="block-image h-100{% if sst.video != blank %} d-flex{% endif %}">
+                {% if _media != blank and sst.video == blank %}
+                  <div class="h-100 {% if sst.image_animate %}nov-sh-image-2{% endif %}">
+                    {% comment %} {%- render 'nov-aspect-image', image: sst.image -%} {% endcomment %}
+                    {{ _media | image_url: width: 628 | image_tag: alt: alt_text, loading: 'lazy' }}
+                  </div>
+                {% else %}
+                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                {% if sst.video != blank %}
+                  <video autoplay playsinline loop muted style="object-fit: cover;width: 100%">
+                    {% if sst.video.sources[0].url contains '.m3u8' %}
+                      {%- assign video = sst.video.sources[1].url -%}
+                    {%- else -%}
+                      {%- assign video = sst.video.sources[0].url -%}
+                    {%- endif -%}
+                    <source src="{{ video }}" type="video/mp4">
+                  </video>
+                {% endif %}
+              </div>
+            </div>
+            <div class="{{ sst.width_text }} d-flex align-items-{{ sst.text_position_vertical }} justify-content-lg-{{ sst.text_position_horizontal }} mt-md-50">
+              <div class="block-text {{ sst.alignment }}">
+                <div
+                  class="nov-text {{ sst.title_t_fw }} block-1{% if sst.title_ff == 'f_pr' %} f_pr{% endif %}{% if sst.title_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                  data-wow-delay="{{ 1 | times: 0.1 }}s"
+                >
+                  <p>{{ _title }}</p>
+                </div>
+
+                <div
+                  class="nov-text {{ sst.text_t_fw }} block-2{% if sst.text_ff == 'f_pr' %} f_pr{% endif %}{% if sst.text_icon != blank %} list-icon{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}"
+                  data-wow-delay="{{ 2 | times: 0.1 }}s"
+                >
+                  <p>{{ _text }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
   </div>
-</div>
-</div>
+  </div>
+{%- endif -%}
 {% comment %}
   {%- assign sst = section.settings -%}
   <div class="{% if sst.bg_size == 'full' %}distance{% if sst.class != blank %} {{ sst.class }}{% endif %}{% endif %}{% if sst.animate == true %} wow fadeInUp animated{% endif %}">
@@ -661,115 +555,113 @@
     },
 
     /* === MOVED FROM TITLE BLOCK → SETTINGS (all ids prefixed with title_) === */
-{
-  "type": "header",
-  "content": "Text content & styles"
-},
-{
-  "type": "richtext",
-  "id": "title_text",
-  "label": "Text",
-  "default": "<p>Vinova Text</p>"
-},
-{
-  "type": "color",
-  "id": "title_tb_c",
-  "label": "Text bold color"
-},
-{
-  "type": "range",
-  "id": "title_t_s",
-  "min": 11,
-  "max": 50,
-  "step": 1,
-  "label": "Text size",
-  "default": 13
-},
-{
-  "type": "range",
-  "id": "title_t_s_md",
-  "min": 11,
-  "max": 50,
-  "step": 1,
-  "label": "Text size tablet",
-  "default": 13,
-  "info": "Breakpoint 991px ↓"
-},
-{
-  "type": "color",
-  "id": "title_t_c",
-  "label": "Text color",
-  "default": "#222222"
-},
-{
-  "type": "radio",
-  "id": "title_ff",
-  "label": "Font family",
-  "default": "f_df",
-  "options": [
-    { "value": "f_df", "label": "Body font" },
-    { "value": "f_pr", "label": "Heading font" }
-  ]
-},
-{
-  "type": "select",
-  "id": "title_t_fw",
-  "label": "Text font weight",
-  "default": "font-400",
-  "options": [
-    { "value": "font-300", "label": "Light" },
-    { "value": "font-400", "label": "Regular" },
-    { "value": "font-500", "label": "Medium" },
-    { "value": "font-600", "label": "SemiBold" },
-    { "value": "font-700", "label": "Bold" },
-    { "value": "font-800", "label": "ExtraBold" },
-    { "value": "font-900", "label": "Black" }
-  ]
-},
-{
-  "type": "select",
-  "id": "title_t_tt",
-  "label": "Text transform",
-  "default": "none",
-  "options": [
-    { "value": "capitalize", "label": "Capitalize" },
-    { "value": "uppercase", "label": "Uppercase" },
-    { "value": "none", "label": "None" }
-  ]
-},
-{
-  "type": "text",
-  "id": "title_t_lh",
-  "label": "Text line height",
-  "default": "1.5"
-},
-{
-  "type": "text",
-  "id": "title_t_lt",
-  "label": "Text letter spacing",
-  "default": "0"
-},
-{
-  "type": "image_picker",
-  "id": "title_icon",
-  "label": "Icon list",
-  "info": "Icon for unordered list"
-},
-{
-  "type": "number",
-  "id": "title_t_m",
-  "label": "Text max with (px)",
-  "default": 1320
-},
-{
-  "type": "number",
-  "id": "title_distance_bottom",
-  "label": "Bottom spacing section (px)",
-  "default": 5
-},
-/* === END TITLE BLOCK → SETTINGS (all ids prefixed with title_) === */
-
-
+    {
+      "type": "header",
+      "content": "Text content & styles"
+    },
+    {
+      "type": "richtext",
+      "id": "title_text",
+      "label": "Text",
+      "default": "<p>Vinova Text</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_tb_c",
+      "label": "Text bold color"
+    },
+    {
+      "type": "range",
+      "id": "title_t_s",
+      "min": 11,
+      "max": 50,
+      "step": 1,
+      "label": "Text size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "title_t_s_md",
+      "min": 11,
+      "max": 50,
+      "step": 1,
+      "label": "Text size tablet",
+      "default": 13,
+      "info": "Breakpoint 991px ↓"
+    },
+    {
+      "type": "color",
+      "id": "title_t_c",
+      "label": "Text color",
+      "default": "#222222"
+    },
+    {
+      "type": "radio",
+      "id": "title_ff",
+      "label": "Font family",
+      "default": "f_df",
+      "options": [
+        { "value": "f_df", "label": "Body font" },
+        { "value": "f_pr", "label": "Heading font" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "title_t_fw",
+      "label": "Text font weight",
+      "default": "font-400",
+      "options": [
+        { "value": "font-300", "label": "Light" },
+        { "value": "font-400", "label": "Regular" },
+        { "value": "font-500", "label": "Medium" },
+        { "value": "font-600", "label": "SemiBold" },
+        { "value": "font-700", "label": "Bold" },
+        { "value": "font-800", "label": "ExtraBold" },
+        { "value": "font-900", "label": "Black" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "title_t_tt",
+      "label": "Text transform",
+      "default": "none",
+      "options": [
+        { "value": "capitalize", "label": "Capitalize" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "none", "label": "None" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title_t_lh",
+      "label": "Text line height",
+      "default": "1.5"
+    },
+    {
+      "type": "text",
+      "id": "title_t_lt",
+      "label": "Text letter spacing",
+      "default": "0"
+    },
+    {
+      "type": "image_picker",
+      "id": "title_icon",
+      "label": "Icon list",
+      "info": "Icon for unordered list"
+    },
+    {
+      "type": "number",
+      "id": "title_t_m",
+      "label": "Text max with (px)",
+      "default": 1320
+    },
+    {
+      "type": "number",
+      "id": "title_distance_bottom",
+      "label": "Bottom spacing section (px)",
+      "default": 5
+    },
+    /* === END TITLE BLOCK → SETTINGS (all ids prefixed with title_) === */
 
     /* === MOVED FROM TEXT BLOCK → SETTINGS (all ids prefixed with text_) === */
     {
@@ -879,9 +771,7 @@
       "default": 5
     },
 
-
- /* === END TEXT BLOCK → SETTINGS (all ids prefixed with text_) === */
-
+    /* === END TEXT BLOCK → SETTINGS (all ids prefixed with text_) === */
 
     {
       "type": "header",
