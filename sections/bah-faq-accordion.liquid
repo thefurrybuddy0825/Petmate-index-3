@@ -178,6 +178,7 @@
         {%- comment -%} is_show: metaobject first; else parse text "true/false" from block setting {%- endcomment -%}
         {%- assign is_show = null -%}
         {%- if mo and mo.is_show != null -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
+        {{ is_show }}
         {%- if is_show == null -%}
           {%- assign bs = block.settings.is_show | downcase | strip -%}
           {%- if bs == 'true' or bs == '1' or bs == 'yes' or bs == 'y' -%}
