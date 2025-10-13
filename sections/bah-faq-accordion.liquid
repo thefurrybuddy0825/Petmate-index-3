@@ -6,12 +6,12 @@
 {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
 
 {%- assign ns = entity.metafields.product_faqs_accordion -%}
-{{ ns }}
+
 {%- comment -%} Check for any FAQs {%- endcomment -%}
 {%- assign has_faq = false -%}
 {%- for i in (1..5) -%}
-  {%- capture qk -%}question_{{ i }}{%- endcapture -%}
-  {%- capture ak -%}answer_{{ i }}{%- endcapture -%}
+  {%- capture qk -%}product_faqs_accordion.question_{{ i }}{%- endcapture -%}
+  {%- capture ak -%}product_faqs_accordion.answer_{{ i }}{%- endcapture -%}
   {%- assign q_mf = ns[qk] -%}
   {%- assign a_mf = ns[ak] -%}
   {{ q_mf }}
