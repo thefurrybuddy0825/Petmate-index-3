@@ -171,7 +171,8 @@
       >
         {%- liquid
           assign faq_ns = product.metafields.product_faqs_accordion
-        -%}xzxz
+        -%}
+        {{ faq_ns }}
         {%- for i in (1..5) -%}
           {%- capture qk -%}question_{{ i }}{%- endcapture -%}
           {%- capture ak -%}answer_{{ i }}{%- endcapture -%}
