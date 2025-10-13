@@ -5,9 +5,12 @@
 {%- if entity == null -%}{% assign entity = collection %}{% endif -%}
 {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
 
-{%- comment -%} Point ns at the namespace object and use [] for dynamic keys {%- endcomment -%}
-{%- assign ns = entity.metafields['product_faqs_accordion'] -%}
-{{ ns }}
+{%- assign mf = product.metafields.custom.product_faqs_accordion -%}
+{%- assign mo = null -%}
+{{ mo }}
+{%- if mf != blank and mf.type contains 'metaobject' -%}
+  {%- assign mo = mf.value -%}
+{%- endif -%}
 {%- assign has_faq = false -%}
 {%- for i in (1..5) -%}
   {%- capture qk -%}question_{{ i }}{%- endcapture -%}
