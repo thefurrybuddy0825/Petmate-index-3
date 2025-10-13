@@ -4,28 +4,32 @@
 {%- if entity == null -%}{% assign entity = page %}{% endif -%}
 {%- if entity == null -%}{% assign entity = collection %}{% endif -%}
 {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
-
+{%- assign question_key = 'question_' -%}
 {%- assign mf = entity.metafields.custom.product_faqs_accordion -%}
 {%- assign mo = null -%}
-{{ mf }}
-{%- if mf != blank and mf.type contains 'metaobject' -%}
-  {%- assign mo = mf.value -%}
-{%- endif -%}
-{%- assign has_faq = false -%}
+
 {%- for i in (1..5) -%}
-  {%- capture qk -%}question_{{ i }}{%- endcapture -%}
-  {%- capture ak -%}answer_{{ i }}{%- endcapture -%}
-  {%- assign q_mf = ns[qk] -%}
-  {%- assign a_mf = ns[ak] -%}
-  {%- if q_mf != blank and a_mf != blank -%}
-    {%- assign has_faq = true -%}
-    {%- break -%}
+  {%- assign key = question_key | append: i -%}
+  {%- assign txt = '' -%}
+
+  {%- if mo -%}
+    {%- case i -%}
+      {%- when 1 -%}
+        {%- assign txt = mo.question_1 -%}
+      {%- when 2 -%}
+        {%- assign txt = mo.question_2 -%}
+      {%- when 3 -%}
+        {%- assign txt = mo.question_3 -%}
+      {%- when 4 -%}
+        {%- assign txt = mo.question_4 -%}
+      {%- when 5 -%}
+        {%- assign txt = mo.question_5 -%}
+    {%- endcase -%}
   {%- endif -%}
+
+  {{ txt }}
 {%- endfor -%}
 
-{%- if has_faq -%}
-  cccc
-{%- endif -%}
 {% comment %} === FAQ Accordion Section === {% endcomment %}
 {% liquid
   assign show = section.settings.is_show | downcase | strip
