@@ -169,112 +169,59 @@
           data-anim
         {% endif %}
       >
-        {% for block in section.blocks %}
-          <div class="faqs-main {{ section.settings.width_block }}">
-            <div class="panel-group">
-              <div
-                class="panel-header"
-                aria-controls="faq-{{ section.id }}-{{ block.id }}"
-                data-target="#faq-{{ section.id }}-{{ block.id }}"
-              >
-                {%- assign raw = block.settings.icon | default: '' | strip -%}
+        {%- liquid
+          assign faq_ns = product.metafields.product_faqs_accordion
+        -%}
+        {%- for i in (1..5) -%}
+          {%- capture qk -%}question_{{ i }}{%- endcapture -%}
+          {%- capture ak -%}answer_{{ i }}{%- endcapture -%}
 
-                {%- if block.settings.image != blank -%}
-                  <img
-                    src="{{ block.settings.image | image_url: width: 32 }}"
-                    alt=""
-                    class="faq-icon img"
-                    width="32"
-                    height="32"
-                    loading="lazy"
-                  >
-                {%- elsif raw != '' -%}
-                  {%- assign norm = raw
-                    | downcase
-                    | remove: 'u+'
-                    | remove: '0x'
-                    | remove: '&#x'
-                    | remove: '&#'
-                    | remove: ';'
-                    | strip
-                  -%}
-                  {%- assign HEX = norm | upcase -%}
-                  {%- assign _clean = HEX
-                    | remove: '0'
-                    | remove: '1'
-                    | remove: '2'
-                    | remove: '3'
-                    | remove: '4'
-                    | remove: '5'
-                    | remove: '6'
-                    | remove: '7'
-                    | remove: '8'
-                    | remove: '9'
-                    | remove: 'A'
-                    | remove: 'B'
-                    | remove: 'C'
-                    | remove: 'D'
-                    | remove: 'E'
-                    | remove: 'F'
-                  -%}
-                  {%- assign is_hex = false -%}
-                  {%- if HEX != '' and _clean == '' -%}
-                    {%- assign is_hex = true -%}
-                  {%- endif -%}
+          {%- assign q = faq_ns[qk] -%}
+          {%- assign a = faq_ns[ak] -%}
 
-                  {%- if is_hex -%}
-                    <span
-                      class="faq-icon"
-                      aria-hidden="true"
-                      style="
-                        font-family:'Material Icons','Material Icons Round','Material Icons Outlined','Material Symbols Outlined',sans-serif;
-                        color:{{ section.settings.emoji_color }};
-                        font-size:{{ section.settings.emoji_size }}px;
-                        line-height:1;
-                        display:inline-block;
-                      "
-                    >
-                      {{ '&#x' | append: HEX | append: ';' }}
-                    </span>
-                  {%- else -%}
-                    <span
-                      class="faq-icon"
-                      aria-hidden="true"
-                      style="
-                        font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji','Noto Emoji','EmojiOne Color','Twemoji Mozilla',system-ui,sans-serif;
-                        color:{{ section.settings.emoji_color }};
-                        font-size:{{ section.settings.emoji_size }}px;
-                        line-height:1;
-                        display:inline-block;
-                      "
-                    >
-                      {{ raw }}
-                    </span>
-                  {%- endif -%}
-                {%- endif -%}
-
-                <span style="font-size:{{ block.settings.font_size }}px; color:{{ block.settings.text_color }}; line-height:1.3; padding-left: 10px;">
-                  {{ block.settings.question }}
-                </span>
-
-                <span class="caret-icon" aria-hidden="true">
-                  <svg class="icon-accordion" viewBox="0 0 20 20" width="20" height="20">
-                    <path fill-rule="evenodd" d="M7.5 5.5a.75.75 0 011.06 0l4 4a.75.75 0 010 1.06l-4 4a.75.75 0 11-1.06-1.06L10.44 10 7.5 7.06a.75.75 0 010-1.56z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </div>
-              <div class="panel-body">
+          {%- if q != blank and a != blank -%}
+            <div class="faqs-main {{ section.settings.width_block }}">
+              <div class="panel-group">
                 <div
-                  id="faq-{{ section.id }}-{{ block.id }}"
-                  class="collapse"
-                  data-parent="#Accordion-{{ section.id }}"
+                  class="panel-header"
+                  aria-controls="faq-{{ section.id }}-{{ i }}"
+                  data-target="#faq-{{ section.id }}-{{ i }}"
                 >
-                  <div class="item-content rte">{{ block.settings.answer }}</div>
+                  {%- comment -%}
+                    Icons/images were previously per-block settings. Since we’re not using blocks,
+                    you can add a simple emoji or icon here if desired, or keep it minimal.
+                  {%- endcomment -%}
+
+                  <span style="font-size:16px; color:#000; line-height:1.3; padding-left: 10px;">
+                    {{ q.value | default: q }}
+                  </span>
+
+                  <span class="caret-icon" aria-hidden="true">
+                    <svg class="icon-accordion" viewBox="0 0 20 20" width="20" height="20">
+                      <path fill-rule="evenodd" d="M7.5 5.5a.75.75 0 011.06 0l4 4a.75.75 0 010 1.06l-4 4a.75.75 0 11-1.06-1.06L10.44 10 7.5 7.06a.75.75 0 010-1.56z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
+
+                <div class="panel-body">
+                  <div
+                    id="faq-{{ section.id }}-{{ i }}"
+                    class="collapse"
+                    data-parent="#Accordion-{{ section.id }}"
+                  >
+                    <div class="item-content rte">
+                      {%- comment -%}
+                        If the answer metafield is rich_text, metafield_tag will render it properly.
+                        If it's multi_line_text, metafield_tag will still work (it outputs wrapped).
+                      {%- endcomment -%}
+                      {{ a | metafield_tag }}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        {% endfor %}
+          {%- endif -%}
+        {%- endfor -%}
       </div>
     </div>
   </section>
