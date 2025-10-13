@@ -179,6 +179,9 @@
           {%- assign q = faq_ns[qk] -%}
           {%- assign a = faq_ns[ak] -%}
 
+          {{ q }}
+          {{ a }}
+
           {%- if q != blank and a != blank -%}
             <div class="faqs-main {{ section.settings.width_block }}">
               <div class="panel-group">
