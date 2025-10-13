@@ -195,29 +195,24 @@
           {%- for i in (1..5) -%}
             {%- assign t = '' -%}
             {%- assign c_html = '' -%}
-            {%- assign ic = '' -%}
+            {%- assign ic = 'e887' -%}
             {%- if mo -%}
               {%- case i -%}
                 {%- when 1 -%}
                   {%- assign t = mo.question_1 -%}
                   {%- assign c_obj = mo.answer_1 -%}
-                  {%- assign ic = mo.icon_1 -%}
                 {%- when 2 -%}
-                  {%- assign t = mo.faq_title_2 -%}
-                  {%- assign c_obj = mo.faq_content_2 -%}
-                  {%- assign ic = mo.icon_2 -%}
+                  {%- assign t = mo.question_2 -%}
+                  {%- assign c_obj = mo.answer_2 -%}
                 {%- when 3 -%}
-                  {%- assign t = mo.faq_title_3 -%}
-                  {%- assign c_obj = mo.faq_content_3 -%}
-                  {%- assign ic = mo.icon_3 -%}
+                  {%- assign t = mo.question_3 -%}
+                  {%- assign c_obj = mo.answer_3 -%}
                 {%- when 4 -%}
-                  {%- assign t = mo.faq_title_4 -%}
-                  {%- assign c_obj = mo.faq_content_4 -%}
-                  {%- assign ic = mo.icon_4 -%}
+                  {%- assign t = mo.question_4 -%}
+                  {%- assign c_obj = mo.answer_4 -%}
                 {%- when 5 -%}
-                  {%- assign t = mo.faq_title_5 -%}
-                  {%- assign c_obj = mo.faq_content_5 -%}
-                  {%- assign ic = mo.icon_5 -%}
+                  {%- assign t = mo.question_5 -%}
+                  {%- assign c_obj = mo.answer_5 -%}
               {%- endcase -%}
               {%- if c_obj != blank -%}
                 {%- assign c_html = c_obj | metafield_tag -%}
