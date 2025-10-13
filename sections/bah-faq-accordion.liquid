@@ -11,7 +11,8 @@
 {%- for i in (1..5) -%}
   {%- assign key = question_key | append: i -%}
   {%- assign txt = '' -%}
-
+  {%- assign entry = entity.metafields.custom[question_key].value -%}
+  {{ entry }}
   {%- if mo -%}
     {%- case i -%}
       {%- when 1 -%}
@@ -27,7 +28,6 @@
     {%- endcase -%}
   {%- endif -%}
 
-  {{ mo.question_1 }}
 {%- endfor -%}
 
 {% comment %} === FAQ Accordion Section === {% endcomment %}
