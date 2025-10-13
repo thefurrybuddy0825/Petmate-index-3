@@ -1,5 +1,3 @@
-
-
 {% comment %} === FAQ Accordion Section === {% endcomment %}
 {% liquid
   assign show = section.settings.is_show | downcase | strip
@@ -171,159 +169,203 @@
           data-anim
         {% endif %}
       >
-        {%- assign mf = product.metafields.custom.product_collapsible_content -%}
-      {%- assign mo = nil -%}
-      {%- if mf != blank and mf.type contains 'metaobject' -%}
-        {%- assign mo = mf.value -%}
-      {%- endif -%}
-
-      {%- comment -%} is_show: metaobject first; else parse text "true/false" from block setting {%- endcomment -%}
-      {%- assign is_show = nil -%}
-      {%- if mo and mo.is_show != nil -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
-      {%- if is_show == nil -%}
-        {%- assign bs = block.settings.is_show | downcase | strip -%}
-        {%- if bs == 'true' or bs == '1' or bs == 'yes' or bs == 'y' -%}
-          {%- assign is_show = true -%}
-        {%- else -%}
-          {%- assign is_show = false -%}
+        {%- assign mf = product.metafields.custom.product_faqs_accordion -%}
+        {%- assign mo = null -%}
+        {%- if mf != blank and mf.type contains 'metaobject' -%}
+          {%- assign mo = mf.value -%}
         {%- endif -%}
-      {%- endif -%}
 
-      {%- if is_show == true -%}
-        {%- assign text_sz  = block.settings.font_size   | default: 16 -%}
-        {%- assign text_col = block.settings.text_color  | default: '#000' -%}
-        {%- assign icon_px  = block.settings.emoji_size  | default: text_sz -%}
-        {%- assign icon_col = block.settings.emoji_color | default: text_col -%}
-        {%- assign retina_w = icon_px | times: 2 -%}
-
-        {%- comment -%} 1) Collect ALL rows into a single array, then render once {%- endcomment -%}
-        {%- assign rows = '' | split: ',' -%}
-        {%- assign SEP = '|||~SEP~|||' -%}
-        {%- assign SINGLE = '|||~SINGLE~|||' -%}
-
-        {%- comment -%} 1a) CUSTOM FIELDS (metaobject) — first {%- endcomment -%}
-        {%- for i in (1..5) -%}
-          {%- assign t = '' -%}{%- assign c_html = '' -%}{%- assign ic = '' -%}
-          {%- if mo -%}
-            {%- case i -%}
-              {%- when 1 -%}{%- assign t = mo.faq_title_1  -%}{%- assign c_obj = mo.faq_content_1  -%}{%- assign ic = mo.icon_1  -%}
-              {%- when 2 -%}{%- assign t = mo.faq_title_2  -%}{%- assign c_obj = mo.faq_content_2  -%}{%- assign ic = mo.icon_2  -%}
-              {%- when 3 -%}{%- assign t = mo.faq_title_3  -%}{%- assign c_obj = mo.faq_content_3  -%}{%- assign ic = mo.icon_3  -%}
-              {%- when 4 -%}{%- assign t = mo.faq_title_4  -%}{%- assign c_obj = mo.faq_content_4  -%}{%- assign ic = mo.icon_4  -%}
-              {%- when 5 -%}{%- assign t = mo.faq_title_5  -%}{%- assign c_obj = mo.faq_content_5  -%}{%- assign ic = mo.icon_5  -%}
-            {%- endcase -%}
-            {%- if c_obj != blank -%}
-              {%- assign c_html = c_obj | metafield_tag -%}
-              {%- if c_html == blank and c_obj.value != blank -%}{%- assign c_html = c_obj.value -%}{%- endif -%}
-            {%- endif -%}
+        {%- comment -%} is_show: metaobject first; else parse text "true/false" from block setting {%- endcomment -%}
+        {%- assign is_show = null -%}
+        {%- if mo and mo.is_show != null -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
+        {%- if is_show == null -%}
+          {%- assign bs = block.settings.is_show | downcase | strip -%}
+          {%- if bs == 'true' or bs == '1' or bs == 'yes' or bs == 'y' -%}
+            {%- assign is_show = true -%}
+          {%- else -%}
+            {%- assign is_show = false -%}
           {%- endif -%}
+        {%- endif -%}
 
-          {%- assign has_any = false -%}
-          {%- if t != blank or c_html != blank -%}{%- assign has_any = true -%}{%- endif -%}
+        {%- if is_show == true -%}
+          {%- assign text_sz = block.settings.font_size | default: 16 -%}
+          {%- assign text_col = block.settings.text_color | default: '#000' -%}
+          {%- assign icon_px = block.settings.emoji_size | default: text_sz -%}
+          {%- assign icon_col = block.settings.emoji_color | default: text_col -%}
+          {%- assign retina_w = icon_px | times: 2 -%}
 
-          {%- if has_any -%}
-            {%- capture row -%}
+          {%- comment -%} 1) Collect ALL rows into a single array, then render once {%- endcomment -%}
+          {%- assign rows = '' | split: ',' -%}
+          {%- assign SEP = '|||~SEP~|||' -%}
+          {%- assign SINGLE = '|||~SINGLE~|||' -%}
+
+          {%- comment -%} 1a) CUSTOM FIELDS (metaobject) — first {%- endcomment -%}
+          {%- for i in (1..5) -%}
+            {%- assign t = '' -%}
+            {%- assign c_html = '' -%}
+            {%- assign ic = '' -%}
+            {%- if mo -%}
+              {%- case i -%}
+                {%- when 1 -%}
+                  {%- assign t = mo.faq_title_1 -%}
+                  {%- assign c_obj = mo.faq_content_1 -%}
+                  {%- assign ic = mo.icon_1 -%}
+                {%- when 2 -%}
+                  {%- assign t = mo.faq_title_2 -%}
+                  {%- assign c_obj = mo.faq_content_2 -%}
+                  {%- assign ic = mo.icon_2 -%}
+                {%- when 3 -%}
+                  {%- assign t = mo.faq_title_3 -%}
+                  {%- assign c_obj = mo.faq_content_3 -%}
+                  {%- assign ic = mo.icon_3 -%}
+                {%- when 4 -%}
+                  {%- assign t = mo.faq_title_4 -%}
+                  {%- assign c_obj = mo.faq_content_4 -%}
+                  {%- assign ic = mo.icon_4 -%}
+                {%- when 5 -%}
+                  {%- assign t = mo.faq_title_5 -%}
+                  {%- assign c_obj = mo.faq_content_5 -%}
+                  {%- assign ic = mo.icon_5 -%}
+              {%- endcase -%}
+              {%- if c_obj != blank -%}
+                {%- assign c_html = c_obj | metafield_tag -%}
+                {%- if c_html == blank and c_obj.value != blank -%}{%- assign c_html = c_obj.value -%}{%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- assign has_any = false -%}
+            {%- if t != blank or c_html != blank -%}{%- assign has_any = true -%}{%- endif -%}
+
+            {%- if has_any -%}
+              {%- capture row -%}
               {{ t | replace: SEP, '' }}{{ SEP }}
               {{ c_html | replace: SEP, '' }}{{ SEP }}
               {{ ic | replace: SEP, '' }}{{ SEP }}
               {{ '' }}{{ SEP }}{{ '' }}
             {%- endcapture -%}
-            {%- assign single = row | split: SINGLE -%}
-            {%- assign rows = rows | concat: single -%}
-          {%- endif -%}
-        {%- endfor -%}
-
-        {%- comment -%} 1b) THEME EDITOR ITEMS (t1..t10) — appended below custom fields {%- endcomment -%}
-        {%- for i in (1..10) -%}
-          {%- assign t_id = 't'     | append: i -%}
-          {%- assign c_id = 'c'     | append: i -%}
-          {%- assign i_id = 'icon'  | append: i -%}
-          {%- assign m_id = 'image' | append: i -%}
-
-          {%- assign t  = block.settings[t_id] | default: '' | strip -%}
-          {%- assign cH = block.settings[c_id] | default: '' -%}
-          {%- assign ic = block.settings[i_id] | default: '' | strip -%}
-          {%- assign im = block.settings[m_id] -%}
-
-          {%- assign has_any = false -%}
-          {%- if t != '' or cH != '' -%}{%- assign has_any = true -%}{%- endif -%}
-
-          {%- if has_any -%}
-            {%- assign img1x = '' -%}{%- assign img2x = '' -%}
-            {%- if im != blank -%}
-              {%- assign img1x = im | image_url: width: icon_px -%}
-              {%- assign img2x = im | image_url: width: retina_w -%}
+              {%- assign single = row | split: SINGLE -%}
+              {%- assign rows = rows | concat: single -%}
             {%- endif -%}
+          {%- endfor -%}
 
-            {%- capture row -%}
+          {%- comment -%} 1b) THEME EDITOR ITEMS (t1..t10) — appended below custom fields {%- endcomment -%}
+          {%- for i in (1..10) -%}
+            {%- assign t_id = 't' | append: i -%}
+            {%- assign c_id = 'c' | append: i -%}
+            {%- assign i_id = 'icon' | append: i -%}
+            {%- assign m_id = 'image' | append: i -%}
+
+            {%- assign t = block.settings[t_id] | default: '' | strip -%}
+            {%- assign cH = block.settings[c_id] | default: '' -%}
+            {%- assign ic = block.settings[i_id] | default: '' | strip -%}
+            {%- assign im = block.settings[m_id] -%}
+
+            {%- assign has_any = false -%}
+            {%- if t != '' or cH != '' -%}{%- assign has_any = true -%}{%- endif -%}
+
+            {%- if has_any -%}
+              {%- assign img1x = '' -%}
+              {%- assign img2x = '' -%}
+              {%- if im != blank -%}
+                {%- assign img1x = im | image_url: width: icon_px -%}
+                {%- assign img2x = im | image_url: width: retina_w -%}
+              {%- endif -%}
+
+              {%- capture row -%}
               {{ t | replace: SEP, '' }}{{ SEP }}
               {{ cH | replace: SEP, '' }}{{ SEP }}
               {{ ic | replace: SEP, '' }}{{ SEP }}
               {{ img1x }}{{ SEP }}{{ img2x }}
             {%- endcapture -%}
-            {%- assign single = row | split: SINGLE -%}
-            {%- assign rows = rows | concat: single -%}
-          {%- endif -%}
-        {%- endfor -%}
+              {%- assign single = row | split: SINGLE -%}
+              {%- assign rows = rows | concat: single -%}
+            {%- endif -%}
+          {%- endfor -%}
 
-        {%- comment -%} 2) Render once from unified `rows` {%- endcomment -%}
-        {%- assign rows_trim = rows | join: '' | strip -%}
-        {%- if rows_trim != '' -%}
-          {%- for row in rows -%}
-            {%- assign parts = row | split: SEP -%}
-            {%- assign q = parts[0] | default: '' | strip -%}
-            {%- assign a = parts[1] | default: '' -%}
-            {%- assign ic = parts[2] | default: '' | strip -%}
-            {%- assign img1x = parts[3] | default: '' | strip -%}
-            {%- assign img2x = parts[4] | default: '' | strip -%}
+          {%- comment -%} 2) Render once from unified `rows` {%- endcomment -%}
+          {%- assign rows_trim = rows | join: '' | strip -%}
+          {%- if rows_trim != '' -%}
+            {%- for row in rows -%}
+              {%- assign parts = row | split: SEP -%}
+              {%- assign q = parts[0] | default: '' | strip -%}
+              {%- assign a = parts[1] | default: '' -%}
+              {%- assign ic = parts[2] | default: '' | strip -%}
+              {%- assign img1x = parts[3] | default: '' | strip -%}
+              {%- assign img2x = parts[4] | default: '' | strip -%}
 
-            {% if q != '' %}
-              {%- comment -%} Build icon HTML: code point (hex/decimal), PUA (needs icon font), or literal emoji; else image {%- endcomment -%}
-              {%- assign icon_html = '' -%}
-              {%- assign ic_raw  = ic | to_s | strip -%}
-              {%- assign ic_uc   = ic_raw | upcase -%}
+              {% if q != '' %}
+                {%- comment -%} Build icon HTML: code point (hex/decimal), PUA (needs icon font), or literal emoji; else image {%- endcomment -%}
+                {%- assign icon_html = '' -%}
+                {%- assign ic_raw = ic | to_s | strip -%}
+                {%- assign ic_uc = ic_raw | upcase -%}
 
-              {%- assign is_entity = false -%}
-              {%- if ic_uc contains '&#X' or ic_uc contains '&#' -%}
-                {%- assign is_entity = true -%}
-              {%- endif -%}
-
-              {%- assign hex_clean = ic_uc
-                | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
-                | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
-                | remove: 'A' | remove: 'B' | remove: 'C' | remove: 'D' | remove: 'E' | remove: 'F'
-              -%}
-              {%- assign is_hex_candidate = false -%}
-              {%- if ic_uc != '' and hex_clean == '' and ic_uc.size >= 2 and ic_uc.size <= 6 and is_entity == false -%}
-                {%- assign is_hex_candidate = true -%}
-              {%- endif -%}
-
-              {%- assign dec_clean = ic_uc
-                | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4'
-                | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
-              -%}
-              {%- assign is_dec_candidate = false -%}
-              {%- if ic_uc != '' and dec_clean == '' and is_entity == false -%}
-                {%- assign is_dec_candidate = true -%}
-              {%- endif -%}
-
-              {%- comment -%} If looks like PUA (E000–F8FF), we’ll apply an icon font class/style {%- endcomment -%}
-              {%- assign needs_icon_font = false -%}
-              {%- if is_hex_candidate -%}
-                {%- assign first_char = ic_uc | slice: 0, 1 -%}
-                {%- if first_char == 'E' or first_char == 'F' -%}
-                  {%- assign needs_icon_font = true -%}
+                {%- assign is_entity = false -%}
+                {%- if ic_uc contains '&#X' or ic_uc contains '&#' -%}
+                  {%- assign is_entity = true -%}
                 {%- endif -%}
-              {%- endif -%}
 
-              {%- assign extra_font_style = '' -%}
-              {%- assign extra_font_class = '' -%}
-              {%- if needs_icon_font -%}
-                {%- assign extra_font_style = 'font-family:Material Symbols Outlined, "Material Icons", "Material Icons Outlined", sans-serif;' -%}
-                {%- assign extra_font_class = ' material-symbols-outlined' -%}
-              {%- endif -%}
+                {%- assign hex_clean = ic_uc
+                  | remove: '0'
+                  | remove: '1'
+                  | remove: '2'
+                  | remove: '3'
+                  | remove: '4'
+                  | remove: '5'
+                  | remove: '6'
+                  | remove: '7'
+                  | remove: '8'
+                  | remove: '9'
+                  | remove: 'A'
+                  | remove: 'B'
+                  | remove: 'C'
+                  | remove: 'D'
+                  | remove: 'E'
+                  | remove: 'F'
+                -%}
+                {%- assign is_hex_candidate = false -%}
+                {%- if ic_uc != ''
+                  and hex_clean == ''
+                  and ic_uc.size >= 2
+                  and ic_uc.size <= 6
+                  and is_entity == false
+                -%}
+                  {%- assign is_hex_candidate = true -%}
+                {%- endif -%}
 
-              {%- capture icon_markup -%}
+                {%- assign dec_clean = ic_uc
+                  | remove: '0'
+                  | remove: '1'
+                  | remove: '2'
+                  | remove: '3'
+                  | remove: '4'
+                  | remove: '5'
+                  | remove: '6'
+                  | remove: '7'
+                  | remove: '8'
+                  | remove: '9'
+                -%}
+                {%- assign is_dec_candidate = false -%}
+                {%- if ic_uc != '' and dec_clean == '' and is_entity == false -%}
+                  {%- assign is_dec_candidate = true -%}
+                {%- endif -%}
+
+                {%- comment -%} If looks like PUA (E000–F8FF), we’ll apply an icon font class/style {%- endcomment -%}
+                {%- assign needs_icon_font = false -%}
+                {%- if is_hex_candidate -%}
+                  {%- assign first_char = ic_uc | slice: 0, 1 -%}
+                  {%- if first_char == 'E' or first_char == 'F' -%}
+                    {%- assign needs_icon_font = true -%}
+                  {%- endif -%}
+                {%- endif -%}
+
+                {%- assign extra_font_style = '' -%}
+                {%- assign extra_font_class = '' -%}
+                {%- if needs_icon_font -%}
+                  {%- assign extra_font_style = 'font-family:Material Symbols Outlined, "Material Icons", "Material Icons Outlined", sans-serif;' -%}
+                  {%- assign extra_font_class = ' material-symbols-outlined' -%}
+                {%- endif -%}
+
+                {%- capture icon_markup -%}
                 <span class="faq-title-icon{{ extra_font_class }}" aria-hidden="true"
                       style="font-size:{{ icon_px }}px; color:{{ icon_col }}; line-height:1; display:inline-block; margin-right:8px; {{ extra_font_style }}">
                   {%- if is_entity -%}
@@ -338,11 +380,11 @@
                 </span>
               {%- endcapture -%}
 
-              {%- if ic_raw != '' -%}
-                {%- assign icon_html = icon_markup -%}
-              {%- elsif img1x != '' or img2x != '' -%}
-                {%- assign img_src = img2x | default: img1x -%}
-                {%- capture icon_html -%}
+                {%- if ic_raw != '' -%}
+                  {%- assign icon_html = icon_markup -%}
+                {%- elsif img1x != '' or img2x != '' -%}
+                  {%- assign img_src = img2x | default: img1x -%}
+                  {%- capture icon_html -%}
                   <img
                     src="{{ img_src | escape }}"
                     {% if img1x != '' and img2x != '' %}srcset="{{ img1x | escape }} 1x, {{ img2x | escape }} 2x"{% endif %}
@@ -350,39 +392,45 @@
                     width="{{ icon_px }}" height="{{ icon_px }}"
                     style="display:inline-block; width:{{ icon_px }}px; height:{{ icon_px }}px; object-fit:contain; margin-right:8px;">
                 {%- endcapture -%}
-              {%- endif -%}
+                {%- endif -%}
 
-              {%- assign uid = section.id | append: '-u-' | append: block.id | append: '-' | append: forloop.index -%}
+                {%- assign uid = section.id | append: '-u-' | append: block.id | append: '-' | append: forloop.index -%}
 
-              <div class="faqs-main" style="font-size: {{ text_sz }}px;">
-                <div class="panel-group">
-                  <button class="panel-header" type="button" aria-controls="faq-{{ uid }}" aria-expanded="false" data-target="#faq-{{ uid }}">
-                    {{ icon_html }}
-                    <span style="font-size:{{ text_sz }}px; color:{{ text_col }}; line-height:1.3; padding-left: 0;">
-                      {{- q | default: 'Details' -}}
-                    </span>
-                    <span class="caret-icon" aria-hidden="true">
-                      <svg class="icon-accordion" viewBox="0 0 20 20" width="20" height="20">
-                        <path fill-rule="evenodd"
-                          d="M7.5 5.5a.75.75 0 011.06 0l4 4a.75.75 0 010 1.06l-4 4a.75.75 0 11-1.06-1.06L10.44 10 7.5 7.06a.75.75 0 010-1.56z"
-                          clip-rule="evenodd" />
-                      </svg>
-                    </span>
-                  </button>
+                <div class="faqs-main" style="font-size: {{ text_sz }}px;">
+                  <div class="panel-group">
+                    <button
+                      class="panel-header"
+                      type="button"
+                      aria-controls="faq-{{ uid }}"
+                      aria-expanded="false"
+                      data-target="#faq-{{ uid }}"
+                    >
+                      {{ icon_html }}
+                      <span style="font-size:{{ text_sz }}px; color:{{ text_col }}; line-height:1.3; padding-left: 0;">
+                        {{- q | default: 'Details' -}}
+                      </span>
+                      <span class="caret-icon" aria-hidden="true">
+                        <svg class="icon-accordion" viewBox="0 0 20 20" width="20" height="20">
+                          <path fill-rule="evenodd"
+                            d="M7.5 5.5a.75.75 0 011.06 0l4 4a.75.75 0 010 1.06l-4 4a.75.75 0 11-1.06-1.06L10.44 10 7.5 7.06a.75.75 0 010-1.56z"
+                            clip-rule="evenodd" />
+                        </svg>
+                      </span>
+                    </button>
 
-                  <div class="panel-body">
-                    <div id="faq-{{ uid }}" class="collapse" data-parent="#Accordion-{{ section.id }}">
-                      <div class="item-content rte" style="padding: 0 0 20px 0; color: {{ text_col }};">
-                        {{ a }}
+                    <div class="panel-body">
+                      <div id="faq-{{ uid }}" class="collapse" data-parent="#Accordion-{{ section.id }}">
+                        <div class="item-content rte" style="padding: 0 0 20px 0; color: {{ text_col }};">
+                          {{ a }}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
         {%- endif -%}
-      {%- endif -%}
       </div>
     </div>
   </section>
