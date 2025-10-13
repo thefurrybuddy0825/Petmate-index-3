@@ -5,9 +5,9 @@
 {%- if entity == null -%}{% assign entity = collection %}{% endif -%}
 {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
 
-{%- assign mf = product.metafields.custom.product_faqs_accordion -%}
+{%- assign mf = entity.metafields.custom.product_faqs_accordion -%}
 {%- assign mo = null -%}
-{{ mo }}
+{{ mf }}
 {%- if mf != blank and mf.type contains 'metaobject' -%}
   {%- assign mo = mf.value -%}
 {%- endif -%}
