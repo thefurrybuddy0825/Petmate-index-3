@@ -178,16 +178,7 @@
         {%- comment -%} is_show: metaobject first; else parse text "true/false" from block setting {%- endcomment -%}
         {%- assign is_show = null -%}
         {%- if mo and mo.is_show != null -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
-        {{ is_show }}
-        {%- if is_show == null -%}
-          {%- assign bs = block.settings.is_show | downcase | strip -%}
-          {%- if bs == 'true' or bs == '1' or bs == 'yes' or bs == 'y' -%}
-            {%- assign is_show = true -%}
-          {%- else -%}
-            {%- assign is_show = false -%}
-          {%- endif -%}
-        {%- endif -%}
-
+    
         {%- if is_show == true -%}
           {%- assign text_sz = block.settings.font_size | default: 16 -%}
           {%- assign text_col = block.settings.text_color | default: '#000' -%}
@@ -208,8 +199,8 @@
             {%- if mo -%}
               {%- case i -%}
                 {%- when 1 -%}
-                  {%- assign t = mo.faq_title_1 -%}
-                  {%- assign c_obj = mo.faq_content_1 -%}
+                  {%- assign t = mo.question_1 -%}
+                  {%- assign c_obj = mo.answer_1 -%}
                   {%- assign ic = mo.icon_1 -%}
                 {%- when 2 -%}
                   {%- assign t = mo.faq_title_2 -%}
