@@ -1,3 +1,28 @@
+{%- assign sst = section.settings -%}
+
+{%- assign entity = product -%}
+{%- if entity == null -%}{% assign entity = page %}{% endif -%}
+{%- if entity == null -%}{% assign entity = collection %}{% endif -%}
+{%- if entity == null -%}{% assign entity = shop %}{% endif -%}
+
+{%- assign ns = entity.metafields.product_faqs_accordion -%}
+
+{%- comment -%} Check for any FAQs {%- endcomment -%}
+{%- assign has_faq = false -%}
+{%- for i in (1..5) -%}
+  {%- capture qk -%}question_{{ i }}{%- endcapture -%}
+  {%- capture ak -%}answer_{{ i }}{%- endcapture -%}
+  {%- assign q_mf = ns[qk] -%}
+  {%- assign a_mf = ns[ak] -%}
+  {%- if q_mf != blank and a_mf != blank -%}
+    {%- assign has_faq = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if has_faq -%}
+  cccc
+{%- endif -%}
 {% comment %} === FAQ Accordion Section === {% endcomment %}
 {% liquid
   assign show = section.settings.is_show | downcase | strip
