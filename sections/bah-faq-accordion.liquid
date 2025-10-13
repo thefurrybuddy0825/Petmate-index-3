@@ -6,7 +6,7 @@
 {%- if entity == null -%}{% assign entity = shop %}{% endif -%}
 
 {%- assign ns = entity.metafields.product_faqs_accordion -%}
-
+{{ ns }}
 {%- comment -%} Check for any FAQs {%- endcomment -%}
 {%- assign has_faq = false -%}
 {%- for i in (1..5) -%}
