@@ -7,7 +7,7 @@
 
 {%- comment -%} Point ns at the namespace object and use [] for dynamic keys {%- endcomment -%}
 {%- assign ns = entity.metafields['product_faqs_accordion'] -%}
-
+{{ ns }}
 {%- assign has_faq = false -%}
 {%- for i in (1..5) -%}
   {%- capture qk -%}question_{{ i }}{%- endcapture -%}
