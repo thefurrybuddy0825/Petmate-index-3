@@ -178,7 +178,7 @@
         {%- comment -%} is_show: metaobject first; else parse text "true/false" from block setting {%- endcomment -%}
         {%- assign is_show = null -%}
         {%- if mo and mo.is_show != null -%}{%- assign is_show = mo.is_show -%}{%- endif -%}
-    
+
         {%- if is_show == true -%}
           {%- assign text_sz = block.settings.font_size | default: 16 -%}
           {%- assign text_col = block.settings.text_color | default: '#000' -%}
@@ -193,40 +193,40 @@
 
           {%- comment -%} 1a) CUSTOM FIELDS (metaobject) — first {%- endcomment -%}
           {%- for i in (1..5) -%}
-            {%- assign t = '' -%}
-            {%- assign c_html = '' -%}
+            {%- assign question = '' -%}
+            {%- assign  answer_html  = '' -%}
             {%- assign ic = 'e887' -%}
             {%- if mo -%}
               {%- case i -%}
                 {%- when 1 -%}
-                  {%- assign t = mo.question_1 -%}
-                  {%- assign c_obj = mo.answer_1 -%}
+                  {%- assign question = mo.question_1 -%}
+                  {%- assign answer = mo.answer_1 -%}
                 {%- when 2 -%}
-                  {%- assign t = mo.question_2 -%}
-                  {%- assign c_obj = mo.answer_2 -%}
+                  {%- assign question = mo.question_2 -%}
+                  {%- assign answer = mo.answer_2 -%}
                 {%- when 3 -%}
-                  {%- assign t = mo.question_3 -%}
-                  {%- assign c_obj = mo.answer_3 -%}
+                  {%- assign question = mo.question_3 -%}
+                  {%- assign answer = mo.answer_3 -%}
                 {%- when 4 -%}
-                  {%- assign t = mo.question_4 -%}
-                  {%- assign c_obj = mo.answer_4 -%}
+                  {%- assign question = mo.question_4 -%}
+                  {%- assign answer = mo.answer_4 -%}
                 {%- when 5 -%}
-                  {%- assign t = mo.question_5 -%}
-                  {%- assign c_obj = mo.answer_5 -%}
+                  {%- assign question = mo.question_5 -%}
+                  {%- assign answer = mo.answer_5 -%}
               {%- endcase -%}
-              {%- if c_obj != blank -%}
-                {%- assign c_html = c_obj | metafield_tag -%}
-                {%- if c_html == blank and c_obj.value != blank -%}{%- assign c_html = c_obj.value -%}{%- endif -%}
+              {%- if answer != blank -%}
+                {%- assign  answer_html  = answer | metafield_tag -%}
+                {%- if  answer_html  == blank and answer.value != blank -%}{%- assign  answer_html  = answer.value -%}{%- endif -%}
               {%- endif -%}
             {%- endif -%}
 
             {%- assign has_any = false -%}
-            {%- if t != blank or c_html != blank -%}{%- assign has_any = true -%}{%- endif -%}
+            {%- if question != blank or  answer_html  != blank -%}{%- assign has_any = true -%}{%- endif -%}
 
             {%- if has_any -%}
               {%- capture row -%}
-              {{ t | replace: SEP, '' }}{{ SEP }}
-              {{ c_html | replace: SEP, '' }}{{ SEP }}
+              {{ question | replace: SEP, '' }}{{ SEP }}
+              {{  answer_html  | replace: SEP, '' }}{{ SEP }}
               {{ ic | replace: SEP, '' }}{{ SEP }}
               {{ '' }}{{ SEP }}{{ '' }}
             {%- endcapture -%}
