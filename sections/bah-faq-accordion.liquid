@@ -240,13 +240,13 @@
           {%- if rows_trim != '' -%}
             {%- for row in rows -%}
               {%- assign parts = row | split: SEP -%}
-              {%- assign q = parts[0] | default: '' | strip -%}
-              {%- assign a = parts[1] | default: '' -%}
+              {%- assign _question_text = parts[0] | default: '' | strip -%}
+              {%- assign _answer_text = parts[1] | default: '' -%}
               {%- assign ic = parts[2] | default: '' | strip -%}
               {%- assign img1x = parts[3] | default: '' | strip -%}
               {%- assign img2x = parts[4] | default: '' | strip -%}
 
-              {% if q != '' %}
+              {% if _question_text != '' %}
                 {%- comment -%} Build icon HTML: code point (hex/decimal), PUA (needs icon font), or literal emoji; else image {%- endcomment -%}
                 {%- assign icon_html = '' -%}
                 {%- assign ic_raw = ic | to_s | strip -%}
@@ -360,7 +360,7 @@
                     >
                       {{ icon_html }}
                       <span style="font-size:{{ text_sz }}px; color:{{ text_col }}; line-height:1.3; padding-left: 0;">
-                        {{- q | default: 'Details' -}}
+                        {{- _question_text | default: 'Details' -}}
                       </span>
                       <span class="caret-icon" aria-hidden="true">
                         <svg class="icon-accordion" viewBox="0 0 20 20" width="20" height="20">
@@ -374,7 +374,7 @@
                     <div class="panel-body">
                       <div id="faq-{{ uid }}" class="collapse" data-parent="#Accordion-{{ section.id }}">
                         <div class="item-content rte" style="padding: 0 0 20px 0; color: {{ text_col }};">
-                          {{ a }}
+                          {{ _answer_text }}
                         </div>
                       </div>
                     </div>
