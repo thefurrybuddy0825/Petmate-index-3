@@ -358,7 +358,7 @@
                       aria-controls="faq-{{ section.id }}-{{ block.id }}"
                       data-target="#faq-{{ section.id }}-{{ block.id }}"
                     >
-                      {%- assign raw = block.settings.icon | default: '' | strip -%}
+                      {%- assign raw = ic | default: '' | strip -%}
 
                       {%- if block.settings.image != blank -%}
                         <img
