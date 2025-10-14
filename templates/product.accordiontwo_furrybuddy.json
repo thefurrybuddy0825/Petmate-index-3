@@ -210,43 +210,6 @@
     },
     "bah_faq_accordion_FUAwyR": {
       "type": "bah-faq-accordion",
-      "blocks": {
-        "faq_gV78Nb": {
-          "type": "faq",
-          "settings": {
-            "question": "Sample question?",
-            "answer": "<p>Sample answer text here.</p>",
-            "text_color": "#000000",
-            "font_size": 16,
-            "icon": "e887"
-          }
-        },
-        "faq_wfGw7B": {
-          "type": "faq",
-          "settings": {
-            "question": "Sample question?",
-            "answer": "<p>Sample answer text here.</p>",
-            "text_color": "#000000",
-            "font_size": 16,
-            "icon": "e887"
-          }
-        },
-        "faq_K7rcFD": {
-          "type": "faq",
-          "settings": {
-            "question": "Sample question?",
-            "answer": "<p>Sample answer text here.</p>",
-            "text_color": "#000000",
-            "font_size": 16,
-            "icon": "e887"
-          }
-        }
-      },
-      "block_order": [
-        "faq_gV78Nb",
-        "faq_wfGw7B",
-        "faq_K7rcFD"
-      ],
       "name": "BAH FAQ Accordion",
       "settings": {
         "is_show": "true",
