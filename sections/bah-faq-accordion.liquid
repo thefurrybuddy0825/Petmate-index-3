@@ -435,7 +435,7 @@
                       {%- endif -%}
 
                       <span style="font-size:{{ block.settings.font_size }}px; color:{{ block.settings.text_color }}; line-height:1.3; padding-left: 10px;">
-                        {{ block.settings.question }}
+                        {{ _question_text }}
                       </span>
 
                       <span class="caret-icon" aria-hidden="true">
@@ -450,7 +450,7 @@
                         class="collapse"
                         data-parent="#Accordion-{{ section.id }}"
                       >
-                        <div class="item-content rte">{{ block.settings.answer }}</div>
+                        <div class="item-content rte">{{ _answer_text }}</div>
                       </div>
                     </div>
                   </div>
