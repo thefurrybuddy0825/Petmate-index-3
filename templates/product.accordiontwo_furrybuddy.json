@@ -208,21 +208,21 @@
         "distance_bottom": 30
       }
     },
-    "bah_faq_accordion_FUAwyR": {
+    "bah_faq_accordion_LmMYmN": {
       "type": "bah-faq-accordion",
       "name": "BAH FAQ Accordion",
       "settings": {
         "is_show": "true",
-        "heading": "<p>Frequently Asked Questions</p>",
+        "heading": "<p>BAH Image Width Text</p>",
         "heading_color": "#222222",
-        "subheading": "<p>Here are a few of the questions we get the most. If you don't see what's on your mind, reach out to us anytime on email.</p>",
+        "subheading": "<p>Subtitle from happy customers</p>",
         "subheading_color": "#666666",
         "emoji_color": "#000000",
-        "emoji_size": 32,
-        "heading_alignment": "text-center",
+        "emoji_size": 18,
+        "heading_alignment": "text-left",
         "animate": true,
-        "spacing": 0,
-        "container": "container-full",
+        "spacing": 30,
+        "container": "container",
         "width_block": "col-lg-6",
         "background_color": "",
         "gradient": "",
@@ -442,7 +442,7 @@
   "order": [
     "main",
     "bah_product_image_with_text_xBTVbF",
-    "bah_faq_accordion_FUAwyR",
+    "bah_faq_accordion_LmMYmN",
     "1f27e4c9-5a83-40d1-a579-111353e08822",
     "166243121355988ca2",
     "6ea2ec42-cb99-4c9e-8813-1337ac056a4d",
